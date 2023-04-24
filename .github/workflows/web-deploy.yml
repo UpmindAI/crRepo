@@ -30,17 +30,7 @@ jobs:
         with:
          name: web-build
          path: build/web
-#  deploy:
-#    name: Deploy
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:      
-#      - uses: FirebaseExtended/action-hosting-deploy@v0
-#        with:
-#          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-#          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITALVENTURES_3FFEE }}'
-#          channelId: live
-#          projectId: paperwiz1
+
   deploy:
     name: Deploy
     needs: build
