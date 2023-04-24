@@ -425,7 +425,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                       .size
                                                                       .width *
                                                                   1.0,
-                                                              height: 700.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -560,7 +559,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                       .size
                                                                       .width *
                                                                   1.0,
-                                                              height: 700.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -691,7 +689,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                       .size
                                                                       .width *
                                                                   1.0,
-                                                              height: 700.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(

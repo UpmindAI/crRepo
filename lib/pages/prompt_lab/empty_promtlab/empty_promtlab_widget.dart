@@ -77,7 +77,7 @@ class _EmptyPromtlabWidgetState extends State<EmptyPromtlabWidget> {
                           child: FaIcon(
                             FontAwesomeIcons.flask,
                             color: FlutterFlowTheme.of(context).tertiary,
-                            size: 60.0,
+                            size: 50.0,
                           ),
                         ),
                         Text(
@@ -88,6 +88,7 @@ class _EmptyPromtlabWidgetState extends State<EmptyPromtlabWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .displayLargeFamily,
                                 color: FlutterFlowTheme.of(context).tertiary,
+                                fontSize: 47.0,
                                 fontWeight: FontWeight.bold,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -112,7 +113,7 @@ class _EmptyPromtlabWidgetState extends State<EmptyPromtlabWidget> {
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).tertiary,
-                                fontSize: 16.0,
+                                fontSize: 14.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -277,7 +278,7 @@ class _EmptyPromtlabWidgetState extends State<EmptyPromtlabWidget> {
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                fontSize: 16.0,
+                                fontSize: 14.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
