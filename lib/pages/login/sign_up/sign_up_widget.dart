@@ -72,9 +72,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Image.asset(
-                                  'assets/images/Logo-OMP-122-40.png',
-                                  width: 122.0,
-                                  height: 40.0,
+                                  'assets/images/Crisp-lightmode-157-40.png',
+                                  width: 157.0,
+                                  height: 50.0,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -82,9 +82,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Image.asset(
-                                  'assets/images/Logo-OMP-122-40-white.png',
-                                  width: 122.0,
-                                  height: 40.0,
+                                  'assets/images/Crisp-darkmode-157-40.png',
+                                  width: 157.0,
+                                  height: 50.0,
                                   fit: BoxFit.cover,
                                 ),
                               ),

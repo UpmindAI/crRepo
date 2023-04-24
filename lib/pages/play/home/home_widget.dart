@@ -1483,7 +1483,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               setState(() {});
                                                                             },
                                                                             text:
-                                                                                'OMP!',
+                                                                                'PLAY!',
                                                                             options:
                                                                                 FFButtonOptions(
                                                                               width: 130.0,
