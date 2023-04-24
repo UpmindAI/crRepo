@@ -1,5 +1,5 @@
 name: Build and deploy to Firebase Hosting
-
+#Push
 on:
   push:
    branches:
@@ -30,17 +30,7 @@ jobs:
         with:
          name: web-build
          path: build/web
-#  deploy:
-#    name: Deploy
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:      
-#      - uses: FirebaseExtended/action-hosting-deploy@v0
-#        with:
-#          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-#          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITALVENTURES_3FFEE }}'
-#          channelId: live
-#          projectId: paperwiz1
+
   deploy:
     name: Deploy
     needs: build
@@ -56,6 +46,6 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting --project crispai
         env:
           GCP_SA_KEY: ${{ secrets.CR_SECRET }}
