@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1003522928061",
+    "project_id": "crispai",
+    "storage_bucket": "crispai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1003522928061:android:7adf3c6ca8b60b1057f6d4",
+        "android_client_info": {
+          "package_name": "com.turbo.digitalventures"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1003522928061-nf3tr8s127rmcg4q1o4v9a2a0m4m8i3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC90Ip0gAao7aaIUSEJmHDgHBF_kPl5E4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003522928061-nf3tr8s127rmcg4q1o4v9a2a0m4m8i3o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1003522928061-qp4hjd2d9tvqkso0l7q611pup04km6p6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.turbo.digitalventures"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

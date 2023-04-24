@@ -1,0 +1,60 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "user_docs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "dataset_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "cid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "summ_prompt_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "is_favorite",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "shared_chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "cid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
