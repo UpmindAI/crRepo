@@ -3,7 +3,7 @@ name: Build and deploy to Firebase Hosting
 on:
   push:
    branches:
-#     - main
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,4 +58,4 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITALVENTURES_3FFEE }}
+          GCP_SA_KEY: ${{ secrets.CR_SECRET }}
