@@ -596,8 +596,15 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                         if (columnPromptlabRecordList
                                                             .isEmpty) {
                                                           return Center(
-                                                            child:
-                                                                EmptyPromtlabWidget(),
+                                                            child: Container(
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  1.0,
+                                                              child:
+                                                                  EmptyPromtlabWidget(),
+                                                            ),
                                                           );
                                                         }
                                                         return SingleChildScrollView(
