@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1003522928061-qp4hjd2d9tvqkso0l7q611pup04km6p6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1003522928061-qp4hjd2d9tvqkso0l7q611pup04km6p6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA8sca4LP1V_IT-WVungaohdpR65vPH0u4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1003522928061</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.turbo.digitalventures</string>
+	<key>PROJECT_ID</key>
+	<string>crispai</string>
+	<key>STORAGE_BUCKET</key>
+	<string>crispai.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1003522928061:ios:825779866518643a57f6d4</string>
+</dict>
+</plist>
