@@ -994,100 +994,111 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 4.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              logFirebaseEvent(
-                                  'MAIN_MENU_COMP_contentView_1_ON_TAP');
-                              logFirebaseEvent('contentView_1_navigate_to');
+                        if (valueOrDefault<bool>(
+                            currentUserDocument?.isAdmin, false))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 4.0),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'MAIN_MENU_COMP_contentView_1_ON_TAP');
+                                  logFirebaseEvent('contentView_1_navigate_to');
 
-                              context.pushNamed('build');
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(12.0),
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 8.0, 8.0, 8.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 12.0, 0.0),
-                                      child: Container(
-                                        width: 4.0,
-                                        height: 60.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(4.0),
+                                  context.pushNamed('build');
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 12.0, 0.0),
+                                          child: Container(
+                                            width: 4.0,
+                                            height: 60.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 40.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.wrench,
-                                        color:
-                                            FFAppState().currentPage == 'Build'
+                                        Container(
+                                          width: 40.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.wrench,
+                                            color: FFAppState().currentPage ==
+                                                    'Build'
                                                 ? FlutterFlowTheme.of(context)
                                                     .accentOne
                                                 : FlutterFlowTheme.of(context)
                                                     .grayIcon,
-                                        size: 24.0,
-                                      ).animateOnPageLoad(animationsMap[
-                                          'iconOnPageLoadAnimation7']!),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 0.0, 0.0),
-                                      child: AutoSizeText(
-                                        'Build',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmallFamily,
-                                              color: FFAppState().currentPage ==
-                                                      'Build'
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .accentOne
-                                                  : FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(
+                                            size: 24.0,
+                                          ).animateOnPageLoad(animationsMap[
+                                              'iconOnPageLoadAnimation7']!),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 0.0, 0.0),
+                                          child: AutoSizeText(
+                                            'Build',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .titleSmallFamily),
-                                            ),
-                                      ),
+                                                          .titleSmallFamily,
+                                                  color: FFAppState()
+                                                              .currentPage ==
+                                                          'Build'
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .accentOne
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmallFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 1.0, 0.0, 0.0),
