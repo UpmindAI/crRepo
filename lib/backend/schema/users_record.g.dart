@@ -173,6 +173,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.walletAddress;
+    if (value != null) {
+      result
+        ..add('wallet_address')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -283,6 +290,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.wlDark = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'wallet_address':
+          result.walletAddress = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -342,6 +353,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? wlDark;
   @override
+  final String? walletAddress;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -370,6 +383,7 @@ class _$UsersRecord extends UsersRecord {
       this.whitelabel,
       this.wlLight,
       this.wlDark,
+      this.walletAddress,
       this.ffRef})
       : super._();
 
@@ -406,6 +420,7 @@ class _$UsersRecord extends UsersRecord {
         whitelabel == other.whitelabel &&
         wlLight == other.wlLight &&
         wlDark == other.wlDark &&
+        walletAddress == other.walletAddress &&
         ffRef == other.ffRef;
   }
 
@@ -434,6 +449,7 @@ class _$UsersRecord extends UsersRecord {
     _$hash = $jc(_$hash, whitelabel.hashCode);
     _$hash = $jc(_$hash, wlLight.hashCode);
     _$hash = $jc(_$hash, wlDark.hashCode);
+    _$hash = $jc(_$hash, walletAddress.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -464,6 +480,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('whitelabel', whitelabel)
           ..add('wlLight', wlLight)
           ..add('wlDark', wlDark)
+          ..add('walletAddress', walletAddress)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -563,6 +580,11 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get wlDark => _$this._wlDark;
   set wlDark(String? wlDark) => _$this._wlDark = wlDark;
 
+  String? _walletAddress;
+  String? get walletAddress => _$this._walletAddress;
+  set walletAddress(String? walletAddress) =>
+      _$this._walletAddress = walletAddress;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -596,6 +618,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _whitelabel = $v.whitelabel;
       _wlLight = $v.wlLight;
       _wlDark = $v.wlDark;
+      _walletAddress = $v.walletAddress;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -641,6 +664,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             whitelabel: whitelabel,
             wlLight: wlLight,
             wlDark: wlDark,
+            walletAddress: walletAddress,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
