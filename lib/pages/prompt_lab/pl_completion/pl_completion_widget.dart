@@ -158,21 +158,28 @@ class _PlCompletionWidgetState extends State<PlCompletionWidget> {
                             child: Container(
                               width: MediaQuery.of(context).size.width * 1.0,
                               decoration: BoxDecoration(),
-                              child: Text(
-                                columnPlPromptsRecord.completion!,
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      fontWeight: FontWeight.w500,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SelectionArea(
+                                      child: Text(
+                                    columnPlPromptsRecord.completion!,
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                      lineHeight: 1.3,
-                                    ),
+                                                  .bodyMediumFamily,
+                                          fontWeight: FontWeight.w500,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                          lineHeight: 1.3,
+                                        ),
+                                  )),
+                                ],
                               ),
                             ),
                           ),

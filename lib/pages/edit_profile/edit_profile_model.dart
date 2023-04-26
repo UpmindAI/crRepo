@@ -36,6 +36,9 @@ class EditProfileModel extends FlutterFlowModel {
   TextEditingController? phoneEditController;
   final phoneEditMask = MaskTextInputFormatter(mask: '+# (###) ###-##-##');
   String? Function(BuildContext, String?)? phoneEditControllerValidator;
+  // State field(s) for walletEdit widget.
+  TextEditingController? walletEditController;
+  String? Function(BuildContext, String?)? walletEditControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -51,6 +54,7 @@ class EditProfileModel extends FlutterFlowModel {
     industryEditController?.dispose();
     roleEditController?.dispose();
     phoneEditController?.dispose();
+    walletEditController?.dispose();
   }
 
   /// Additional helper methods are added here.

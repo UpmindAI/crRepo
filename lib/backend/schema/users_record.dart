@@ -69,6 +69,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'wl_dark')
   String? get wlDark;
 
+  @BuiltValueField(wireName: 'wallet_address')
+  String? get walletAddress;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -94,7 +97,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..chatImage = ''
     ..whitelabel = false
     ..wlLight = ''
-    ..wlDark = '';
+    ..wlDark = ''
+    ..walletAddress = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -140,6 +144,7 @@ Map<String, dynamic> createUsersRecordData({
   bool? whitelabel,
   String? wlLight,
   String? wlDark,
+  String? walletAddress,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -166,7 +171,8 @@ Map<String, dynamic> createUsersRecordData({
         ..chatImage = chatImage
         ..whitelabel = whitelabel
         ..wlLight = wlLight
-        ..wlDark = wlDark,
+        ..wlDark = wlDark
+        ..walletAddress = walletAddress,
     ),
   );
 

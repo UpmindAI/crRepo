@@ -43,6 +43,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         text: valueOrDefault(currentUserDocument?.role, ''));
     _model.phoneEditController ??=
         TextEditingController(text: currentPhoneNumber);
+    _model.walletEditController ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.walletAddress, ''));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -667,6 +669,90 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             ),
                                           ),
                                         ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 20.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => TextFormField(
+                                              controller:
+                                                  _model.walletEditController,
+                                              autofocus: true,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                labelText: 'Wallet Adress',
+                                                hintStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmall,
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondary,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(4.0),
+                                                    topRight:
+                                                        Radius.circular(4.0),
+                                                  ),
+                                                ),
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium,
+                                              validator: _model
+                                                  .walletEditControllerValidator
+                                                  .asValidator(context),
+                                            ),
+                                          ),
+                                        ),
                                         FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
@@ -688,6 +774,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   .industryEditController.text,
                                               role: _model
                                                   .roleEditController.text,
+                                              walletAddress: _model
+                                                  .walletEditController.text,
                                             );
                                             await currentUserReference!
                                                 .update(usersUpdateData);
