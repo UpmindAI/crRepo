@@ -680,7 +680,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               autofocus: true,
                                               obscureText: false,
                                               decoration: InputDecoration(
-                                                labelText: 'Wallet Adress',
+                                                labelText: 'Wallet Address',
                                                 hintStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall,

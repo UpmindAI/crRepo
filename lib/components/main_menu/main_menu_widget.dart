@@ -232,7 +232,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                           children: [
                             if (Theme.of(context).brightness == Brightness.dark)
                               Container(
-                                width: 122.0,
+                                width: 98.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -241,9 +241,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                 child: Stack(
                                   children: [
                                     Image.asset(
-                                      'assets/images/Crisp-darkmode-157-40.png',
-                                      width: 157.0,
-                                      height: 50.0,
+                                      'assets/images/Logo-Paal-Darkmode-394-160.png',
+                                      width: 98.0,
+                                      height: 40.0,
                                       fit: BoxFit.cover,
                                     ),
                                     if (valueOrDefault<bool>(
@@ -281,7 +281,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                             if (Theme.of(context).brightness ==
                                 Brightness.light)
                               Container(
-                                width: 122.0,
+                                width: 98.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -299,9 +299,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                             false))
                                       AuthUserStreamWidget(
                                         builder: (context) => Image.asset(
-                                          'assets/images/Crisp-lightmode-157-40.png',
-                                          width: 157.0,
-                                          height: 50.0,
+                                          'assets/images/Logo-Paal-Lightmode-394-160.png',
+                                          width: 98.0,
+                                          height: 40.0,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
