@@ -150,6 +150,7 @@ class _SearchResultsWidgetState extends State<SearchResultsWidget> {
                                                       SearchTestRecord.search(
                                                     term: widget.searchTerm,
                                                     maxResults: 10,
+                                                    useCache: true,
                                                   ),
                                                   builder: (context, snapshot) {
                                                     // Customize what your widget looks like when it's loading.

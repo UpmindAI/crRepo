@@ -650,9 +650,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     logFirebaseEvent('SETTINGS_PAGE_COMP_contentView_1_ON_TAP');
-                    logFirebaseEvent('contentView_1_navigate_to');
-
-                    context.pushNamed('termsService');
+                    logFirebaseEvent('contentView_1_launch_u_r_l');
+                    await launchURL(
+                        'https://docs.paalai.io/policies/terms-of-service');
                   },
                   child: Material(
                     color: Colors.transparent,
@@ -724,9 +724,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     logFirebaseEvent('SETTINGS_PAGE_COMP_contentView_1_ON_TAP');
-                    logFirebaseEvent('contentView_1_navigate_to');
-
-                    context.pushNamed('privacyPolicy');
+                    logFirebaseEvent('contentView_1_launch_u_r_l');
+                    await launchURL(
+                        'https://docs.paalai.io/policies/privacy-policy');
                   },
                   child: Material(
                     color: Colors.transparent,
@@ -798,9 +798,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     logFirebaseEvent('SETTINGS_PAGE_COMP_contentView_1_ON_TAP');
-                    logFirebaseEvent('contentView_1_navigate_to');
-
-                    context.pushNamed('cookiePolicy');
+                    logFirebaseEvent('contentView_1_launch_u_r_l');
+                    await launchURL(
+                        'https://docs.paalai.io/policies/cookie-policy');
                   },
                   child: Material(
                     color: Colors.transparent,
@@ -872,9 +872,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     logFirebaseEvent('SETTINGS_PAGE_COMP_contentView_1_ON_TAP');
-                    logFirebaseEvent('contentView_1_navigate_to');
-
-                    context.pushNamed('AcceptableUsePolicy');
+                    logFirebaseEvent('contentView_1_launch_u_r_l');
+                    await launchURL(
+                        'https://docs.paalai.io/policies/acceptable-use-policy');
                   },
                   child: Material(
                     color: Colors.transparent,
