@@ -249,7 +249,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_chatPersSwitch', _value);
   }
 
-  int _version = 11;
+  int _version = 12;
   int get version => _version;
   set version(int _value) {
     _version = _value;
@@ -333,6 +333,12 @@ class FFAppState extends ChangeNotifier {
   set grOn(bool _value) {
     _grOn = _value;
     prefs.setBool('ff_grOn', _value);
+  }
+
+  String _setShareCID = '';
+  String get setShareCID => _setShareCID;
+  set setShareCID(String _value) {
+    _setShareCID = _value;
   }
 }
 
