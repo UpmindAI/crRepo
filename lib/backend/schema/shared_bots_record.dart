@@ -30,6 +30,8 @@ abstract class SharedBotsRecord
 
   String? get image;
 
+  String? get uid;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -41,7 +43,8 @@ abstract class SharedBotsRecord
     ..guardrail = ''
     ..system = ''
     ..topK = 0.0
-    ..image = '';
+    ..image = ''
+    ..uid = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shared_bots');
@@ -71,6 +74,7 @@ Map<String, dynamic> createSharedBotsRecordData({
   DateTime? timestamp,
   double? topK,
   String? image,
+  String? uid,
 }) {
   final firestoreData = serializers.toFirestore(
     SharedBotsRecord.serializer,
@@ -83,7 +87,8 @@ Map<String, dynamic> createSharedBotsRecordData({
         ..system = system
         ..timestamp = timestamp
         ..topK = topK
-        ..image = image,
+        ..image = image
+        ..uid = uid,
     ),
   );
 

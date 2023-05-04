@@ -1300,7 +1300,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                                               context.pushNamed(
                                                                                 'retreivingMIX',
-                                                                                queryParams: {
+                                                                                queryParameters: {
                                                                                   'gr': serializeParam(
                                                                                     'no',
                                                                                     ParamType.String,
@@ -1467,7 +1467,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                                               context.pushNamed(
                                                                                 'retreivingMIX',
-                                                                                queryParams: {
+                                                                                queryParameters: {
                                                                                   'gr': serializeParam(
                                                                                     'yes',
                                                                                     ParamType.String,
@@ -2293,7 +2293,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                                                         context.pushNamed(
                                                                                           'Datasets',
-                                                                                          queryParams: {
+                                                                                          queryParameters: {
                                                                                             'activeDataset': serializeParam(
                                                                                               listViewUserDatasetsRecord,
                                                                                               ParamType.Document,

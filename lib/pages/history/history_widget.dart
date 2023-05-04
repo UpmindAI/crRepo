@@ -376,7 +376,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                   context
                                                                       .pushNamed(
                                                                     'Home',
-                                                                    queryParams:
+                                                                    queryParameters:
                                                                         {
                                                                       'userCompletion':
                                                                           serializeParam(

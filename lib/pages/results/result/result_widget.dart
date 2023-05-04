@@ -489,7 +489,7 @@ class _ResultWidgetState extends State<ResultWidget> {
 
                                                         context.pushNamed(
                                                           'Home',
-                                                          queryParams: {
+                                                          queryParameters: {
                                                             'userCompletion':
                                                                 serializeParam(
                                                               columnUserCompletionsRecord,
