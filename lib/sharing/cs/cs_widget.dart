@@ -295,7 +295,8 @@ class _CsWidgetState extends State<CsWidget> {
 
                                                               context.pushNamed(
                                                                 'cs',
-                                                                queryParams: {
+                                                                queryParameters:
+                                                                    {
                                                                   'bid':
                                                                       serializeParam(
                                                                     widget.bid,
@@ -1135,7 +1136,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     context
                                                                         .pushNamed(
                                                                       'cs',
-                                                                      queryParams:
+                                                                      queryParameters:
                                                                           {
                                                                         'bid':
                                                                             serializeParam(

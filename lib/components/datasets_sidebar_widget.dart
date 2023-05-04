@@ -296,7 +296,8 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                 context
                                                                     .pushNamed(
                                                                   'Datasets',
-                                                                  queryParams: {
+                                                                  queryParameters:
+                                                                      {
                                                                     'activeDataset':
                                                                         serializeParam(
                                                                       listViewUserDatasetsRecord,

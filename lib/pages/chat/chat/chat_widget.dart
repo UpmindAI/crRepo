@@ -1085,6 +1085,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           200,
                                                                           200,
                                                                         ),
+                                                                  uid:
+                                                                      currentUserUid,
                                                                 ),
                                                                 'doc_ids':
                                                                     FFAppState()
@@ -2900,7 +2902,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
                                                                                     context.pushNamed(
                                                                                       'Datasets',
-                                                                                      queryParams: {
+                                                                                      queryParameters: {
                                                                                         'activeDataset': serializeParam(
                                                                                           listViewUserDatasetsRecord,
                                                                                           ParamType.Document,
