@@ -73,9 +73,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Image.asset(
-                                  'assets/images/Crisp-lightmode-157-40.png',
-                                  width: 157.0,
-                                  height: 50.0,
+                                  'assets/images/Logo-Paal-Lightmode-394-160.png',
+                                  width: 197.0,
+                                  height: 80.0,
                                   fit: BoxFit.cover,
                                 ),
                               ),

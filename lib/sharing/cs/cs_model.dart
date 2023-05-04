@@ -1,5 +1,4 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -36,10 +35,12 @@ class CsModel extends FlutterFlowModel {
 
   DocumentReference? setBot;
 
+  bool inChat = false;
+
   ///  State fields for stateful widgets in this page.
 
-  final formKey2 = GlobalKey<FormState>();
   final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   // State field(s) for chatColumn widget.
   ScrollController? chatColumn;
   // State field(s) for MouseRegion widget.
@@ -48,18 +49,14 @@ class CsModel extends FlutterFlowModel {
   TextEditingController? startFieldController;
   String? Function(BuildContext, String?)? startFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
-  SharedChatMetaRecord? createSharedChatMeta;
+  SharedChatMetaRecord? createSharedChatMetaPaal;
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
   SharedChatsRecord? shareChatMessage;
-  // Stores action output result for [Backend Call - API (shareChat)] action in startField widget.
-  ApiCallResponse? apiResulthea;
   // State field(s) for sendField widget.
   TextEditingController? sendFieldController;
   String? Function(BuildContext, String?)? sendFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in sendField widget.
-  ChatsRecord? chatMessageNewFromField;
-  // Stores action output result for [Backend Call - API (MixedChat)] action in sendField widget.
-  ApiCallResponse? apiResultzymFF;
+  SharedChatsRecord? shareChatSendCopy;
 
   /// Initialization and disposal methods.
 
