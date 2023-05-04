@@ -135,7 +135,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                     logFirebaseEvent('Icon_copy_to_clipboard');
                                     await Clipboard.setData(ClipboardData(
                                         text:
-                                            'https://play.omp.dev/cs?bid=${widget.bid}'));
+                                            'https://play.omp.dev/cs?bid=${widget.bid}&cid=0'));
                                   },
                                   child: FaIcon(
                                     FontAwesomeIcons.copy,
@@ -173,7 +173,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                         12.0, 8.0, 12.0, 8.0),
                                     child: SelectionArea(
                                         child: Text(
-                                      'https://play.omp.dev/cs?bid=${widget.bid}',
+                                      'https://paal.omp.dev/cs?bid=${widget.bid}&cid=0',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
@@ -189,6 +189,25 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                                         .labelLargeFamily),
                                           ),
                                     )),
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'SHARE_POPUP_COMP_Icon_ri0ppmk7_ON_TAP');
+                                      logFirebaseEvent('Icon_launch_u_r_l');
+                                      await launchURL(
+                                          'https://paal.omp.dev/cs?bid=${widget.bid}&cid=0');
+                                    },
+                                    child: Icon(
+                                      Icons.launch,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -228,7 +247,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                     logFirebaseEvent('Icon_copy_to_clipboard');
                                     await Clipboard.setData(ClipboardData(
                                         text:
-                                            '<iframe src=\"https://play.omp.dev/cs?bid=${widget.bid}\" class=\"\" frameborder=\"0\" width=\"${valueOrDefault<String>(
+                                            '<iframe src=\"https://play.omp.dev/cs?bid=${widget.bid}&cid=0\" class=\"\" frameborder=\"0\" width=\"${valueOrDefault<String>(
                                       _model.width.toString(),
                                       '500',
                                     )}px\" height=\"${valueOrDefault<String>(
@@ -274,7 +293,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                         12.0, 8.0, 12.0, 8.0),
                                     child: SelectionArea(
                                         child: Text(
-                                      '<iframe src=\"https://play.omp.dev/cs?bid=${widget.bid}\" class=\"\" frameborder=\"0\" width=\"${valueOrDefault<String>(
+                                      '<iframe src=\"https://paal.omp.dev/cs?bid=${widget.bid}&cid=0\" class=\"\" frameborder=\"0\" width=\"${valueOrDefault<String>(
                                         _model.width.toString(),
                                         '500',
                                       )}px\" height=\"${valueOrDefault<String>(
