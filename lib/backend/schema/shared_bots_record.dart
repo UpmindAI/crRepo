@@ -32,6 +32,9 @@ abstract class SharedBotsRecord
 
   String? get uid;
 
+  @BuiltValueField(wireName: 'dataset_ids')
+  BuiltList<String>? get datasetIds;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -44,7 +47,8 @@ abstract class SharedBotsRecord
     ..system = ''
     ..topK = 0.0
     ..image = ''
-    ..uid = '';
+    ..uid = ''
+    ..datasetIds = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shared_bots');
@@ -88,7 +92,8 @@ Map<String, dynamic> createSharedBotsRecordData({
         ..timestamp = timestamp
         ..topK = topK
         ..image = image
-        ..uid = uid,
+        ..uid = uid
+        ..datasetIds = null,
     ),
   );
 

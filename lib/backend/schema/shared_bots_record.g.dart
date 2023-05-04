@@ -79,6 +79,13 @@ class _$SharedBotsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.uid;
+    if (value != null) {
+      result
+        ..add('uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -138,6 +145,10 @@ class _$SharedBotsRecordSerializer
           result.image = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -169,6 +180,8 @@ class _$SharedBotsRecord extends SharedBotsRecord {
   @override
   final String? image;
   @override
+  final String? uid;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$SharedBotsRecord(
@@ -184,6 +197,7 @@ class _$SharedBotsRecord extends SharedBotsRecord {
       this.timestamp,
       this.topK,
       this.image,
+      this.uid,
       this.ffRef})
       : super._();
 
@@ -207,6 +221,7 @@ class _$SharedBotsRecord extends SharedBotsRecord {
         timestamp == other.timestamp &&
         topK == other.topK &&
         image == other.image &&
+        uid == other.uid &&
         ffRef == other.ffRef;
   }
 
@@ -221,6 +236,7 @@ class _$SharedBotsRecord extends SharedBotsRecord {
     _$hash = $jc(_$hash, timestamp.hashCode);
     _$hash = $jc(_$hash, topK.hashCode);
     _$hash = $jc(_$hash, image.hashCode);
+    _$hash = $jc(_$hash, uid.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -237,6 +253,7 @@ class _$SharedBotsRecord extends SharedBotsRecord {
           ..add('timestamp', timestamp)
           ..add('topK', topK)
           ..add('image', image)
+          ..add('uid', uid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -281,6 +298,10 @@ class SharedBotsRecordBuilder
   String? get image => _$this._image;
   set image(String? image) => _$this._image = image;
 
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -300,6 +321,7 @@ class SharedBotsRecordBuilder
       _timestamp = $v.timestamp;
       _topK = $v.topK;
       _image = $v.image;
+      _uid = $v.uid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -333,6 +355,7 @@ class SharedBotsRecordBuilder
               timestamp: timestamp,
               topK: topK,
               image: image,
+              uid: uid,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
