@@ -1091,6 +1091,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 'doc_ids':
                                                                     FFAppState()
                                                                         .selectedDocuments,
+                                                                'dataset_ids':
+                                                                    FFAppState()
+                                                                        .selectedDataset,
                                                               };
                                                               var sharedBotsRecordReference =
                                                                   SharedBotsRecord
