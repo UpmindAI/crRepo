@@ -86,6 +86,21 @@ class _$SharedBotsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.datasetIds;
+    if (value != null) {
+      result
+        ..add('dataset_ids')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.telegramUrl;
+    if (value != null) {
+      result
+        ..add('telegram_url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -149,6 +164,16 @@ class _$SharedBotsRecordSerializer
           result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'dataset_ids':
+          result.datasetIds.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'telegram_url':
+          result.telegramUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -182,6 +207,10 @@ class _$SharedBotsRecord extends SharedBotsRecord {
   @override
   final String? uid;
   @override
+  final BuiltList<String>? datasetIds;
+  @override
+  final String? telegramUrl;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$SharedBotsRecord(
@@ -198,6 +227,8 @@ class _$SharedBotsRecord extends SharedBotsRecord {
       this.topK,
       this.image,
       this.uid,
+      this.datasetIds,
+      this.telegramUrl,
       this.ffRef})
       : super._();
 
@@ -222,6 +253,8 @@ class _$SharedBotsRecord extends SharedBotsRecord {
         topK == other.topK &&
         image == other.image &&
         uid == other.uid &&
+        datasetIds == other.datasetIds &&
+        telegramUrl == other.telegramUrl &&
         ffRef == other.ffRef;
   }
 
@@ -237,6 +270,8 @@ class _$SharedBotsRecord extends SharedBotsRecord {
     _$hash = $jc(_$hash, topK.hashCode);
     _$hash = $jc(_$hash, image.hashCode);
     _$hash = $jc(_$hash, uid.hashCode);
+    _$hash = $jc(_$hash, datasetIds.hashCode);
+    _$hash = $jc(_$hash, telegramUrl.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -254,6 +289,8 @@ class _$SharedBotsRecord extends SharedBotsRecord {
           ..add('topK', topK)
           ..add('image', image)
           ..add('uid', uid)
+          ..add('datasetIds', datasetIds)
+          ..add('telegramUrl', telegramUrl)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -302,6 +339,16 @@ class SharedBotsRecordBuilder
   String? get uid => _$this._uid;
   set uid(String? uid) => _$this._uid = uid;
 
+  ListBuilder<String>? _datasetIds;
+  ListBuilder<String> get datasetIds =>
+      _$this._datasetIds ??= new ListBuilder<String>();
+  set datasetIds(ListBuilder<String>? datasetIds) =>
+      _$this._datasetIds = datasetIds;
+
+  String? _telegramUrl;
+  String? get telegramUrl => _$this._telegramUrl;
+  set telegramUrl(String? telegramUrl) => _$this._telegramUrl = telegramUrl;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -322,6 +369,8 @@ class SharedBotsRecordBuilder
       _topK = $v.topK;
       _image = $v.image;
       _uid = $v.uid;
+      _datasetIds = $v.datasetIds?.toBuilder();
+      _telegramUrl = $v.telegramUrl;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -356,6 +405,8 @@ class SharedBotsRecordBuilder
               topK: topK,
               image: image,
               uid: uid,
+              datasetIds: _datasetIds?.build(),
+              telegramUrl: telegramUrl,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
@@ -364,6 +415,9 @@ class SharedBotsRecordBuilder
         _docTitles?.build();
         _$failedField = 'docIds';
         _docIds?.build();
+
+        _$failedField = 'datasetIds';
+        _datasetIds?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'SharedBotsRecord', _$failedField, e.toString());

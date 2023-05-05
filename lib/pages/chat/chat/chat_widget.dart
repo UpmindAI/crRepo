@@ -1088,9 +1088,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   uid:
                                                                       currentUserUid,
                                                                 ),
-                                                                'doc_ids':
-                                                                    FFAppState()
-                                                                        .selectedDocuments,
                                                                 'dataset_ids':
                                                                     FFAppState()
                                                                         .selectedDataset,
@@ -1144,6 +1141,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             SharePopupWidget(
                                                                           bid: _model
                                                                               .setBid,
+                                                                          botRef: _model
+                                                                              .createBot!
+                                                                              .reference,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -2905,7 +2905,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
                                                                                     context.pushNamed(
                                                                                       'Datasets',
-                                                                                      queryParameters: {
+                                                                                      queryParams: {
                                                                                         'activeDataset': serializeParam(
                                                                                           listViewUserDatasetsRecord,
                                                                                           ParamType.Document,

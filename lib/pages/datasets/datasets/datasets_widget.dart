@@ -1998,8 +1998,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 context
                                                                     .pushNamed(
                                                                   'Datasets',
-                                                                  queryParameters:
-                                                                      {
+                                                                  queryParams: {
                                                                     'activeDataset':
                                                                         serializeParam(
                                                                       listViewUserDatasetsRecord,

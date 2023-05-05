@@ -1586,7 +1586,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
 
                                                                                                     context.pushNamed(
                                                                                                       'Home',
-                                                                                                      queryParameters: {
+                                                                                                      queryParams: {
                                                                                                         'userCompletion': serializeParam(
                                                                                                           columnUserCompletionsRecord,
                                                                                                           ParamType.Document,
@@ -2201,7 +2201,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
 
                                                                                   context.pushNamed(
                                                                                     'Datasets',
-                                                                                    queryParameters: {
+                                                                                    queryParams: {
                                                                                       'activeDataset': serializeParam(
                                                                                         listViewUserDatasetsRecord,
                                                                                         ParamType.Document,
