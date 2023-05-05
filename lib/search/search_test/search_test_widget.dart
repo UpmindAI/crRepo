@@ -178,7 +178,7 @@ class _SearchTestWidgetState extends State<SearchTestWidget> {
                                                                   context
                                                                       .pushNamed(
                                                                     'searchResults',
-                                                                    queryParameters:
+                                                                    queryParams:
                                                                         {
                                                                       'searchTerm':
                                                                           serializeParam(

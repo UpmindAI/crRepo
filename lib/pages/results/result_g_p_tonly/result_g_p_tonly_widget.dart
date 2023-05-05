@@ -519,7 +519,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
 
                                                         context.pushNamed(
                                                           'Home',
-                                                          queryParameters: {
+                                                          queryParams: {
                                                             'userCompletion':
                                                                 serializeParam(
                                                               columnUserCompletionsRecord,
