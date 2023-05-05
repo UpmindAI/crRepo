@@ -198,7 +198,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                             12.0, 8.0, 12.0, 8.0),
                                         child: SelectionArea(
                                             child: Text(
-                                          'https://paal.omp.dev/cs?bid=${widget.bid}&cid=0',
+                                          columnSharedBotsRecord.shareUrl!,
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
@@ -800,78 +800,126 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                           ),
                         ),
                         if (_model.hasTelegram)
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 12.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(1.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'SHARE_POPUP_COMP_Icon_7wc64y9n_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Icon_copy_to_clipboard');
+                                          await Clipboard.setData(ClipboardData(
+                                              text: columnSharedBotsRecord
+                                                  .telegramUrl!));
+                                        },
+                                        child: FaIcon(
+                                          FontAwesomeIcons.copy,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          size: 16.0,
+                                        ),
                                       ),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 8.0, 12.0, 8.0),
-                                          child: SelectionArea(
-                                              child: Text(
-                                            columnSharedBotsRecord.telegramUrl!,
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelLarge
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelLargeFamily,
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.normal,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelLargeFamily),
-                                                ),
-                                          )),
-                                        ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            logFirebaseEvent(
-                                                'SHARE_POPUP_COMP_Icon_sye5zbv0_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Icon_launch_u_r_l');
-                                            await launchURL(
-                                                columnSharedBotsRecord
-                                                    .telegramUrl!);
-                                          },
-                                          child: Icon(
-                                            Icons.launch,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 24.0,
-                                          ),
-                                        ),
-                                      ],
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                          ),
+                        if (_model.hasTelegram)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 12.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 8.0, 12.0, 8.0),
+                                            child: SelectionArea(
+                                                child: Text(
+                                              columnSharedBotsRecord
+                                                  .telegramUrl!,
+                                              textAlign: TextAlign.start,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLargeFamily,
+                                                        fontSize: 18.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLargeFamily),
+                                                      ),
+                                            )),
+                                          ),
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              logFirebaseEvent(
+                                                  'SHARE_POPUP_COMP_Icon_sye5zbv0_ON_TAP');
+                                              logFirebaseEvent(
+                                                  'Icon_launch_u_r_l');
+                                              await launchURL(
+                                                  columnSharedBotsRecord
+                                                      .telegramUrl!);
+                                            },
+                                            child: Icon(
+                                              Icons.launch,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                       ],
                     );

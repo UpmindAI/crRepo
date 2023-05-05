@@ -1003,213 +1003,224 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                if (valueOrDefault<bool>(
-                                                    currentUserDocument
-                                                        ?.isAdmin,
-                                                    false))
-                                                  Expanded(
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    12.0,
-                                                                    0.0),
-                                                        child:
-                                                            AuthUserStreamWidget(
-                                                          builder: (context) =>
-                                                              FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              logFirebaseEvent(
-                                                                  'CHAT_PAGE_SHARE_BTN_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Button_update_widget_state');
-                                                              setState(() {
-                                                                _model.setBid =
-                                                                    random_data
-                                                                        .randomString(
-                                                                  9,
-                                                                  9,
-                                                                  true,
-                                                                  false,
-                                                                  true,
-                                                                );
-                                                              });
-                                                              logFirebaseEvent(
-                                                                  'Button_backend_call');
+                                                Expanded(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'CHAT_PAGE_SHARE_BTN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Button_update_widget_state');
+                                                          setState(() {
+                                                            _model.setBid =
+                                                                random_data
+                                                                    .randomString(
+                                                              9,
+                                                              9,
+                                                              true,
+                                                              false,
+                                                              true,
+                                                            );
+                                                          });
+                                                          logFirebaseEvent(
+                                                              'Button_backend_call');
 
-                                                              final sharedBotsCreateData =
-                                                                  {
-                                                                ...createSharedBotsRecordData(
-                                                                  bid: _model
-                                                                      .setBid,
-                                                                  guardrail: valueOrDefault(currentUserDocument?.chatGr, '') !=
-                                                                              null &&
-                                                                          valueOrDefault(currentUserDocument?.chatGr, '') !=
-                                                                              ''
-                                                                      ? valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.chatGr,
-                                                                          '')
-                                                                      : '',
-                                                                  system: valueOrDefault(currentUserDocument?.chatPersonality, '') !=
-                                                                              null &&
-                                                                          valueOrDefault(currentUserDocument?.chatPersonality, '') !=
-                                                                              ''
-                                                                      ? valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.chatPersonality,
-                                                                          '')
-                                                                      : '',
-                                                                  timestamp:
-                                                                      getCurrentTimestamp,
-                                                                  topK: FFAppState()
-                                                                      .setTopKchat
-                                                                      .toDouble(),
-                                                                  image: valueOrDefault(currentUserDocument?.chatImage, '') !=
-                                                                              null &&
-                                                                          valueOrDefault(currentUserDocument?.chatImage, '') !=
-                                                                              ''
-                                                                      ? valueOrDefault(
-                                                                          currentUserDocument
-                                                                              ?.chatImage,
-                                                                          '')
-                                                                      : random_data
-                                                                          .randomImageUrl(
-                                                                          200,
-                                                                          200,
-                                                                        ),
-                                                                  uid:
-                                                                      currentUserUid,
-                                                                ),
-                                                                'dataset_ids':
-                                                                    FFAppState()
-                                                                        .selectedDataset,
-                                                              };
-                                                              var sharedBotsRecordReference =
-                                                                  SharedBotsRecord
-                                                                      .collection
-                                                                      .doc();
-                                                              await sharedBotsRecordReference
-                                                                  .set(
-                                                                      sharedBotsCreateData);
-                                                              _model.createBot =
-                                                                  SharedBotsRecord
-                                                                      .getDocumentFromData(
-                                                                          sharedBotsCreateData,
-                                                                          sharedBotsRecordReference);
-                                                              logFirebaseEvent(
-                                                                  'Button_bottom_sheet');
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .overlay,
-                                                                barrierColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .overlay,
-                                                                enableDrag:
-                                                                    false,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (bottomSheetContext) {
-                                                                  return GestureDetector(
-                                                                    onTap: () => FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(
-                                                                            _unfocusNode),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: MediaQuery.of(
-                                                                              bottomSheetContext)
-                                                                          .viewInsets,
-                                                                      child:
-                                                                          Container(
-                                                                        height: MediaQuery.of(context).size.height *
-                                                                            1.0,
-                                                                        child:
-                                                                            SharePopupWidget(
-                                                                          bid: _model
-                                                                              .setBid,
-                                                                          botRef: _model
-                                                                              .createBot!
-                                                                              .reference,
-                                                                        ),
-                                                                      ),
+                                                          final sharedBotsCreateData =
+                                                              {
+                                                            ...createSharedBotsRecordData(
+                                                              bid:
+                                                                  _model.setBid,
+                                                              guardrail: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatGr,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatGr,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatGr,
+                                                                      '')
+                                                                  : '',
+                                                              system: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatPersonality,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatPersonality,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatPersonality,
+                                                                      '')
+                                                                  : '',
+                                                              timestamp:
+                                                                  getCurrentTimestamp,
+                                                              topK: FFAppState()
+                                                                  .setTopKchat
+                                                                  .toDouble(),
+                                                              image: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatImage,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatImage,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatImage,
+                                                                      '')
+                                                                  : random_data
+                                                                      .randomImageUrl(
+                                                                      200,
+                                                                      200,
                                                                     ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
-
-                                                              setState(() {});
+                                                              uid:
+                                                                  currentUserUid,
+                                                              shareUrl:
+                                                                  'https://paal.omp.dev/cs?bid=${_model.setBid}&cid=0',
+                                                            ),
+                                                            'dataset_ids':
+                                                                FFAppState()
+                                                                    .selectedDataset,
+                                                          };
+                                                          var sharedBotsRecordReference =
+                                                              SharedBotsRecord
+                                                                  .collection
+                                                                  .doc();
+                                                          await sharedBotsRecordReference
+                                                              .set(
+                                                                  sharedBotsCreateData);
+                                                          _model.createBot =
+                                                              SharedBotsRecord
+                                                                  .getDocumentFromData(
+                                                                      sharedBotsCreateData,
+                                                                      sharedBotsRecordReference);
+                                                          logFirebaseEvent(
+                                                              'Button_bottom_sheet');
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .overlay,
+                                                            barrierColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .overlay,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder:
+                                                                (bottomSheetContext) {
+                                                              return GestureDetector(
+                                                                onTap: () => FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _unfocusNode),
+                                                                child: Padding(
+                                                                  padding: MediaQuery.of(
+                                                                          bottomSheetContext)
+                                                                      .viewInsets,
+                                                                  child:
+                                                                      Container(
+                                                                    height: MediaQuery.of(context)
+                                                                            .size
+                                                                            .height *
+                                                                        1.0,
+                                                                    child:
+                                                                        SharePopupWidget(
+                                                                      bid: _model
+                                                                          .setBid,
+                                                                      botRef: _model
+                                                                          .createBot!
+                                                                          .reference,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
                                                             },
-                                                            text: 'Share',
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .share_rounded,
-                                                              size: 16.0,
-                                                            ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 130.0,
-                                                              height: 30.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0.0),
-                                                            ),
+                                                          ).then((value) =>
+                                                              setState(() {}));
+
+                                                          setState(() {});
+                                                        },
+                                                        text: 'Share',
+                                                        icon: Icon(
+                                                          Icons.share_rounded,
+                                                          size: 16.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 130.0,
+                                                          height: 30.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondary,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                  ),
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
                                                           ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
+                                                ),
                                               ],
                                             ),
                                           ),
