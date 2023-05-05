@@ -463,7 +463,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                       alignment: AlignmentDirectional(1.0, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 5.0, 0.0, 0.0),
+                                            12.0, 0.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
@@ -494,16 +494,15 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                           },
                                           text: 'Save',
                                           options: FFButtonOptions(
-                                            width: 70.0,
-                                            height: 40.0,
+                                            height: 32.0,
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
+                                                    8.0, 0.0, 8.0, 0.0),
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                                .primary,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
@@ -512,10 +511,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .titleSmallFamily,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
+                                                      color: Colors.white,
                                                       useGoogleFonts: GoogleFonts
                                                               .asMap()
                                                           .containsKey(
@@ -523,7 +519,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                       context)
                                                                   .titleSmallFamily),
                                                     ),
-                                            elevation: 2.0,
+                                            elevation: 1.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
@@ -1548,7 +1544,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 5.0, 0.0, 0.0),
+                                                  12.0, 0.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
@@ -1583,15 +1579,14 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                             },
                                             text: 'Save',
                                             options: FFButtonOptions(
-                                              width: 70.0,
-                                              height: 40.0,
+                                              height: 32.0,
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
+                                                      .primary,
                                               textStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -1600,10 +1595,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .titleSmallFamily,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
+                                                        color: Colors.white,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -1611,7 +1603,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                         context)
                                                                     .titleSmallFamily),
                                                       ),
-                                              elevation: 2.0,
+                                              elevation: 1.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,

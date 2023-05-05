@@ -1087,6 +1087,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         ),
                                                                   uid:
                                                                       currentUserUid,
+                                                                  shareUrl:
+                                                                      'https://paal.omp.dev/cs?bid=${_model.setBid}&cid=0',
                                                                 ),
                                                                 'dataset_ids':
                                                                     FFAppState()

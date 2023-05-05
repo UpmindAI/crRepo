@@ -38,6 +38,9 @@ abstract class SharedBotsRecord
   @BuiltValueField(wireName: 'telegram_url')
   String? get telegramUrl;
 
+  @BuiltValueField(wireName: 'share_url')
+  String? get shareUrl;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -52,7 +55,8 @@ abstract class SharedBotsRecord
     ..image = ''
     ..uid = ''
     ..datasetIds = ListBuilder()
-    ..telegramUrl = '';
+    ..telegramUrl = ''
+    ..shareUrl = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shared_bots');
@@ -84,6 +88,7 @@ Map<String, dynamic> createSharedBotsRecordData({
   String? image,
   String? uid,
   String? telegramUrl,
+  String? shareUrl,
 }) {
   final firestoreData = serializers.toFirestore(
     SharedBotsRecord.serializer,
@@ -99,7 +104,8 @@ Map<String, dynamic> createSharedBotsRecordData({
         ..image = image
         ..uid = uid
         ..datasetIds = null
-        ..telegramUrl = telegramUrl,
+        ..telegramUrl = telegramUrl
+        ..shareUrl = shareUrl,
     ),
   );
 
