@@ -840,87 +840,116 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                             ),
                           ),
                         if (_model.hasTelegram)
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 0.0, 8.0, 12.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 12.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      border: Border.all(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
+                                            .alternate,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 8.0, 12.0, 8.0),
+                                          child: SelectionArea(
+                                              child: Text(
+                                            columnSharedBotsRecord.telegramUrl!,
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelLargeFamily,
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLargeFamily),
+                                                ),
+                                          )),
                                         ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 8.0, 12.0, 8.0),
-                                            child: SelectionArea(
-                                                child: Text(
-                                              columnSharedBotsRecord
-                                                  .telegramUrl!,
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelLargeFamily,
-                                                        fontSize: 18.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelLargeFamily),
-                                                      ),
-                                            )),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            logFirebaseEvent(
+                                                'SHARE_POPUP_COMP_Icon_sye5zbv0_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Icon_launch_u_r_l');
+                                            await launchURL(
+                                                columnSharedBotsRecord
+                                                    .telegramUrl!);
+                                          },
+                                          child: Icon(
+                                            Icons.launch,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
                                           ),
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'SHARE_POPUP_COMP_Icon_sye5zbv0_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Icon_launch_u_r_l');
-                                              await launchURL(
-                                                  columnSharedBotsRecord
-                                                      .telegramUrl!);
-                                            },
-                                            child: Icon(
-                                              Icons.launch,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 12.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Bot id: ',
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              ),
+                              SelectionArea(
+                                  child: Text(
+                                columnSharedBotsRecord.bid!,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              )),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  '(Use set/ ${widget.bid} to change the dataset from within the bot)',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w300,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     );
                   },
