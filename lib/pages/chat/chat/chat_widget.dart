@@ -2018,6 +2018,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     guardrail:
                                                                         FFAppState()
                                                                             .setChatGR,
+                                                                    engine: FFAppState()
+                                                                        .chatGPTengine,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'startField_navigate_to');
@@ -2284,6 +2286,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     guardrail:
                                                                         FFAppState()
                                                                             .setChatGR,
+                                                                    engine: FFAppState()
+                                                                        .chatGPTengine,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'sendField_wait__delay');

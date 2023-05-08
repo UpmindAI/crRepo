@@ -44,6 +44,7 @@ class FFAppState extends ChangeNotifier {
         prefs.getString('ff_setCompletionPL')?.ref ?? _setCompletionPL;
     _setPromptPL = prefs.getString('ff_setPromptPL') ?? _setPromptPL;
     _grOn = prefs.getBool('ff_grOn') ?? _grOn;
+    _chatGPTengine = prefs.getString('ff_chatGPTengine') ?? _chatGPTengine;
   }
 
   void update(VoidCallback callback) {
@@ -247,7 +248,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_chatPersSwitch', _value);
   }
 
-  int _version = 20;
+  int _version = 21;
   int get version => _version;
   set version(int _value) {
     _version = _value;
@@ -337,6 +338,13 @@ class FFAppState extends ChangeNotifier {
   String get setShareCID => _setShareCID;
   set setShareCID(String _value) {
     _setShareCID = _value;
+  }
+
+  String _chatGPTengine = 'gpt-3.5-turbo';
+  String get chatGPTengine => _chatGPTengine;
+  set chatGPTengine(String _value) {
+    _chatGPTengine = _value;
+    prefs.setString('ff_chatGPTengine', _value);
   }
 }
 

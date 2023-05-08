@@ -130,6 +130,7 @@ class MixedChatCall {
     List<String>? datasetIdsList,
     int? topK,
     String? guardrail = '',
+    String? engine = '',
   }) async {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -144,6 +145,7 @@ class MixedChatCall {
           'datasetIds': datasetIds,
           'topK': topK,
           'guardrail': guardrail,
+          'engine': engine,
         },
       },
     );
