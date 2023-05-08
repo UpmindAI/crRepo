@@ -2003,8 +2003,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   _model.apiResultStartForm =
                                                                       await MixedChatCall
                                                                           .call(
-                                                                    idToken:
-                                                                        currentJwtToken,
                                                                     qid: _model
                                                                         .createMessageForm!
                                                                         .qid,
@@ -2020,6 +2018,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             .setChatGR,
                                                                     engine: FFAppState()
                                                                         .chatGPTengine,
+                                                                    uid:
+                                                                        currentUserUid,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'startField_navigate_to');
@@ -2271,8 +2271,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   _model.apiResultzymFF =
                                                                       await MixedChatCall
                                                                           .call(
-                                                                    idToken:
-                                                                        currentJwtToken,
                                                                     qid: _model
                                                                         .chatMessageNewFromField!
                                                                         .qid,
@@ -2288,6 +2286,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             .setChatGR,
                                                                     engine: FFAppState()
                                                                         .chatGPTengine,
+                                                                    uid:
+                                                                        currentUserUid,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'sendField_wait__delay');
