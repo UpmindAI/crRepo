@@ -131,25 +131,32 @@ class MixedChatCall {
     int? topK,
     String? guardrail = '',
     String? engine = '',
-  }) async {
+  }) {
     final datasetIds = _serializeList(datasetIdsList);
 
-    final response = await makeCloudCall(
-      _kPrivateApiFunctionName,
-      {
-        'callName': 'MixedChatCall',
-        'variables': {
-          'idToken': idToken,
-          'qid': qid,
-          'cid': cid,
-          'datasetIds': datasetIds,
-          'topK': topK,
-          'guardrail': guardrail,
-          'engine': engine,
-        },
-      },
+    final body = '''
+{
+  "id_token": "${idToken}",
+  "qid": "${qid}",
+  "cid": "${cid}",
+  "dataset_ids": ${datasetIds},
+  "top_k": ${topK},
+  "guardrail": "${guardrail}",
+  "engine": "${engine}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'MixedChat',
+      apiUrl: 'https://mixed-chat-crisp-4tozrh7z2a-ue.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
     );
-    return ApiCallResponse.fromCloudCallResponse(response);
   }
 }
 
