@@ -87,7 +87,6 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   elevation: 2.0,
                   child: Container(
                     width: 700.0,
-                    height: 600.0,
                     constraints: BoxConstraints(
                       maxWidth: 800.0,
                     ),
@@ -156,6 +155,117 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             thickness: 1.0,
                             color: FlutterFlowTheme.of(context).lineColor,
                           ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 150.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 5.0),
+                                        child: Text(
+                                          'Prompt Target:',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                fontSize: 16.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, 0.0),
+                                      child: FlutterFlowDropDown<String>(
+                                        controller:
+                                            _model.dropDownValueController1 ??=
+                                                FormFieldController<String>(
+                                          _model.dropDownValue1 ??=
+                                              FFAppState().setChatDropdown,
+                                        ),
+                                        options: [
+                                          'My Data + GPT',
+                                          'My Data Only'
+                                        ],
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.dropDownValue1 = val);
+                                          logFirebaseEvent(
+                                              'CONFIGURE_BOT_DropDown_fnex08ys_ON_FORM_');
+                                          logFirebaseEvent(
+                                              'DropDown_update_app_state');
+                                          setState(() {
+                                            FFAppState().setChatDropdown =
+                                                _model.dropDownValue1!;
+                                          });
+                                        },
+                                        width: 280.0,
+                                        height: 50.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              color: Colors.black,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                        fillColor: Colors.white,
+                                        elevation: 2.0,
+                                        borderColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        borderWidth: 1.0,
+                                        borderRadius: 0.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 4.0, 12.0, 4.0),
+                                        hidesUnderline: true,
+                                        isSearchable: false,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -176,7 +286,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 5.0),
                                       child: Text(
-                                        'Prompt Target:',
+                                        'Engine:',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -208,25 +318,22 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                     alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: FlutterFlowDropDown<String>(
                                       controller:
-                                          _model.dropDownValueController ??=
+                                          _model.dropDownValueController2 ??=
                                               FormFieldController<String>(
-                                        _model.dropDownValue ??=
-                                            FFAppState().setChatDropdown,
+                                        _model.dropDownValue2 ??=
+                                            FFAppState().chatGPTengine,
                                       ),
-                                      options: [
-                                        'My Data + GPT',
-                                        'My Data Only'
-                                      ],
+                                      options: ['gpt-3.5-turbo', 'gpt-4'],
                                       onChanged: (val) async {
                                         setState(
-                                            () => _model.dropDownValue = val);
+                                            () => _model.dropDownValue2 = val);
                                         logFirebaseEvent(
-                                            'CONFIGURE_BOT_DropDown_fnex08ys_ON_FORM_');
+                                            'CONFIGURE_BOT_DropDown_rkqde8nl_ON_FORM_');
                                         logFirebaseEvent(
                                             'DropDown_update_app_state');
                                         setState(() {
-                                          FFAppState().setChatDropdown =
-                                              _model.dropDownValue!;
+                                          FFAppState().chatGPTengine =
+                                              _model.dropDownValue2!;
                                         });
                                       },
                                       width: 280.0,
@@ -363,7 +470,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                           .secondaryBackground,
                                     ),
                                     child: Visibility(
-                                      visible: (_model.dropDownValue ==
+                                      visible: (_model.dropDownValue1 ==
                                               'My Data Only') &&
                                           _model.costumGuardrailValue!,
                                       child: AuthUserStreamWidget(
@@ -1453,170 +1560,186 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             ],
                           ),
                           if (_model.persSwitchValue ?? true)
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) => TextFormField(
-                                      controller:
-                                          _model.chatPersonalityController,
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        hintText: 'Set a Custom Personality.',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmallFamily,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 12.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => TextFormField(
+                                        controller:
+                                            _model.chatPersonalityController,
+                                        autofocus: true,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          hintText: 'Set a Custom Personality.',
+                                          hintStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodySmall
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodySmallFamily,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmallFamily),
+                                              ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .tertiary,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmallFamily),
+                                              width: 1.0,
                                             ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                            width: 1.0,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
                                           ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 1.0,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(4.0),
-                                            topRight: Radius.circular(4.0),
-                                          ),
-                                        ),
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      maxLines: 6,
-                                      minLines: 3,
-                                      validator: _model
-                                          .chatPersonalityControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    if (_model.persSwitchValue ?? true)
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 0.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'CONFIGURE_BOT_COMP_SAVE_BTN_ON_TAP');
-                                              logFirebaseEvent(
-                                                  'Button_backend_call');
-
-                                              final usersUpdateData =
-                                                  createUsersRecordData(
-                                                chatPersonality: _model
-                                                    .chatPersonalityController
-                                                    .text,
-                                              );
-                                              await currentUserReference!
-                                                  .update(usersUpdateData);
-                                              logFirebaseEvent(
-                                                  'Button_backend_call');
-
-                                              final chatPersHistoryCreateData =
-                                                  createChatPersHistoryRecordData(
-                                                timestamp: getCurrentTimestamp,
-                                                isFavorite: false,
-                                                personality: _model
-                                                    .chatPersonalityController
-                                                    .text,
-                                              );
-                                              await ChatPersHistoryRecord
-                                                      .createDoc(
-                                                          currentUserReference!)
-                                                  .set(
-                                                      chatPersHistoryCreateData);
-                                            },
-                                            text: 'Save',
-                                            options: FFButtonOptions(
-                                              height: 32.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily),
-                                                      ),
-                                              elevation: 1.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(0.0),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1.0,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
                                             ),
                                           ),
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                        maxLines: 6,
+                                        minLines: 3,
+                                        validator: _model
+                                            .chatPersonalityControllerValidator
+                                            .asValidator(context),
                                       ),
-                                  ],
-                                ),
-                              ],
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (_model.persSwitchValue ?? true)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'CONFIGURE_BOT_COMP_SAVE_BTN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Button_backend_call');
+
+                                                final usersUpdateData =
+                                                    createUsersRecordData(
+                                                  chatPersonality: _model
+                                                      .chatPersonalityController
+                                                      .text,
+                                                );
+                                                await currentUserReference!
+                                                    .update(usersUpdateData);
+                                                logFirebaseEvent(
+                                                    'Button_backend_call');
+
+                                                final chatPersHistoryCreateData =
+                                                    createChatPersHistoryRecordData(
+                                                  timestamp:
+                                                      getCurrentTimestamp,
+                                                  isFavorite: false,
+                                                  personality: _model
+                                                      .chatPersonalityController
+                                                      .text,
+                                                );
+                                                await ChatPersHistoryRecord
+                                                        .createDoc(
+                                                            currentUserReference!)
+                                                    .set(
+                                                        chatPersHistoryCreateData);
+                                              },
+                                              text: 'Save',
+                                              options: FFButtonOptions(
+                                                height: 32.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 1.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(0.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                         ],
                       ),

@@ -25,8 +25,11 @@ class ConfigureBotModel extends FlutterFlowModel {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  String? dropDownValue1;
+  FormFieldController<String>? dropDownValueController1;
+  // State field(s) for DropDown widget.
+  String? dropDownValue2;
+  FormFieldController<String>? dropDownValueController2;
   // State field(s) for CostumGuardrail widget.
   bool? costumGuardrailValue;
   // State field(s) for guardRail widget.
