@@ -124,13 +124,13 @@ class RecursiveSummarizerCall {
 
 class MixedChatCall {
   static Future<ApiCallResponse> call({
-    String? idToken = '',
     String? qid = '',
     String? cid = '',
     List<String>? datasetIdsList,
     int? topK,
     String? guardrail = '',
     String? engine = '',
+    String? uid = '',
   }) async {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -139,13 +139,13 @@ class MixedChatCall {
       {
         'callName': 'MixedChatCall',
         'variables': {
-          'idToken': idToken,
           'qid': qid,
           'cid': cid,
           'datasetIds': datasetIds,
           'topK': topK,
           'guardrail': guardrail,
           'engine': engine,
+          'uid': uid,
         },
       },
     );
