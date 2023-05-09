@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/bot_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -100,11 +101,80 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 8.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'SHARE_POPUP_COMP_HISTORY_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_bottom_sheet');
+                                  Navigator.pop(context);
+                                  logFirebaseEvent('Button_bottom_sheet');
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).overlay,
+                                    barrierColor:
+                                        FlutterFlowTheme.of(context).overlay,
+                                    enableDrag: false,
+                                    context: context,
+                                    builder: (bottomSheetContext) {
+                                      return Padding(
+                                        padding:
+                                            MediaQuery.of(bottomSheetContext)
+                                                .viewInsets,
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              1.0,
+                                          child: BotListWidget(),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                },
+                                text: 'History',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.robot,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 14.0,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 130.0,
+                                  height: 32.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 1.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
+                            ),
                             Align(
                               alignment: AlignmentDirectional(1.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 4.0, 0.0),
+                                    0.0, 8.0, 4.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -119,7 +189,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                   child: Icon(
                                     Icons.close,
                                     color: FlutterFlowTheme.of(context).primary,
-                                    size: 24.0,
+                                    size: 36.0,
                                   ),
                                 ),
                               ),
@@ -746,56 +816,63 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'SHARE_POPUP_CREATE_A_TELEGRAM_BOT_BTN_ON');
-                                  logFirebaseEvent('Button_backend_call');
+                              if (valueOrDefault<bool>(
+                                  currentUserDocument?.isAdmin, false))
+                                AuthUserStreamWidget(
+                                  builder: (context) => FFButtonWidget(
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'SHARE_POPUP_CREATE_A_TELEGRAM_BOT_BTN_ON');
+                                      logFirebaseEvent('Button_backend_call');
 
-                                  final sharedBotsUpdateData =
-                                      createSharedBotsRecordData(
-                                    telegramUrl:
-                                        'https://t.me/Dean_Norris_bot?start=${widget.bid}',
-                                  );
-                                  await widget.botRef!
-                                      .update(sharedBotsUpdateData);
-                                  logFirebaseEvent(
-                                      'Button_update_widget_state');
-                                  setState(() {
-                                    _model.hasTelegram = true;
-                                  });
-                                },
-                                text: 'Create a Telegram Bot',
-                                icon: FaIcon(
-                                  FontAwesomeIcons.telegramPlane,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 240.0,
-                                  height: 32.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .titleSmallFamily,
-                                        color: Colors.white,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
+                                      final sharedBotsUpdateData =
+                                          createSharedBotsRecordData(
+                                        telegramUrl:
+                                            'https://t.me/MyPaalBot?start=${widget.bid}',
+                                      );
+                                      await widget.botRef!
+                                          .update(sharedBotsUpdateData);
+                                      logFirebaseEvent(
+                                          'Button_update_widget_state');
+                                      setState(() {
+                                        _model.hasTelegram = true;
+                                      });
+                                    },
+                                    text: 'Create a Telegram Bot',
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.telegramPlane,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: 240.0,
+                                      height: 32.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily),
+                                                    .titleSmallFamily,
+                                            color: Colors.white,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmallFamily),
+                                          ),
+                                      elevation: 1.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
                                       ),
-                                  elevation: 1.0,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                      borderRadius: BorderRadius.circular(0.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(0.0),
                                 ),
-                              ),
                             ],
                           ),
                         ),
@@ -913,43 +990,47 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                               ),
                             ],
                           ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Bot id: ',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                              SelectionArea(
-                                  child: Text(
-                                columnSharedBotsRecord.bid!,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              )),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  '(Use set/ ${widget.bid} to change the dataset from within the bot)',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w300,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
+                        if (_model.hasTelegram)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Bot id: ',
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                 ),
-                              ),
-                            ],
+                                SelectionArea(
+                                    child: Text(
+                                  columnSharedBotsRecord.bid!,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                )),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    '(Use set/ ${widget.bid} to change the dataset from within the bot)',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMediumFamily,
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.w300,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily),
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
                       ],
                     );
                   },
