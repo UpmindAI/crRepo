@@ -1099,6 +1099,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   currentUserUid,
                                                               shareUrl:
                                                                   'https://paal.omp.dev/cs?bid=${_model.setBid}&cid=0',
+                                                              engine: FFAppState()
+                                                                  .chatGPTengine,
                                                             ),
                                                             'dataset_ids':
                                                                 FFAppState()
