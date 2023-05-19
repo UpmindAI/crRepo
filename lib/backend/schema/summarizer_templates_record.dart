@@ -1,55 +1,58 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'summarizer_templates_record.g.dart';
+class SummarizerTemplatesRecord extends FirestoreRecord {
+  SummarizerTemplatesRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SummarizerTemplatesRecord
-    implements
-        Built<SummarizerTemplatesRecord, SummarizerTemplatesRecordBuilder> {
-  static Serializer<SummarizerTemplatesRecord> get serializer =>
-      _$summarizerTemplatesRecordSerializer;
+  // "template" field.
+  List<String>? _template;
+  List<String> get template => _template ?? const [];
+  bool hasTemplate() => _template != null;
 
-  BuiltList<String>? get template;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(SummarizerTemplatesRecordBuilder builder) =>
-      builder..template = ListBuilder();
+  void _initializeFields() {
+    _template = getDataList(snapshotData['template']);
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('summarizer_templates');
 
   static Stream<SummarizerTemplatesRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.snapshots().map((s) => SummarizerTemplatesRecord.fromSnapshot(s));
 
   static Future<SummarizerTemplatesRecord> getDocumentOnce(
           DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => SummarizerTemplatesRecord.fromSnapshot(s));
 
-  SummarizerTemplatesRecord._();
-  factory SummarizerTemplatesRecord(
-          [void Function(SummarizerTemplatesRecordBuilder) updates]) =
-      _$SummarizerTemplatesRecord;
+  static SummarizerTemplatesRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SummarizerTemplatesRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SummarizerTemplatesRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SummarizerTemplatesRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SummarizerTemplatesRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSummarizerTemplatesRecordData() {
-  final firestoreData = serializers.toFirestore(
-    SummarizerTemplatesRecord.serializer,
-    SummarizerTemplatesRecord(
-      (s) => s..template = null,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{}.withoutNulls,
   );
 
   return firestoreData;

@@ -110,6 +110,7 @@ class _CsWidgetState extends State<CsWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -490,7 +491,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                           child:
                                                                               Stack(
                                                                             children: [
-                                                                              if (chatColumnSharedChatsRecord.isCompletion ?? true)
+                                                                              if (chatColumnSharedChatsRecord.isCompletion)
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 0.0, 15.0),
                                                                                   child: Row(
@@ -571,7 +572,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                               image: DecorationImage(
                                                                                                                                 fit: BoxFit.cover,
                                                                                                                                 image: Image.network(
-                                                                                                                                  columnSharedBotsRecord!.image!,
+                                                                                                                                  columnSharedBotsRecord!.image,
                                                                                                                                 ).image,
                                                                                                                               ),
                                                                                                                             ),
@@ -591,7 +592,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                             children: [
                                                                                                               Stack(
                                                                                                                 children: [
-                                                                                                                  if (chatColumnSharedChatsRecord.isLoading ?? true)
+                                                                                                                  if (chatColumnSharedChatsRecord.isLoading)
                                                                                                                     Align(
                                                                                                                       alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                                                       child: Padding(
@@ -611,17 +612,17 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                   Column(
                                                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                                                     children: [
-                                                                                                                      if (!chatColumnSharedChatsRecord.isLoading!)
+                                                                                                                      if (!chatColumnSharedChatsRecord.isLoading)
                                                                                                                         Align(
                                                                                                                           alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                                                           child: Padding(
                                                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 5.0),
                                                                                                                             child: SelectionArea(
                                                                                                                                 child: Text(
-                                                                                                                              chatColumnSharedChatsRecord.completion!,
+                                                                                                                              chatColumnSharedChatsRecord.completion,
                                                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                                                    color: chatColumnSharedChatsRecord.isError! ? Color(0xFF980000) : FlutterFlowTheme.of(context).accentTwo,
+                                                                                                                                    color: chatColumnSharedChatsRecord.isError ? Color(0xFF980000) : FlutterFlowTheme.of(context).accentTwo,
                                                                                                                                     fontSize: 16.0,
                                                                                                                                     fontWeight: FontWeight.normal,
                                                                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
@@ -713,7 +714,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                       onTap: () async {
                                                                                                                         logFirebaseEvent('CS_PAGE_Icon_jgpl546l_ON_TAP');
                                                                                                                         logFirebaseEvent('Icon_copy_to_clipboard');
-                                                                                                                        await Clipboard.setData(ClipboardData(text: chatColumnSharedChatsRecord.completion!));
+                                                                                                                        await Clipboard.setData(ClipboardData(text: chatColumnSharedChatsRecord.completion));
                                                                                                                       },
                                                                                                                       child: FaIcon(
                                                                                                                         FontAwesomeIcons.copy,
@@ -755,7 +756,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                     ],
                                                                                   ),
                                                                                 ),
-                                                                              if (!chatColumnSharedChatsRecord.isCompletion!)
+                                                                              if (!chatColumnSharedChatsRecord.isCompletion)
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                                                                                   child: Row(
@@ -784,7 +785,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                           padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 5.0),
                                                                                                           child: SelectionArea(
                                                                                                               child: Text(
-                                                                                                            chatColumnSharedChatsRecord.prompt!,
+                                                                                                            chatColumnSharedChatsRecord.prompt,
                                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                                   fontSize: 16.0,
@@ -819,7 +820,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                 onTap: () async {
                                                                                                                   logFirebaseEvent('CS_PAGE_Icon_ogs7wpdt_ON_TAP');
                                                                                                                   logFirebaseEvent('Icon_copy_to_clipboard');
-                                                                                                                  await Clipboard.setData(ClipboardData(text: chatColumnSharedChatsRecord.prompt!));
+                                                                                                                  await Clipboard.setData(ClipboardData(text: chatColumnSharedChatsRecord.prompt));
                                                                                                                 },
                                                                                                                 child: FaIcon(
                                                                                                                   FontAwesomeIcons.copy,
@@ -1123,7 +1124,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                               .setShareCID =
                                                                           _model
                                                                               .createSharedChatMetaPaal!
-                                                                              .cid!;
+                                                                              .cid;
                                                                     });
                                                                     logFirebaseEvent(
                                                                         'startField_update_widget_state');

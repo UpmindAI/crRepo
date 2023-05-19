@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'backend/backend.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -90,6 +91,14 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_selectedDataset', _selectedDataset);
   }
 
+  void updateSelectedDatasetAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_selectedDataset[_index]);
+    prefs.setStringList('ff_selectedDataset', _selectedDataset);
+  }
+
   String _setQid = '';
   String get setQid => _setQid;
   set setQid(String _value) {
@@ -134,6 +143,14 @@ class FFAppState extends ChangeNotifier {
 
   void removeAtIndexFromSelectedDocuments(int _index) {
     _selectedDocuments.removeAt(_index);
+    prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
+  }
+
+  void updateSelectedDocumentsAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_selectedDocuments[_index]);
     prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
   }
 
@@ -206,6 +223,13 @@ class FFAppState extends ChangeNotifier {
     _chainDropdown.removeAt(_index);
   }
 
+  void updateChainDropdownAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_chainDropdown[_index]);
+  }
+
   String _setDropdown = 'My Data + GPT';
   String get setDropdown => _setDropdown;
   set setDropdown(String _value) {
@@ -248,7 +272,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_chatPersSwitch', _value);
   }
 
-  int _version = 27;
+  int _version = 28;
   int get version => _version;
   set version(int _value) {
     _version = _value;
@@ -325,6 +349,13 @@ class FFAppState extends ChangeNotifier {
 
   void removeAtIndexFromEmptyList(int _index) {
     _emptyList.removeAt(_index);
+  }
+
+  void updateEmptyListAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_emptyList[_index]);
   }
 
   bool _grOn = false;

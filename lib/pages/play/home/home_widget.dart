@@ -328,7 +328,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         3.0),
                                                             child: Text(
                                                               columnPromptlabRecord
-                                                                  .folderName!,
+                                                                  .folderName,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -385,7 +385,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       builder: (context) {
                                                         final children =
                                                             columnPromptlabRecord
-                                                                .children!
+                                                                .children
                                                                 .toList()
                                                                 .take(10)
                                                                 .toList();
@@ -490,7 +490,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                   ],
                                                                                 ),
                                                                                 Text(
-                                                                                  childrenItem.folderName!,
+                                                                                  childrenItem.folderName,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         fontSize: 16.0,
@@ -665,9 +665,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               onEnded: () async {
                                 logFirebaseEvent(
                                     'HOME_PAGE_Timer_x9ktgn4h_ON_TIMER_END');
-                                if ((rowVersionControlRecord!.version! >
+                                if ((rowVersionControlRecord!.version >
                                         FFAppState().version) &&
-                                    rowVersionControlRecord!.needsUpdate!) {
+                                    rowVersionControlRecord!.needsUpdate) {
                                   logFirebaseEvent('Timer_bottom_sheet');
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
@@ -737,6 +737,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             )
           : null,
       body: SafeArea(
+        top: true,
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
@@ -2246,13 +2247,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         logFirebaseEvent('HOME_PAGE_Checkbox_bq00nb0c_ON_TOGGLE_ON');
                                                                                         logFirebaseEvent('Checkbox_update_app_state');
                                                                                         setState(() {
-                                                                                          FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                          FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                         });
                                                                                       } else {
                                                                                         logFirebaseEvent('HOME_Checkbox_bq00nb0c_ON_TOGGLE_OFF');
                                                                                         logFirebaseEvent('Checkbox_update_app_state');
                                                                                         setState(() {
-                                                                                          FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                          FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                         });
                                                                                       }
                                                                                     },
@@ -2287,7 +2288,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         logFirebaseEvent('Text_update_app_state');
                                                                                         FFAppState().update(() {
                                                                                           FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
-                                                                                          FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs!.toList();
+                                                                                          FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList();
                                                                                         });
                                                                                         logFirebaseEvent('Text_navigate_to');
 
@@ -2305,7 +2306,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         );
                                                                                       },
                                                                                       child: AutoSizeText(
-                                                                                        listViewUserDatasetsRecord.datasetName!.maybeHandleOverflow(
+                                                                                        listViewUserDatasetsRecord.datasetName.maybeHandleOverflow(
                                                                                           maxChars: 23,
                                                                                           replacement: '…',
                                                                                         ),

@@ -270,8 +270,8 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                           'children': FieldValue.arrayRemove([
                                             getPlChildFirestoreData(
                                               updatePlChildStruct(
-                                                columnPromptlabRecord.children!
-                                                    .toList()[widget.index!],
+                                                columnPromptlabRecord
+                                                    .children[widget.index!],
                                                 clearUnsetFields: false,
                                               ),
                                               true,
@@ -334,8 +334,8 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                           'children': FieldValue.arrayRemove([
                                             getPlChildFirestoreData(
                                               updatePlChildStruct(
-                                                columnPromptlabRecord.children!
-                                                    .toList()[widget.index!],
+                                                columnPromptlabRecord
+                                                    .children[widget.index!],
                                                 clearUnsetFields: false,
                                               ),
                                               true,

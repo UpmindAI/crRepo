@@ -95,6 +95,7 @@ class _TermsServiceWidgetState extends State<TermsServiceWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

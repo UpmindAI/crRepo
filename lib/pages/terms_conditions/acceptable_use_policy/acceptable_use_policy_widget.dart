@@ -95,6 +95,7 @@ class _AcceptableUsePolicyWidgetState extends State<AcceptableUsePolicyWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

@@ -428,9 +428,12 @@ class TabletTypography extends Typography {
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => '';
+  String get bodyLargeFamily => 'Work Sans';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Work Sans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Work Sans';
   TextStyle get bodyMedium => GoogleFonts.getFont(
@@ -537,9 +540,12 @@ class DesktopTypography extends Typography {
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => '';
+  String get bodyLargeFamily => 'Work Sans';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Work Sans',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Work Sans';
   TextStyle get bodyMedium => GoogleFonts.getFont(

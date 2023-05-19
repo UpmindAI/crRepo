@@ -325,7 +325,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         3.0),
                                                             child: Text(
                                                               columnPromptlabRecord
-                                                                  .folderName!,
+                                                                  .folderName,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -382,7 +382,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       builder: (context) {
                                                         final children =
                                                             columnPromptlabRecord
-                                                                .children!
+                                                                .children
                                                                 .toList()
                                                                 .take(10)
                                                                 .toList();
@@ -487,7 +487,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                   ],
                                                                                 ),
                                                                                 Text(
-                                                                                  childrenItem.folderName!,
+                                                                                  childrenItem.folderName,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                         fontSize: 16.0,
@@ -604,6 +604,7 @@ class _ChatWidgetState extends State<ChatWidget> {
           ),
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -1341,7 +1342,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           Stack(
                                                                         children: [
                                                                           if (!chatColumnChatsRecord
-                                                                              .isCompletion!)
+                                                                              .isCompletion)
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                                                                               child: Row(
@@ -1393,7 +1394,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                     padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 5.0),
                                                                                                     child: SelectionArea(
                                                                                                         child: Text(
-                                                                                                      chatColumnChatsRecord.prompt!,
+                                                                                                      chatColumnChatsRecord.prompt,
                                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                             fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                             fontSize: 16.0,
@@ -1428,7 +1429,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                           onTap: () async {
                                                                                                             logFirebaseEvent('CHAT_PAGE_Icon_d5n0sx84_ON_TAP');
                                                                                                             logFirebaseEvent('Icon_copy_to_clipboard');
-                                                                                                            await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.prompt!));
+                                                                                                            await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.prompt));
                                                                                                           },
                                                                                                           child: FaIcon(
                                                                                                             FontAwesomeIcons.copy,
@@ -1469,8 +1470,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 ],
                                                                               ),
                                                                             ),
-                                                                          if (chatColumnChatsRecord.isCompletion ??
-                                                                              true)
+                                                                          if (chatColumnChatsRecord
+                                                                              .isCompletion)
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 0.0, 15.0),
                                                                               child: Row(
@@ -1548,7 +1549,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                 children: [
                                                                                                   Stack(
                                                                                                     children: [
-                                                                                                      if (chatColumnChatsRecord.isLoading ?? true)
+                                                                                                      if (chatColumnChatsRecord.isLoading)
                                                                                                         Align(
                                                                                                           alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                                           child: Padding(
@@ -1568,17 +1569,17 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                       Column(
                                                                                                         mainAxisSize: MainAxisSize.max,
                                                                                                         children: [
-                                                                                                          if (!chatColumnChatsRecord.isLoading!)
+                                                                                                          if (!chatColumnChatsRecord.isLoading)
                                                                                                             Align(
                                                                                                               alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                                               child: Padding(
                                                                                                                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 5.0),
                                                                                                                 child: SelectionArea(
                                                                                                                     child: Text(
-                                                                                                                  chatColumnChatsRecord.completion!,
+                                                                                                                  chatColumnChatsRecord.completion,
                                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                                        color: chatColumnChatsRecord.isError! ? Color(0xFF980000) : FlutterFlowTheme.of(context).accentTwo,
+                                                                                                                        color: chatColumnChatsRecord.isError ? Color(0xFF980000) : FlutterFlowTheme.of(context).accentTwo,
                                                                                                                         fontSize: 16.0,
                                                                                                                         fontWeight: FontWeight.normal,
                                                                                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
@@ -1670,7 +1671,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                           onTap: () async {
                                                                                                             logFirebaseEvent('CHAT_PAGE_Icon_xrvap7xg_ON_TAP');
                                                                                                             logFirebaseEvent('Icon_copy_to_clipboard');
-                                                                                                            await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.completion!));
+                                                                                                            await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.completion));
                                                                                                           },
                                                                                                           child: FaIcon(
                                                                                                             FontAwesomeIcons.copy,
@@ -1976,7 +1977,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .checkboxCheckedItems
                                                                         .map((e) =>
                                                                             e.datasetId)
-                                                                        .withoutNulls
                                                                         .toList(),
                                                                   };
                                                                   var chatsRecordReference =
@@ -2212,7 +2212,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .checkboxCheckedItems
                                                                         .map((e) =>
                                                                             e.datasetId)
-                                                                        .withoutNulls
                                                                         .toList(),
                                                                   };
                                                                   var chatsRecordReference =
@@ -2875,13 +2874,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     logFirebaseEvent('CHAT_PAGE_Checkbox_dyj21xki_ON_TOGGLE_ON');
                                                                                     logFirebaseEvent('Checkbox_update_app_state');
                                                                                     setState(() {
-                                                                                      FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                      FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                     });
                                                                                   } else {
                                                                                     logFirebaseEvent('CHAT_Checkbox_dyj21xki_ON_TOGGLE_OFF');
                                                                                     logFirebaseEvent('Checkbox_update_app_state');
                                                                                     setState(() {
-                                                                                      FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                      FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                     });
                                                                                   }
                                                                                 },
@@ -2934,7 +2933,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     );
                                                                                   },
                                                                                   child: AutoSizeText(
-                                                                                    listViewUserDatasetsRecord.datasetName!.maybeHandleOverflow(
+                                                                                    listViewUserDatasetsRecord.datasetName.maybeHandleOverflow(
                                                                                       maxChars: 23,
                                                                                       replacement: '…',
                                                                                     ),

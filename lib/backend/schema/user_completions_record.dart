@@ -1,72 +1,110 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'user_completions_record.g.dart';
+class UserCompletionsRecord extends FirestoreRecord {
+  UserCompletionsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UserCompletionsRecord
-    implements Built<UserCompletionsRecord, UserCompletionsRecordBuilder> {
-  static Serializer<UserCompletionsRecord> get serializer =>
-      _$userCompletionsRecordSerializer;
+  // "qid" field.
+  String? _qid;
+  String get qid => _qid ?? '';
+  bool hasQid() => _qid != null;
 
-  String? get qid;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
-  String? get prompt;
+  // "completion" field.
+  String? _completion;
+  String get completion => _completion ?? '';
+  bool hasCompletion() => _completion != null;
 
-  String? get completion;
+  // "url" field.
+  String? _url;
+  String get url => _url ?? '';
+  bool hasUrl() => _url != null;
 
-  String? get url;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "chunks" field.
+  List<String>? _chunks;
+  List<String> get chunks => _chunks ?? const [];
+  bool hasChunks() => _chunks != null;
 
-  BuiltList<String>? get chunks;
+  // "dataset_ids" field.
+  List<String>? _datasetIds;
+  List<String> get datasetIds => _datasetIds ?? const [];
+  bool hasDatasetIds() => _datasetIds != null;
 
-  @BuiltValueField(wireName: 'dataset_ids')
-  BuiltList<String>? get datasetIds;
+  // "doc_titles" field.
+  List<String>? _docTitles;
+  List<String> get docTitles => _docTitles ?? const [];
+  bool hasDocTitles() => _docTitles != null;
 
-  @BuiltValueField(wireName: 'doc_titles')
-  BuiltList<String>? get docTitles;
+  // "dataset_names" field.
+  List<String>? _datasetNames;
+  List<String> get datasetNames => _datasetNames ?? const [];
+  bool hasDatasetNames() => _datasetNames != null;
 
-  @BuiltValueField(wireName: 'dataset_names')
-  BuiltList<String>? get datasetNames;
+  // "is_loading" field.
+  bool? _isLoading;
+  bool get isLoading => _isLoading ?? false;
+  bool hasIsLoading() => _isLoading != null;
 
-  @BuiltValueField(wireName: 'is_loading')
-  bool? get isLoading;
+  // "progress_status" field.
+  String? _progressStatus;
+  String get progressStatus => _progressStatus ?? '';
+  bool hasProgressStatus() => _progressStatus != null;
 
-  @BuiltValueField(wireName: 'progress_status')
-  String? get progressStatus;
+  // "progress_percentage" field.
+  int? _progressPercentage;
+  int get progressPercentage => _progressPercentage ?? 0;
+  bool hasProgressPercentage() => _progressPercentage != null;
 
-  @BuiltValueField(wireName: 'progress_percentage')
-  int? get progressPercentage;
+  // "is_error" field.
+  bool? _isError;
+  bool get isError => _isError ?? false;
+  bool hasIsError() => _isError != null;
 
-  @BuiltValueField(wireName: 'is_error')
-  bool? get isError;
-
-  BuiltList<SourcesStruct>? get sources;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "sources" field.
+  List<SourcesStruct>? _sources;
+  List<SourcesStruct> get sources => _sources ?? const [];
+  bool hasSources() => _sources != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(UserCompletionsRecordBuilder builder) =>
-      builder
-        ..qid = ''
-        ..prompt = ''
-        ..completion = ''
-        ..url = ''
-        ..chunks = ListBuilder()
-        ..datasetIds = ListBuilder()
-        ..docTitles = ListBuilder()
-        ..datasetNames = ListBuilder()
-        ..isLoading = false
-        ..progressStatus = ''
-        ..progressPercentage = 0
-        ..isError = false
-        ..sources = ListBuilder();
+  void _initializeFields() {
+    _qid = snapshotData['qid'] as String?;
+    _prompt = snapshotData['prompt'] as String?;
+    _completion = snapshotData['completion'] as String?;
+    _url = snapshotData['url'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _chunks = getDataList(snapshotData['chunks']);
+    _datasetIds = getDataList(snapshotData['dataset_ids']);
+    _docTitles = getDataList(snapshotData['doc_titles']);
+    _datasetNames = getDataList(snapshotData['dataset_names']);
+    _isLoading = snapshotData['is_loading'] as bool?;
+    _progressStatus = snapshotData['progress_status'] as String?;
+    _progressPercentage = snapshotData['progress_percentage'] as int?;
+    _isError = snapshotData['is_error'] as bool?;
+    _sources = getStructList(
+      snapshotData['sources'],
+      SourcesStruct.fromMap,
+    );
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -76,23 +114,27 @@ abstract class UserCompletionsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('user_completions').doc();
 
-  static Stream<UserCompletionsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UserCompletionsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UserCompletionsRecord.fromSnapshot(s));
 
   static Future<UserCompletionsRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => UserCompletionsRecord.fromSnapshot(s));
 
-  UserCompletionsRecord._();
-  factory UserCompletionsRecord(
-          [void Function(UserCompletionsRecordBuilder) updates]) =
-      _$UserCompletionsRecord;
+  static UserCompletionsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      UserCompletionsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static UserCompletionsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UserCompletionsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'UserCompletionsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createUserCompletionsRecordData({
@@ -106,25 +148,18 @@ Map<String, dynamic> createUserCompletionsRecordData({
   int? progressPercentage,
   bool? isError,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UserCompletionsRecord.serializer,
-    UserCompletionsRecord(
-      (u) => u
-        ..qid = qid
-        ..prompt = prompt
-        ..completion = completion
-        ..url = url
-        ..timestamp = timestamp
-        ..chunks = null
-        ..datasetIds = null
-        ..docTitles = null
-        ..datasetNames = null
-        ..isLoading = isLoading
-        ..progressStatus = progressStatus
-        ..progressPercentage = progressPercentage
-        ..isError = isError
-        ..sources = null,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'qid': qid,
+      'prompt': prompt,
+      'completion': completion,
+      'url': url,
+      'timestamp': timestamp,
+      'is_loading': isLoading,
+      'progress_status': progressStatus,
+      'progress_percentage': progressPercentage,
+      'is_error': isError,
+    }.withoutNulls,
   );
 
   return firestoreData;

@@ -1,55 +1,83 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'chat_meta_record.g.dart';
+class ChatMetaRecord extends FirestoreRecord {
+  ChatMetaRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class ChatMetaRecord
-    implements Built<ChatMetaRecord, ChatMetaRecordBuilder> {
-  static Serializer<ChatMetaRecord> get serializer =>
-      _$chatMetaRecordSerializer;
+  // "created_on" field.
+  DateTime? _createdOn;
+  DateTime? get createdOn => _createdOn;
+  bool hasCreatedOn() => _createdOn != null;
 
-  @BuiltValueField(wireName: 'created_on')
-  DateTime? get createdOn;
+  // "cid" field.
+  String? _cid;
+  String get cid => _cid ?? '';
+  bool hasCid() => _cid != null;
 
-  String? get cid;
+  // "qids" field.
+  List<String>? _qids;
+  List<String> get qids => _qids ?? const [];
+  bool hasQids() => _qids != null;
 
-  BuiltList<String>? get qids;
+  // "first_message" field.
+  String? _firstMessage;
+  String get firstMessage => _firstMessage ?? '';
+  bool hasFirstMessage() => _firstMessage != null;
 
-  @BuiltValueField(wireName: 'first_message')
-  String? get firstMessage;
+  // "prompts" field.
+  List<String>? _prompts;
+  List<String> get prompts => _prompts ?? const [];
+  bool hasPrompts() => _prompts != null;
 
-  BuiltList<String>? get prompts;
+  // "is_loading" field.
+  bool? _isLoading;
+  bool get isLoading => _isLoading ?? false;
+  bool hasIsLoading() => _isLoading != null;
 
-  @BuiltValueField(wireName: 'is_loading')
-  bool? get isLoading;
+  // "completions" field.
+  List<String>? _completions;
+  List<String> get completions => _completions ?? const [];
+  bool hasCompletions() => _completions != null;
 
-  BuiltList<String>? get completions;
+  // "last_message" field.
+  DateTime? _lastMessage;
+  DateTime? get lastMessage => _lastMessage;
+  bool hasLastMessage() => _lastMessage != null;
 
-  @BuiltValueField(wireName: 'last_message')
-  DateTime? get lastMessage;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  String? get uid;
-
-  String? get image;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(ChatMetaRecordBuilder builder) => builder
-    ..cid = ''
-    ..qids = ListBuilder()
-    ..firstMessage = ''
-    ..prompts = ListBuilder()
-    ..isLoading = false
-    ..completions = ListBuilder()
-    ..uid = ''
-    ..image = '';
+  void _initializeFields() {
+    _createdOn = snapshotData['created_on'] as DateTime?;
+    _cid = snapshotData['cid'] as String?;
+    _qids = getDataList(snapshotData['qids']);
+    _firstMessage = snapshotData['first_message'] as String?;
+    _prompts = getDataList(snapshotData['prompts']);
+    _isLoading = snapshotData['is_loading'] as bool?;
+    _completions = getDataList(snapshotData['completions']);
+    _lastMessage = snapshotData['last_message'] as DateTime?;
+    _uid = snapshotData['uid'] as String?;
+    _image = snapshotData['image'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -59,22 +87,27 @@ abstract class ChatMetaRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('chat_meta').doc();
 
-  static Stream<ChatMetaRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<ChatMetaRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => ChatMetaRecord.fromSnapshot(s));
 
-  static Future<ChatMetaRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<ChatMetaRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => ChatMetaRecord.fromSnapshot(s));
 
-  ChatMetaRecord._();
-  factory ChatMetaRecord([void Function(ChatMetaRecordBuilder) updates]) =
-      _$ChatMetaRecord;
+  static ChatMetaRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      ChatMetaRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static ChatMetaRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      ChatMetaRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'ChatMetaRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createChatMetaRecordData({
@@ -86,21 +119,16 @@ Map<String, dynamic> createChatMetaRecordData({
   String? uid,
   String? image,
 }) {
-  final firestoreData = serializers.toFirestore(
-    ChatMetaRecord.serializer,
-    ChatMetaRecord(
-      (c) => c
-        ..createdOn = createdOn
-        ..cid = cid
-        ..qids = null
-        ..firstMessage = firstMessage
-        ..prompts = null
-        ..isLoading = isLoading
-        ..completions = null
-        ..lastMessage = lastMessage
-        ..uid = uid
-        ..image = image,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'created_on': createdOn,
+      'cid': cid,
+      'first_message': firstMessage,
+      'is_loading': isLoading,
+      'last_message': lastMessage,
+      'uid': uid,
+      'image': image,
+    }.withoutNulls,
   );
 
   return firestoreData;

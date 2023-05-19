@@ -92,6 +92,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

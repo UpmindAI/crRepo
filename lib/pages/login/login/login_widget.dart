@@ -47,6 +47,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
+        top: true,
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
@@ -197,7 +198,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           return;
                                         }
 
-                                        context.goNamedAuth('Home', mounted);
+                                        context.goNamedAuth(
+                                            'Home', context.mounted);
                                       },
                                       text: 'Sign in with Google',
                                       icon: Icon(
@@ -439,7 +441,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               return;
                             }
 
-                            context.goNamedAuth('Home', mounted);
+                            context.goNamedAuth('Home', context.mounted);
                           },
                           text: 'Login',
                           options: FFButtonOptions(

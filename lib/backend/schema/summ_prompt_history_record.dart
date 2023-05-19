@@ -1,33 +1,41 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'summ_prompt_history_record.g.dart';
+class SummPromptHistoryRecord extends FirestoreRecord {
+  SummPromptHistoryRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SummPromptHistoryRecord
-    implements Built<SummPromptHistoryRecord, SummPromptHistoryRecordBuilder> {
-  static Serializer<SummPromptHistoryRecord> get serializer =>
-      _$summPromptHistoryRecordSerializer;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
-  String? get prompt;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
-
-  @BuiltValueField(wireName: 'is_favorite')
-  bool? get isFavorite;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "is_favorite" field.
+  bool? _isFavorite;
+  bool get isFavorite => _isFavorite ?? false;
+  bool hasIsFavorite() => _isFavorite != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(SummPromptHistoryRecordBuilder builder) =>
-      builder
-        ..prompt = ''
-        ..isFavorite = false;
+  void _initializeFields() {
+    _prompt = snapshotData['prompt'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _isFavorite = snapshotData['is_favorite'] as bool?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -38,23 +46,27 @@ abstract class SummPromptHistoryRecord
       parent.collection('summ_prompt_history').doc();
 
   static Stream<SummPromptHistoryRecord> getDocument(DocumentReference ref) =>
-      ref.snapshots().map(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.snapshots().map((s) => SummPromptHistoryRecord.fromSnapshot(s));
 
   static Future<SummPromptHistoryRecord> getDocumentOnce(
           DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => SummPromptHistoryRecord.fromSnapshot(s));
 
-  SummPromptHistoryRecord._();
-  factory SummPromptHistoryRecord(
-          [void Function(SummPromptHistoryRecordBuilder) updates]) =
-      _$SummPromptHistoryRecord;
+  static SummPromptHistoryRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SummPromptHistoryRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SummPromptHistoryRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SummPromptHistoryRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SummPromptHistoryRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSummPromptHistoryRecordData({
@@ -62,14 +74,12 @@ Map<String, dynamic> createSummPromptHistoryRecordData({
   DateTime? timestamp,
   bool? isFavorite,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SummPromptHistoryRecord.serializer,
-    SummPromptHistoryRecord(
-      (s) => s
-        ..prompt = prompt
-        ..timestamp = timestamp
-        ..isFavorite = isFavorite,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'prompt': prompt,
+      'timestamp': timestamp,
+      'is_favorite': isFavorite,
+    }.withoutNulls,
   );
 
   return firestoreData;

@@ -238,9 +238,7 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                             onPressed: () async {
                               logFirebaseEvent(
                                   'FOLDER_OPTIONS_REMOVE_FOLDER_AND_ALL_IT´');
-                              if (widget.folderDoc!.children!
-                                      .toList()
-                                      .length
+                              if (widget.folderDoc!.children.length
                                       .toString() !=
                                   '0') {
                                 logFirebaseEvent(
@@ -248,19 +246,14 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                                 _model.instantTimer = InstantTimer.periodic(
                                   duration: Duration(milliseconds: 100),
                                   callback: (timer) async {
-                                    if (widget.folderDoc!.children!
-                                            .toList()
-                                            .length <
-                                        1) {
+                                    if (widget.folderDoc!.children.length < 1) {
                                       logFirebaseEvent(
                                           'Button_stop_periodic_action');
                                       _model.instantTimer?.cancel();
                                     } else {
                                       logFirebaseEvent('Button_backend_call');
-                                      await widget.folderDoc!.children!
-                                          .toList()
-                                          .last
-                                          .docRef!
+                                      await widget
+                                          .folderDoc!.children.last.docRef!
                                           .delete();
                                       return;
                                     }

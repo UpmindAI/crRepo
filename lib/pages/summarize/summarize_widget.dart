@@ -72,6 +72,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -500,7 +501,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                           Builder(
                                                                             builder:
                                                                                 (context) {
-                                                                              final templateItems = columnSummarizerTemplatesRecord!.template!.toList();
+                                                                              final templateItems = columnSummarizerTemplatesRecord!.template.toList();
                                                                               return ListView.builder(
                                                                                 padding: EdgeInsets.zero,
                                                                                 shrinkWrap: true,
@@ -645,7 +646,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                 logFirebaseEvent('SUMMARIZE_PAGE_Container_nnzezo91_ON_TAP');
                                                                                 logFirebaseEvent('Container_update_app_state');
                                                                                 setState(() {
-                                                                                  FFAppState().setSummaryTemplate = columnSummPromptHistoryRecord.prompt!;
+                                                                                  FFAppState().setSummaryTemplate = columnSummPromptHistoryRecord.prompt;
                                                                                 });
                                                                               },
                                                                               child: Material(
@@ -659,7 +660,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                   child: Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(7.0, 7.0, 7.0, 7.0),
                                                                                     child: Text(
-                                                                                      columnSummPromptHistoryRecord.prompt!,
+                                                                                      columnSummPromptHistoryRecord.prompt,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                             fontWeight: FontWeight.w500,
@@ -772,7 +773,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                             logFirebaseEvent('SUMMARIZE_PAGE_Container_k7vj5d0b_ON_TAP');
                                                                                             logFirebaseEvent('Container_update_app_state');
                                                                                             setState(() {
-                                                                                              FFAppState().setSummaryTemplate = columnSummPromptHistoryRecord.prompt!;
+                                                                                              FFAppState().setSummaryTemplate = columnSummPromptHistoryRecord.prompt;
                                                                                             });
                                                                                           },
                                                                                           child: Material(
@@ -790,7 +791,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                                     child: Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(7.0, 7.0, 7.0, 7.0),
                                                                                                       child: Text(
-                                                                                                        columnSummPromptHistoryRecord.prompt!,
+                                                                                                        columnSummPromptHistoryRecord.prompt,
                                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                               fontWeight: FontWeight.w500,
@@ -824,7 +825,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                                           ),
                                                                                                         ),
                                                                                                       ),
-                                                                                                      if (columnSummPromptHistoryRecord.isFavorite ?? true)
+                                                                                                      if (columnSummPromptHistoryRecord.isFavorite)
                                                                                                         Padding(
                                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                                           child: InkWell(
@@ -862,7 +863,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                 Column(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
-                                                                                    if (!columnSummPromptHistoryRecord.isFavorite!)
+                                                                                    if (!columnSummPromptHistoryRecord.isFavorite)
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                                                                                         child: InkWell(
@@ -1377,7 +1378,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                             mainAxisSize:
                                                                                 MainAxisSize.max,
                                                                             children: [
-                                                                              if (columnUserCompletionsRecord!.isLoading ?? true)
+                                                                              if (columnUserCompletionsRecord!.isLoading)
                                                                                 Container(
                                                                                   width: MediaQuery.of(context).size.width * 1.0,
                                                                                   decoration: BoxDecoration(
@@ -1389,10 +1390,10 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                                                                                         child: Text(
-                                                                                          columnUserCompletionsRecord!.progressStatus!,
+                                                                                          columnUserCompletionsRecord!.progressStatus,
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                                                color: columnUserCompletionsRecord!.isError! ? Color(0xFF980000) : FlutterFlowTheme.of(context).primaryText,
+                                                                                                color: columnUserCompletionsRecord!.isError ? Color(0xFF980000) : FlutterFlowTheme.of(context).primaryText,
                                                                                                 fontWeight: FontWeight.w500,
                                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                                               ),
@@ -1405,14 +1406,14 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                           Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
                                                                                             child: LinearPercentIndicator(
-                                                                                              percent: functions.getPercentage(columnUserCompletionsRecord!.progressPercentage!)!,
+                                                                                              percent: functions.getPercentage(columnUserCompletionsRecord!.progressPercentage)!,
                                                                                               width: MediaQuery.of(context).size.width * 0.25,
                                                                                               lineHeight: 20.0,
                                                                                               animation: true,
                                                                                               progressColor: FlutterFlowTheme.of(context).secondary,
                                                                                               backgroundColor: Color(0xFFF1F4F8),
                                                                                               center: Text(
-                                                                                                '${columnUserCompletionsRecord!.progressPercentage?.toString()}%',
+                                                                                                '${columnUserCompletionsRecord!.progressPercentage.toString()}%',
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                       color: FlutterFlowTheme.of(context).alternate,
@@ -1429,7 +1430,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                     ],
                                                                                   ),
                                                                                 ),
-                                                                              if (!columnUserCompletionsRecord!.isLoading!)
+                                                                              if (!columnUserCompletionsRecord!.isLoading)
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                                                                                   child: Container(
@@ -1564,7 +1565,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 20.0, 40.0),
                                                                                               child: SelectionArea(
                                                                                                   child: Text(
-                                                                                                columnUserCompletionsRecord!.completion!,
+                                                                                                columnUserCompletionsRecord!.completion,
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                       fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                       fontSize: 18.0,
@@ -1711,7 +1712,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                                             onPressed: () async {
                                                                                                               logFirebaseEvent('SUMMARIZE_PAGE_DOWNLOAD_DOCX_BTN_ON_TAP');
                                                                                                               logFirebaseEvent('Button_launch_u_r_l');
-                                                                                                              await launchURL(columnUserCompletionsRecord!.url!);
+                                                                                                              await launchURL(columnUserCompletionsRecord!.url);
                                                                                                             },
                                                                                                             text: 'Download .docx',
                                                                                                             options: FFButtonOptions(
@@ -2152,13 +2153,13 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                   logFirebaseEvent('SUMMARIZE_Checkbox_26rjjw4e_ON_TOGGLE_ON');
                                                                                   logFirebaseEvent('Checkbox_update_app_state');
                                                                                   setState(() {
-                                                                                    FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                    FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                   });
                                                                                 } else {
                                                                                   logFirebaseEvent('SUMMARIZE_Checkbox_26rjjw4e_ON_TOGGLE_OF');
                                                                                   logFirebaseEvent('Checkbox_update_app_state');
                                                                                   setState(() {
-                                                                                    FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                    FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId);
                                                                                   });
                                                                                 }
                                                                               },
@@ -2195,7 +2196,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                   logFirebaseEvent('Text_update_app_state');
                                                                                   FFAppState().update(() {
                                                                                     FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
-                                                                                    FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs!.toList();
+                                                                                    FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList();
                                                                                   });
                                                                                   logFirebaseEvent('Text_navigate_to');
 
@@ -2213,7 +2214,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                   );
                                                                                 },
                                                                                 child: AutoSizeText(
-                                                                                  listViewUserDatasetsRecord.datasetName!.maybeHandleOverflow(
+                                                                                  listViewUserDatasetsRecord.datasetName.maybeHandleOverflow(
                                                                                     maxChars: 23,
                                                                                     replacement: '…',
                                                                                   ),

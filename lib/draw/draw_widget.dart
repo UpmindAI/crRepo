@@ -80,6 +80,7 @@ class _DrawWidgetState extends State<DrawWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

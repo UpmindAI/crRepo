@@ -1,26 +1,29 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'summ_prompt_favs_record.g.dart';
+class SummPromptFavsRecord extends FirestoreRecord {
+  SummPromptFavsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SummPromptFavsRecord
-    implements Built<SummPromptFavsRecord, SummPromptFavsRecordBuilder> {
-  static Serializer<SummPromptFavsRecord> get serializer =>
-      _$summPromptFavsRecordSerializer;
-
-  String? get prompt;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(SummPromptFavsRecordBuilder builder) =>
-      builder..prompt = '';
+  void _initializeFields() {
+    _prompt = snapshotData['prompt'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -30,33 +33,36 @@ abstract class SummPromptFavsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('summ_prompt_favs').doc();
 
-  static Stream<SummPromptFavsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<SummPromptFavsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => SummPromptFavsRecord.fromSnapshot(s));
 
   static Future<SummPromptFavsRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => SummPromptFavsRecord.fromSnapshot(s));
 
-  SummPromptFavsRecord._();
-  factory SummPromptFavsRecord(
-          [void Function(SummPromptFavsRecordBuilder) updates]) =
-      _$SummPromptFavsRecord;
+  static SummPromptFavsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SummPromptFavsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SummPromptFavsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SummPromptFavsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SummPromptFavsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSummPromptFavsRecordData({
   String? prompt,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SummPromptFavsRecord.serializer,
-    SummPromptFavsRecord(
-      (s) => s..prompt = prompt,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'prompt': prompt,
+    }.withoutNulls,
   );
 
   return firestoreData;

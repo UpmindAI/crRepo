@@ -59,6 +59,7 @@ class _BuildWidgetState extends State<BuildWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
             child: Column(

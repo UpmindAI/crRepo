@@ -1,62 +1,69 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'version_control_record.g.dart';
+class VersionControlRecord extends FirestoreRecord {
+  VersionControlRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class VersionControlRecord
-    implements Built<VersionControlRecord, VersionControlRecordBuilder> {
-  static Serializer<VersionControlRecord> get serializer =>
-      _$versionControlRecordSerializer;
+  // "version" field.
+  int? _version;
+  int get version => _version ?? 0;
+  bool hasVersion() => _version != null;
 
-  int? get version;
+  // "needs_update" field.
+  bool? _needsUpdate;
+  bool get needsUpdate => _needsUpdate ?? false;
+  bool hasNeedsUpdate() => _needsUpdate != null;
 
-  @BuiltValueField(wireName: 'needs_update')
-  bool? get needsUpdate;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(VersionControlRecordBuilder builder) => builder
-    ..version = 0
-    ..needsUpdate = false;
+  void _initializeFields() {
+    _version = snapshotData['version'] as int?;
+    _needsUpdate = snapshotData['needs_update'] as bool?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('version_control');
 
-  static Stream<VersionControlRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<VersionControlRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => VersionControlRecord.fromSnapshot(s));
 
   static Future<VersionControlRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => VersionControlRecord.fromSnapshot(s));
 
-  VersionControlRecord._();
-  factory VersionControlRecord(
-          [void Function(VersionControlRecordBuilder) updates]) =
-      _$VersionControlRecord;
+  static VersionControlRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      VersionControlRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static VersionControlRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      VersionControlRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'VersionControlRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createVersionControlRecordData({
   int? version,
   bool? needsUpdate,
 }) {
-  final firestoreData = serializers.toFirestore(
-    VersionControlRecord.serializer,
-    VersionControlRecord(
-      (v) => v
-        ..version = version
-        ..needsUpdate = needsUpdate,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'version': version,
+      'needs_update': needsUpdate,
+    }.withoutNulls,
   );
 
   return firestoreData;

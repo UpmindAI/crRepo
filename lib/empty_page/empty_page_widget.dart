@@ -69,6 +69,7 @@ class _EmptyPageWidgetState extends State<EmptyPageWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

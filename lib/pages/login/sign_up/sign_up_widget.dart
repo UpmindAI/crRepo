@@ -48,6 +48,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
+        top: true,
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
@@ -192,7 +193,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     return;
                                   }
 
-                                  context.goNamedAuth('Home', mounted);
+                                  context.goNamedAuth('Home', context.mounted);
                                 },
                                 text: 'Sign up with Google',
                                 icon: Icon(
@@ -605,7 +606,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 logFirebaseEvent('Button_auth');
                                 await authManager.sendEmailVerification();
 
-                                context.goNamedAuth('Home', mounted);
+                                context.goNamedAuth('Home', context.mounted);
                               },
                               text: 'Sign up',
                               options: FFButtonOptions(

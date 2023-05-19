@@ -76,6 +76,7 @@ class _SearchResultsWidgetState extends State<SearchResultsWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

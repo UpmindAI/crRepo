@@ -89,6 +89,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
             )
           : null,
       body: SafeArea(
+        top: true,
         child: Container(
           width: MediaQuery.of(context).size.width * 1.0,
           decoration: BoxDecoration(),

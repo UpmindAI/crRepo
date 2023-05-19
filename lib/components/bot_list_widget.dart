@@ -170,7 +170,7 @@ class _BotListWidgetState extends State<BotListWidget> {
                                                                   8.0),
                                                       child: Text(
                                                         columnSharedBotsRecord
-                                                            .system!,
+                                                            .system,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -246,7 +246,7 @@ class _BotListWidgetState extends State<BotListWidget> {
                                                       child: SelectionArea(
                                                           child: Text(
                                                         columnSharedBotsRecord
-                                                            .bid!,
+                                                            .bid,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -288,7 +288,7 @@ class _BotListWidgetState extends State<BotListWidget> {
                                                               'Icon_launch_u_r_l');
                                                           await launchURL(
                                                               columnSharedBotsRecord
-                                                                  .shareUrl!);
+                                                                  .shareUrl);
                                                         },
                                                         child: Icon(
                                                           Icons.launch,

@@ -1,29 +1,35 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'user_prompts_record.g.dart';
+class UserPromptsRecord extends FirestoreRecord {
+  UserPromptsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UserPromptsRecord
-    implements Built<UserPromptsRecord, UserPromptsRecordBuilder> {
-  static Serializer<UserPromptsRecord> get serializer =>
-      _$userPromptsRecordSerializer;
+  // "qid" field.
+  String? _qid;
+  String get qid => _qid ?? '';
+  bool hasQid() => _qid != null;
 
-  String? get qid;
-
-  String? get prompt;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(UserPromptsRecordBuilder builder) => builder
-    ..qid = ''
-    ..prompt = '';
+  void _initializeFields() {
+    _qid = snapshotData['qid'] as String?;
+    _prompt = snapshotData['prompt'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -33,35 +39,38 @@ abstract class UserPromptsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('user_prompts').doc();
 
-  static Stream<UserPromptsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UserPromptsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UserPromptsRecord.fromSnapshot(s));
 
-  static Future<UserPromptsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<UserPromptsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => UserPromptsRecord.fromSnapshot(s));
 
-  UserPromptsRecord._();
-  factory UserPromptsRecord([void Function(UserPromptsRecordBuilder) updates]) =
-      _$UserPromptsRecord;
+  static UserPromptsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      UserPromptsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static UserPromptsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UserPromptsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'UserPromptsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createUserPromptsRecordData({
   String? qid,
   String? prompt,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UserPromptsRecord.serializer,
-    UserPromptsRecord(
-      (u) => u
-        ..qid = qid
-        ..prompt = prompt,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'qid': qid,
+      'prompt': prompt,
+    }.withoutNulls,
   );
 
   return firestoreData;

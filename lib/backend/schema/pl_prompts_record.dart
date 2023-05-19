@@ -1,51 +1,77 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'pl_prompts_record.g.dart';
+class PlPromptsRecord extends FirestoreRecord {
+  PlPromptsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class PlPromptsRecord
-    implements Built<PlPromptsRecord, PlPromptsRecordBuilder> {
-  static Serializer<PlPromptsRecord> get serializer =>
-      _$plPromptsRecordSerializer;
+  // "system" field.
+  String? _system;
+  String get system => _system ?? '';
+  bool hasSystem() => _system != null;
 
-  String? get system;
+  // "content" field.
+  String? _content;
+  String get content => _content ?? '';
+  bool hasContent() => _content != null;
 
-  String? get content;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
-  String? get prompt;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "active_datasets" field.
+  List<String>? _activeDatasets;
+  List<String> get activeDatasets => _activeDatasets ?? const [];
+  bool hasActiveDatasets() => _activeDatasets != null;
 
-  @BuiltValueField(wireName: 'active_datasets')
-  BuiltList<String>? get activeDatasets;
+  // "completion" field.
+  String? _completion;
+  String get completion => _completion ?? '';
+  bool hasCompletion() => _completion != null;
 
-  String? get completion;
+  // "plid" field.
+  String? _plid;
+  String get plid => _plid ?? '';
+  bool hasPlid() => _plid != null;
 
-  String? get plid;
+  // "top_k" field.
+  int? _topK;
+  int get topK => _topK ?? 0;
+  bool hasTopK() => _topK != null;
 
-  @BuiltValueField(wireName: 'top_k')
-  int? get topK;
-
-  double? get temp;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "temp" field.
+  double? _temp;
+  double get temp => _temp ?? 0.0;
+  bool hasTemp() => _temp != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(PlPromptsRecordBuilder builder) => builder
-    ..system = ''
-    ..content = ''
-    ..prompt = ''
-    ..activeDatasets = ListBuilder()
-    ..completion = ''
-    ..plid = ''
-    ..topK = 0
-    ..temp = 0.0;
+  void _initializeFields() {
+    _system = snapshotData['system'] as String?;
+    _content = snapshotData['content'] as String?;
+    _prompt = snapshotData['prompt'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _activeDatasets = getDataList(snapshotData['active_datasets']);
+    _completion = snapshotData['completion'] as String?;
+    _plid = snapshotData['plid'] as String?;
+    _topK = snapshotData['top_k'] as int?;
+    _temp = castToType<double>(snapshotData['temp']);
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -55,22 +81,27 @@ abstract class PlPromptsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('pl_prompts').doc();
 
-  static Stream<PlPromptsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<PlPromptsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => PlPromptsRecord.fromSnapshot(s));
 
-  static Future<PlPromptsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<PlPromptsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => PlPromptsRecord.fromSnapshot(s));
 
-  PlPromptsRecord._();
-  factory PlPromptsRecord([void Function(PlPromptsRecordBuilder) updates]) =
-      _$PlPromptsRecord;
+  static PlPromptsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      PlPromptsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static PlPromptsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      PlPromptsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'PlPromptsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createPlPromptsRecordData({
@@ -83,20 +114,17 @@ Map<String, dynamic> createPlPromptsRecordData({
   int? topK,
   double? temp,
 }) {
-  final firestoreData = serializers.toFirestore(
-    PlPromptsRecord.serializer,
-    PlPromptsRecord(
-      (p) => p
-        ..system = system
-        ..content = content
-        ..prompt = prompt
-        ..timestamp = timestamp
-        ..activeDatasets = null
-        ..completion = completion
-        ..plid = plid
-        ..topK = topK
-        ..temp = temp,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'system': system,
+      'content': content,
+      'prompt': prompt,
+      'timestamp': timestamp,
+      'completion': completion,
+      'plid': plid,
+      'top_k': topK,
+      'temp': temp,
+    }.withoutNulls,
   );
 
   return firestoreData;

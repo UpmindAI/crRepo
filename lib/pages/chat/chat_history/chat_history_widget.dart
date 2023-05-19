@@ -115,7 +115,7 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                       'Container_update_app_state');
                                   _model.updatePage(() {
                                     FFAppState().setCid =
-                                        listViewChatMetaRecord.cid!;
+                                        listViewChatMetaRecord.cid;
                                     FFAppState().setChat =
                                         listViewChatMetaRecord.reference;
                                   });
@@ -155,13 +155,11 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                                           0.0, 0.0, 0.0, 5.0),
                                                   child: Text(
                                                     listViewChatMetaRecord
-                                                        .completions!
-                                                        .toList()
-                                                        .last
+                                                        .completions.last
                                                         .maybeHandleOverflow(
-                                                          maxChars: 140,
-                                                          replacement: '…',
-                                                        ),
+                                                      maxChars: 140,
+                                                      replacement: '…',
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

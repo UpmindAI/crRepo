@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -155,9 +156,8 @@ class _PromptOptionsSubWidgetState extends State<PromptOptionsSubWidget> {
                                   child: TextFormField(
                                     controller: _model.textController1 ??=
                                         TextEditingController(
-                                      text: columnPromptlabSub0Record.prompts!
-                                          .toList()[widget.index!]
-                                          .name,
+                                      text: columnPromptlabSub0Record
+                                          .prompts[widget.index!].name,
                                     ),
                                     autofocus: true,
                                     obscureText: false,
@@ -227,9 +227,8 @@ class _PromptOptionsSubWidgetState extends State<PromptOptionsSubWidget> {
                                 child: TextFormField(
                                   controller: _model.textController2 ??=
                                       TextEditingController(
-                                    text: columnPromptlabSub0Record.prompts!
-                                        .toList()[widget.index!]
-                                        .prompt,
+                                    text: columnPromptlabSub0Record
+                                        .prompts[widget.index!].prompt,
                                   ),
                                   autofocus: true,
                                   obscureText: false,
@@ -322,8 +321,8 @@ class _PromptOptionsSubWidgetState extends State<PromptOptionsSubWidget> {
                                   'prompts': FieldValue.arrayRemove([
                                     getPromptsFirestoreData(
                                       updatePromptsStruct(
-                                        columnPromptlabSub0Record.prompts!
-                                            .toList()[widget.index!],
+                                        columnPromptlabSub0Record
+                                            .prompts[widget.index!],
                                         clearUnsetFields: false,
                                       ),
                                       true,

@@ -147,6 +147,7 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Container(
             width: MediaQuery.of(context).size.width * 1.0,
             decoration: BoxDecoration(),

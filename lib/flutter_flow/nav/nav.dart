@@ -5,7 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
-import '../../backend/backend.dart';
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 
 import '../../auth/base_auth_user_provider.dart';
 
@@ -99,8 +100,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'datasets',
               requireAuth: true,
               asyncParams: {
-                'activeDataset': getDoc(
-                    ['users', 'user_datasets'], UserDatasetsRecord.serializer),
+                'activeDataset': getDoc(['users', 'user_datasets'],
+                    UserDatasetsRecord.fromSnapshot),
               },
               builder: (context, params) => DatasetsWidget(
                 activeDataset:
@@ -122,7 +123,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'home',
               asyncParams: {
                 'userCompletion': getDoc(['users', 'user_completions'],
-                    UserCompletionsRecord.serializer),
+                    UserCompletionsRecord.fromSnapshot),
               },
               builder: (context, params) => HomeWidget(
                 userCompletion:
@@ -392,7 +393,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionNamePath);
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 

@@ -64,6 +64,7 @@ class _ResultWidgetState extends State<ResultWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: StreamBuilder<List<UserCompletionsRecord>>(
             stream: queryUserCompletionsRecord(
               parent: currentUserReference,
@@ -361,7 +362,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                 SelectionArea(
                                                                     child: Text(
                                                               columnUserCompletionsRecord!
-                                                                  .prompt!,
+                                                                  .prompt,
                                                               textAlign:
                                                                   TextAlign
                                                                       .start,
@@ -437,7 +438,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                 SelectionArea(
                                                                     child: Text(
                                                               columnUserCompletionsRecord!
-                                                                  .completion!,
+                                                                  .completion,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -818,7 +819,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                     'Button_launch_u_r_l');
                                                                 await launchURL(
                                                                     columnUserCompletionsRecord!
-                                                                        .url!);
+                                                                        .url);
                                                               },
                                                               text:
                                                                   'Download .docx',
@@ -1089,7 +1090,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                   (context) {
                                                                 final sourcesList =
                                                                     columnUserCompletionsRecord!
-                                                                        .sources!
+                                                                        .sources
                                                                         .toList();
                                                                 return ListView
                                                                     .builder(
@@ -1132,7 +1133,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Text(
-                                                                              sourcesListItem.datasetNames!,
+                                                                              sourcesListItem.datasetNames,
                                                                               style: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                                                                                     fontSize: 12.0,
@@ -1140,11 +1141,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                                   ),
                                                                             ),
                                                                             Text(
-                                                                              sourcesListItem.docTitles!,
+                                                                              sourcesListItem.docTitles,
                                                                               style: FlutterFlowTheme.of(context).labelSmall,
                                                                             ),
                                                                             Text(
-                                                                              sourcesListItem.chunks!,
+                                                                              sourcesListItem.chunks,
                                                                               style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                                                                                     fontSize: 12.0,

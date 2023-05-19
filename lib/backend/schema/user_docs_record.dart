@@ -1,59 +1,83 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'user_docs_record.g.dart';
+class UserDocsRecord extends FirestoreRecord {
+  UserDocsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UserDocsRecord
-    implements Built<UserDocsRecord, UserDocsRecordBuilder> {
-  static Serializer<UserDocsRecord> get serializer =>
-      _$userDocsRecordSerializer;
+  // "dataset_id" field.
+  String? _datasetId;
+  String get datasetId => _datasetId ?? '';
+  bool hasDatasetId() => _datasetId != null;
 
-  @BuiltValueField(wireName: 'dataset_id')
-  String? get datasetId;
+  // "is_active" field.
+  bool? _isActive;
+  bool get isActive => _isActive ?? false;
+  bool hasIsActive() => _isActive != null;
 
-  @BuiltValueField(wireName: 'is_active')
-  bool? get isActive;
+  // "doc_id" field.
+  String? _docId;
+  String get docId => _docId ?? '';
+  bool hasDocId() => _docId != null;
 
-  @BuiltValueField(wireName: 'doc_id')
-  String? get docId;
+  // "doc_title" field.
+  String? _docTitle;
+  String get docTitle => _docTitle ?? '';
+  bool hasDocTitle() => _docTitle != null;
 
-  @BuiltValueField(wireName: 'doc_title')
-  String? get docTitle;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "url" field.
+  String? _url;
+  String get url => _url ?? '';
+  bool hasUrl() => _url != null;
 
-  String? get url;
+  // "processing" field.
+  bool? _processing;
+  bool get processing => _processing ?? false;
+  bool hasProcessing() => _processing != null;
 
-  bool? get processing;
+  // "file_type" field.
+  String? _fileType;
+  String get fileType => _fileType ?? '';
+  bool hasFileType() => _fileType != null;
 
-  @BuiltValueField(wireName: 'file_type')
-  String? get fileType;
+  // "progress_status" field.
+  String? _progressStatus;
+  String get progressStatus => _progressStatus ?? '';
+  bool hasProgressStatus() => _progressStatus != null;
 
-  @BuiltValueField(wireName: 'progress_status')
-  String? get progressStatus;
-
-  @BuiltValueField(wireName: 'progress_percentage')
-  int? get progressPercentage;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "progress_percentage" field.
+  int? _progressPercentage;
+  int get progressPercentage => _progressPercentage ?? 0;
+  bool hasProgressPercentage() => _progressPercentage != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(UserDocsRecordBuilder builder) => builder
-    ..datasetId = ''
-    ..isActive = false
-    ..docId = ''
-    ..docTitle = ''
-    ..url = ''
-    ..processing = false
-    ..fileType = ''
-    ..progressStatus = ''
-    ..progressPercentage = 0;
+  void _initializeFields() {
+    _datasetId = snapshotData['dataset_id'] as String?;
+    _isActive = snapshotData['is_active'] as bool?;
+    _docId = snapshotData['doc_id'] as String?;
+    _docTitle = snapshotData['doc_title'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _url = snapshotData['url'] as String?;
+    _processing = snapshotData['processing'] as bool?;
+    _fileType = snapshotData['file_type'] as String?;
+    _progressStatus = snapshotData['progress_status'] as String?;
+    _progressPercentage = snapshotData['progress_percentage'] as int?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -63,22 +87,27 @@ abstract class UserDocsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('user_docs').doc();
 
-  static Stream<UserDocsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UserDocsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UserDocsRecord.fromSnapshot(s));
 
-  static Future<UserDocsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<UserDocsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => UserDocsRecord.fromSnapshot(s));
 
-  UserDocsRecord._();
-  factory UserDocsRecord([void Function(UserDocsRecordBuilder) updates]) =
-      _$UserDocsRecord;
+  static UserDocsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      UserDocsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static UserDocsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UserDocsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'UserDocsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createUserDocsRecordData({
@@ -93,21 +122,19 @@ Map<String, dynamic> createUserDocsRecordData({
   String? progressStatus,
   int? progressPercentage,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UserDocsRecord.serializer,
-    UserDocsRecord(
-      (u) => u
-        ..datasetId = datasetId
-        ..isActive = isActive
-        ..docId = docId
-        ..docTitle = docTitle
-        ..timestamp = timestamp
-        ..url = url
-        ..processing = processing
-        ..fileType = fileType
-        ..progressStatus = progressStatus
-        ..progressPercentage = progressPercentage,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'dataset_id': datasetId,
+      'is_active': isActive,
+      'doc_id': docId,
+      'doc_title': docTitle,
+      'timestamp': timestamp,
+      'url': url,
+      'processing': processing,
+      'file_type': fileType,
+      'progress_status': progressStatus,
+      'progress_percentage': progressPercentage,
+    }.withoutNulls,
   );
 
   return firestoreData;

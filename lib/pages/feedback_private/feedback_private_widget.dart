@@ -68,6 +68,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
@@ -309,7 +310,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
-                                                                              .firstName!,
+                                                                              .firstName,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -328,7 +329,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
-                                                                              .lastName!,
+                                                                              .lastName,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -347,7 +348,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         child: SelectionArea(
                                                                             child: Text(
                                                                           rowUsersRecord
-                                                                              .email!,
+                                                                              .email,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -377,7 +378,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                               () async {
                                                                             logFirebaseEvent('FEEDBACK_PRIVATE_Icon_umggr7o3_ON_TAP');
                                                                             logFirebaseEvent('Icon_copy_to_clipboard');
-                                                                            await Clipboard.setData(ClipboardData(text: rowUsersRecord.email!));
+                                                                            await Clipboard.setData(ClipboardData(text: rowUsersRecord.email));
                                                                           },
                                                                           child:
                                                                               FaIcon(
@@ -398,7 +399,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
-                                                                              .phoneNumber!,
+                                                                              .phoneNumber,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -497,7 +498,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                           10.0, 10.0),
                                                   child: Text(
                                                     columnSupportRecord
-                                                        .question!,
+                                                        .question,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium,
@@ -566,7 +567,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                           0.0),
                                                               child: Text(
                                                                 rowUsersRecord
-                                                                    .firstName!,
+                                                                    .firstName,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -594,7 +595,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                           0.0),
                                                               child: Text(
                                                                 rowUsersRecord
-                                                                    .lastName!,
+                                                                    .lastName,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -625,7 +626,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                       child:
                                                                           Text(
                                                                 rowUsersRecord
-                                                                    .email!,
+                                                                    .email,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -670,7 +671,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                   await Clipboard.setData(
                                                                       ClipboardData(
                                                                           text:
-                                                                              rowUsersRecord.email!));
+                                                                              rowUsersRecord.email));
                                                                 },
                                                                 child: FaIcon(
                                                                   FontAwesomeIcons
@@ -692,7 +693,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                           0.0),
                                                               child: Text(
                                                                 rowUsersRecord
-                                                                    .phoneNumber!,
+                                                                    .phoneNumber,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
