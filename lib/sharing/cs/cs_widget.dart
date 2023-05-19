@@ -1094,6 +1094,8 @@ class _CsWidgetState extends State<CsWidget> {
                                                                         true,
                                                                         true,
                                                                       ),
+                                                                      engine: columnSharedBotsRecord!
+                                                                          .engine,
                                                                     );
                                                                     var sharedChatsRecordReference =
                                                                         SharedChatsRecord.createDoc(
