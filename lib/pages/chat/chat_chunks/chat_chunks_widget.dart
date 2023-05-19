@@ -82,7 +82,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
                                 Builder(
                                   builder: (context) {
                                     final sourcesList =
-                                        widget.chatDoc!.sources!.toList();
+                                        widget.chatDoc!.sources.toList();
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,
@@ -111,7 +111,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  sourcesListItem.datasetNames!,
+                                                  sourcesListItem.datasetNames,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .titleSmall
@@ -130,13 +130,13 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
                                                       ),
                                                 ),
                                                 Text(
-                                                  sourcesListItem.docTitles!,
+                                                  sourcesListItem.docTitles,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .labelSmall,
                                                 ),
                                                 Text(
-                                                  sourcesListItem.chunks!,
+                                                  sourcesListItem.chunks,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodySmall

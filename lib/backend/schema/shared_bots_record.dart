@@ -1,85 +1,124 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'shared_bots_record.g.dart';
+class SharedBotsRecord extends FirestoreRecord {
+  SharedBotsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SharedBotsRecord
-    implements Built<SharedBotsRecord, SharedBotsRecordBuilder> {
-  static Serializer<SharedBotsRecord> get serializer =>
-      _$sharedBotsRecordSerializer;
+  // "bid" field.
+  String? _bid;
+  String get bid => _bid ?? '';
+  bool hasBid() => _bid != null;
 
-  String? get bid;
+  // "doc_titles" field.
+  List<String>? _docTitles;
+  List<String> get docTitles => _docTitles ?? const [];
+  bool hasDocTitles() => _docTitles != null;
 
-  @BuiltValueField(wireName: 'doc_titles')
-  BuiltList<String>? get docTitles;
+  // "doc_ids" field.
+  List<String>? _docIds;
+  List<String> get docIds => _docIds ?? const [];
+  bool hasDocIds() => _docIds != null;
 
-  @BuiltValueField(wireName: 'doc_ids')
-  BuiltList<String>? get docIds;
+  // "guardrail" field.
+  String? _guardrail;
+  String get guardrail => _guardrail ?? '';
+  bool hasGuardrail() => _guardrail != null;
 
-  String? get guardrail;
+  // "system" field.
+  String? _system;
+  String get system => _system ?? '';
+  bool hasSystem() => _system != null;
 
-  String? get system;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "top_k" field.
+  double? _topK;
+  double get topK => _topK ?? 0.0;
+  bool hasTopK() => _topK != null;
 
-  @BuiltValueField(wireName: 'top_k')
-  double? get topK;
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
-  String? get image;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  String? get uid;
+  // "dataset_ids" field.
+  List<String>? _datasetIds;
+  List<String> get datasetIds => _datasetIds ?? const [];
+  bool hasDatasetIds() => _datasetIds != null;
 
-  @BuiltValueField(wireName: 'dataset_ids')
-  BuiltList<String>? get datasetIds;
+  // "telegram_url" field.
+  String? _telegramUrl;
+  String get telegramUrl => _telegramUrl ?? '';
+  bool hasTelegramUrl() => _telegramUrl != null;
 
-  @BuiltValueField(wireName: 'telegram_url')
-  String? get telegramUrl;
+  // "share_url" field.
+  String? _shareUrl;
+  String get shareUrl => _shareUrl ?? '';
+  bool hasShareUrl() => _shareUrl != null;
 
-  @BuiltValueField(wireName: 'share_url')
-  String? get shareUrl;
+  // "engine" field.
+  String? _engine;
+  String get engine => _engine ?? '';
+  bool hasEngine() => _engine != null;
 
-  String? get engine;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(SharedBotsRecordBuilder builder) => builder
-    ..bid = ''
-    ..docTitles = ListBuilder()
-    ..docIds = ListBuilder()
-    ..guardrail = ''
-    ..system = ''
-    ..topK = 0.0
-    ..image = ''
-    ..uid = ''
-    ..datasetIds = ListBuilder()
-    ..telegramUrl = ''
-    ..shareUrl = ''
-    ..engine = '';
+  void _initializeFields() {
+    _bid = snapshotData['bid'] as String?;
+    _docTitles = getDataList(snapshotData['doc_titles']);
+    _docIds = getDataList(snapshotData['doc_ids']);
+    _guardrail = snapshotData['guardrail'] as String?;
+    _system = snapshotData['system'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _topK = castToType<double>(snapshotData['top_k']);
+    _image = snapshotData['image'] as String?;
+    _uid = snapshotData['uid'] as String?;
+    _datasetIds = getDataList(snapshotData['dataset_ids']);
+    _telegramUrl = snapshotData['telegram_url'] as String?;
+    _shareUrl = snapshotData['share_url'] as String?;
+    _engine = snapshotData['engine'] as String?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('shared_bots');
 
-  static Stream<SharedBotsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<SharedBotsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => SharedBotsRecord.fromSnapshot(s));
 
-  static Future<SharedBotsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<SharedBotsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => SharedBotsRecord.fromSnapshot(s));
 
-  SharedBotsRecord._();
-  factory SharedBotsRecord([void Function(SharedBotsRecordBuilder) updates]) =
-      _$SharedBotsRecord;
+  static SharedBotsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SharedBotsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SharedBotsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SharedBotsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SharedBotsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSharedBotsRecordData({
@@ -94,24 +133,19 @@ Map<String, dynamic> createSharedBotsRecordData({
   String? shareUrl,
   String? engine,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SharedBotsRecord.serializer,
-    SharedBotsRecord(
-      (s) => s
-        ..bid = bid
-        ..docTitles = null
-        ..docIds = null
-        ..guardrail = guardrail
-        ..system = system
-        ..timestamp = timestamp
-        ..topK = topK
-        ..image = image
-        ..uid = uid
-        ..datasetIds = null
-        ..telegramUrl = telegramUrl
-        ..shareUrl = shareUrl
-        ..engine = engine,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'bid': bid,
+      'guardrail': guardrail,
+      'system': system,
+      'timestamp': timestamp,
+      'top_k': topK,
+      'image': image,
+      'uid': uid,
+      'telegram_url': telegramUrl,
+      'share_url': shareUrl,
+      'engine': engine,
+    }.withoutNulls,
   );
 
   return firestoreData;

@@ -96,6 +96,7 @@ class _PrivacyPolicyWidgetState extends State<PrivacyPolicyWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

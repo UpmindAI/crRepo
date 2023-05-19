@@ -62,6 +62,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -213,7 +214,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                     child: SelectionArea(
                                                                         child: Text(
                                                                       listViewUserCompletionsRecord
-                                                                          .prompt!
+                                                                          .prompt
                                                                           .maybeHandleOverflow(
                                                                         maxChars:
                                                                             500,
@@ -269,7 +270,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                           child:
                                                                               Text(
                                                                     listViewUserCompletionsRecord
-                                                                        .completion!,
+                                                                        .completion,
                                                                     textAlign:
                                                                         TextAlign
                                                                             .start,

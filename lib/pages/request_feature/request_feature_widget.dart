@@ -72,6 +72,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(

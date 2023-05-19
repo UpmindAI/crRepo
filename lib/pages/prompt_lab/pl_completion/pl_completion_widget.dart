@@ -163,7 +163,7 @@ class _PlCompletionWidgetState extends State<PlCompletionWidget> {
                                 children: [
                                   SelectionArea(
                                       child: Text(
-                                    columnPlPromptsRecord.completion!,
+                                    columnPlPromptsRecord.completion,
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -201,7 +201,7 @@ class _PlCompletionWidgetState extends State<PlCompletionWidget> {
                                         'Container_copy_to_clipboard');
                                     await Clipboard.setData(ClipboardData(
                                         text:
-                                            columnPlPromptsRecord.completion!));
+                                            columnPlPromptsRecord.completion));
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(),

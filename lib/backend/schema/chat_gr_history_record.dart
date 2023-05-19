@@ -1,32 +1,41 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'chat_gr_history_record.g.dart';
+class ChatGrHistoryRecord extends FirestoreRecord {
+  ChatGrHistoryRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class ChatGrHistoryRecord
-    implements Built<ChatGrHistoryRecord, ChatGrHistoryRecordBuilder> {
-  static Serializer<ChatGrHistoryRecord> get serializer =>
-      _$chatGrHistoryRecordSerializer;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "is_favorite" field.
+  bool? _isFavorite;
+  bool get isFavorite => _isFavorite ?? false;
+  bool hasIsFavorite() => _isFavorite != null;
 
-  @BuiltValueField(wireName: 'is_favorite')
-  bool? get isFavorite;
-
-  String? get gr;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "gr" field.
+  String? _gr;
+  String get gr => _gr ?? '';
+  bool hasGr() => _gr != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(ChatGrHistoryRecordBuilder builder) => builder
-    ..isFavorite = false
-    ..gr = '';
+  void _initializeFields() {
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _isFavorite = snapshotData['is_favorite'] as bool?;
+    _gr = snapshotData['gr'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -36,23 +45,27 @@ abstract class ChatGrHistoryRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('chat_gr_history').doc();
 
-  static Stream<ChatGrHistoryRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<ChatGrHistoryRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => ChatGrHistoryRecord.fromSnapshot(s));
 
   static Future<ChatGrHistoryRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => ChatGrHistoryRecord.fromSnapshot(s));
 
-  ChatGrHistoryRecord._();
-  factory ChatGrHistoryRecord(
-          [void Function(ChatGrHistoryRecordBuilder) updates]) =
-      _$ChatGrHistoryRecord;
+  static ChatGrHistoryRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      ChatGrHistoryRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static ChatGrHistoryRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      ChatGrHistoryRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'ChatGrHistoryRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createChatGrHistoryRecordData({
@@ -60,14 +73,12 @@ Map<String, dynamic> createChatGrHistoryRecordData({
   bool? isFavorite,
   String? gr,
 }) {
-  final firestoreData = serializers.toFirestore(
-    ChatGrHistoryRecord.serializer,
-    ChatGrHistoryRecord(
-      (c) => c
-        ..timestamp = timestamp
-        ..isFavorite = isFavorite
-        ..gr = gr,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'timestamp': timestamp,
+      'is_favorite': isFavorite,
+      'gr': gr,
+    }.withoutNulls,
   );
 
   return firestoreData;

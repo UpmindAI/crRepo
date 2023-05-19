@@ -1,58 +1,89 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'shared_chat_meta_record.g.dart';
+class SharedChatMetaRecord extends FirestoreRecord {
+  SharedChatMetaRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SharedChatMetaRecord
-    implements Built<SharedChatMetaRecord, SharedChatMetaRecordBuilder> {
-  static Serializer<SharedChatMetaRecord> get serializer =>
-      _$sharedChatMetaRecordSerializer;
+  // "created_on" field.
+  DateTime? _createdOn;
+  DateTime? get createdOn => _createdOn;
+  bool hasCreatedOn() => _createdOn != null;
 
-  @BuiltValueField(wireName: 'created_on')
-  DateTime? get createdOn;
+  // "cid" field.
+  String? _cid;
+  String get cid => _cid ?? '';
+  bool hasCid() => _cid != null;
 
-  String? get cid;
+  // "qids" field.
+  List<String>? _qids;
+  List<String> get qids => _qids ?? const [];
+  bool hasQids() => _qids != null;
 
-  BuiltList<String>? get qids;
+  // "first_message" field.
+  String? _firstMessage;
+  String get firstMessage => _firstMessage ?? '';
+  bool hasFirstMessage() => _firstMessage != null;
 
-  @BuiltValueField(wireName: 'first_message')
-  String? get firstMessage;
+  // "prompts" field.
+  List<String>? _prompts;
+  List<String> get prompts => _prompts ?? const [];
+  bool hasPrompts() => _prompts != null;
 
-  BuiltList<String>? get prompts;
+  // "is_loading" field.
+  bool? _isLoading;
+  bool get isLoading => _isLoading ?? false;
+  bool hasIsLoading() => _isLoading != null;
 
-  @BuiltValueField(wireName: 'is_loading')
-  bool? get isLoading;
+  // "completions" field.
+  List<String>? _completions;
+  List<String> get completions => _completions ?? const [];
+  bool hasCompletions() => _completions != null;
 
-  BuiltList<String>? get completions;
+  // "last_message" field.
+  DateTime? _lastMessage;
+  DateTime? get lastMessage => _lastMessage;
+  bool hasLastMessage() => _lastMessage != null;
 
-  @BuiltValueField(wireName: 'last_message')
-  DateTime? get lastMessage;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  String? get uid;
+  // "image" field.
+  String? _image;
+  String get image => _image ?? '';
+  bool hasImage() => _image != null;
 
-  String? get image;
-
-  String? get bid;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "bid" field.
+  String? _bid;
+  String get bid => _bid ?? '';
+  bool hasBid() => _bid != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(SharedChatMetaRecordBuilder builder) => builder
-    ..cid = ''
-    ..qids = ListBuilder()
-    ..firstMessage = ''
-    ..prompts = ListBuilder()
-    ..isLoading = false
-    ..completions = ListBuilder()
-    ..uid = ''
-    ..image = ''
-    ..bid = '';
+  void _initializeFields() {
+    _createdOn = snapshotData['created_on'] as DateTime?;
+    _cid = snapshotData['cid'] as String?;
+    _qids = getDataList(snapshotData['qids']);
+    _firstMessage = snapshotData['first_message'] as String?;
+    _prompts = getDataList(snapshotData['prompts']);
+    _isLoading = snapshotData['is_loading'] as bool?;
+    _completions = getDataList(snapshotData['completions']);
+    _lastMessage = snapshotData['last_message'] as DateTime?;
+    _uid = snapshotData['uid'] as String?;
+    _image = snapshotData['image'] as String?;
+    _bid = snapshotData['bid'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -62,23 +93,27 @@ abstract class SharedChatMetaRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('shared_chat_meta').doc();
 
-  static Stream<SharedChatMetaRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<SharedChatMetaRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => SharedChatMetaRecord.fromSnapshot(s));
 
   static Future<SharedChatMetaRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => SharedChatMetaRecord.fromSnapshot(s));
 
-  SharedChatMetaRecord._();
-  factory SharedChatMetaRecord(
-          [void Function(SharedChatMetaRecordBuilder) updates]) =
-      _$SharedChatMetaRecord;
+  static SharedChatMetaRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SharedChatMetaRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SharedChatMetaRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SharedChatMetaRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SharedChatMetaRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSharedChatMetaRecordData({
@@ -91,22 +126,17 @@ Map<String, dynamic> createSharedChatMetaRecordData({
   String? image,
   String? bid,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SharedChatMetaRecord.serializer,
-    SharedChatMetaRecord(
-      (s) => s
-        ..createdOn = createdOn
-        ..cid = cid
-        ..qids = null
-        ..firstMessage = firstMessage
-        ..prompts = null
-        ..isLoading = isLoading
-        ..completions = null
-        ..lastMessage = lastMessage
-        ..uid = uid
-        ..image = image
-        ..bid = bid,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'created_on': createdOn,
+      'cid': cid,
+      'first_message': firstMessage,
+      'is_loading': isLoading,
+      'last_message': lastMessage,
+      'uid': uid,
+      'image': image,
+      'bid': bid,
+    }.withoutNulls,
   );
 
   return firestoreData;

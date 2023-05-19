@@ -1,124 +1,183 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'users_record.g.dart';
+class UsersRecord extends FirestoreRecord {
+  UsersRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
-  static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
+  // "email" field.
+  String? _email;
+  String get email => _email ?? '';
+  bool hasEmail() => _email != null;
 
-  String? get email;
+  // "display_name" field.
+  String? _displayName;
+  String get displayName => _displayName ?? '';
+  bool hasDisplayName() => _displayName != null;
 
-  @BuiltValueField(wireName: 'display_name')
-  String? get displayName;
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
 
-  @BuiltValueField(wireName: 'photo_url')
-  String? get photoUrl;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  String? get uid;
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
 
-  @BuiltValueField(wireName: 'created_time')
-  DateTime? get createdTime;
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
 
-  @BuiltValueField(wireName: 'phone_number')
-  String? get phoneNumber;
+  // "industry" field.
+  String? _industry;
+  String get industry => _industry ?? '';
+  bool hasIndustry() => _industry != null;
 
-  String? get industry;
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
 
-  String? get role;
+  // "first_name" field.
+  String? _firstName;
+  String get firstName => _firstName ?? '';
+  bool hasFirstName() => _firstName != null;
 
-  @BuiltValueField(wireName: 'first_name')
-  String? get firstName;
+  // "last_name" field.
+  String? _lastName;
+  String get lastName => _lastName ?? '';
+  bool hasLastName() => _lastName != null;
 
-  @BuiltValueField(wireName: 'last_name')
-  String? get lastName;
+  // "company" field.
+  String? _company;
+  String get company => _company ?? '';
+  bool hasCompany() => _company != null;
 
-  String? get company;
+  // "total_credits" field.
+  double? _totalCredits;
+  double get totalCredits => _totalCredits ?? 0.0;
+  bool hasTotalCredits() => _totalCredits != null;
 
-  @BuiltValueField(wireName: 'total_credits')
-  double? get totalCredits;
+  // "first_login" field.
+  bool? _firstLogin;
+  bool get firstLogin => _firstLogin ?? false;
+  bool hasFirstLogin() => _firstLogin != null;
 
-  @BuiltValueField(wireName: 'first_login')
-  bool? get firstLogin;
+  // "is_admin" field.
+  bool? _isAdmin;
+  bool get isAdmin => _isAdmin ?? false;
+  bool hasIsAdmin() => _isAdmin != null;
 
-  @BuiltValueField(wireName: 'is_admin')
-  bool? get isAdmin;
+  // "summary_prompt" field.
+  String? _summaryPrompt;
+  String get summaryPrompt => _summaryPrompt ?? '';
+  bool hasSummaryPrompt() => _summaryPrompt != null;
 
-  @BuiltValueField(wireName: 'summary_prompt')
-  String? get summaryPrompt;
+  // "chat_gr" field.
+  String? _chatGr;
+  String get chatGr => _chatGr ?? '';
+  bool hasChatGr() => _chatGr != null;
 
-  @BuiltValueField(wireName: 'chat_gr')
-  String? get chatGr;
+  // "chat_personality" field.
+  String? _chatPersonality;
+  String get chatPersonality => _chatPersonality ?? '';
+  bool hasChatPersonality() => _chatPersonality != null;
 
-  @BuiltValueField(wireName: 'chat_personality')
-  String? get chatPersonality;
+  // "intro_credits_added" field.
+  bool? _introCreditsAdded;
+  bool get introCreditsAdded => _introCreditsAdded ?? false;
+  bool hasIntroCreditsAdded() => _introCreditsAdded != null;
 
-  @BuiltValueField(wireName: 'intro_credits_added')
-  bool? get introCreditsAdded;
+  // "chat_image" field.
+  String? _chatImage;
+  String get chatImage => _chatImage ?? '';
+  bool hasChatImage() => _chatImage != null;
 
-  @BuiltValueField(wireName: 'chat_image')
-  String? get chatImage;
+  // "whitelabel" field.
+  bool? _whitelabel;
+  bool get whitelabel => _whitelabel ?? false;
+  bool hasWhitelabel() => _whitelabel != null;
 
-  bool? get whitelabel;
+  // "wl_light" field.
+  String? _wlLight;
+  String get wlLight => _wlLight ?? '';
+  bool hasWlLight() => _wlLight != null;
 
-  @BuiltValueField(wireName: 'wl_light')
-  String? get wlLight;
+  // "wl_dark" field.
+  String? _wlDark;
+  String get wlDark => _wlDark ?? '';
+  bool hasWlDark() => _wlDark != null;
 
-  @BuiltValueField(wireName: 'wl_dark')
-  String? get wlDark;
+  // "wallet_address" field.
+  String? _walletAddress;
+  String get walletAddress => _walletAddress ?? '';
+  bool hasWalletAddress() => _walletAddress != null;
 
-  @BuiltValueField(wireName: 'wallet_address')
-  String? get walletAddress;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..email = ''
-    ..displayName = ''
-    ..photoUrl = ''
-    ..uid = ''
-    ..phoneNumber = ''
-    ..industry = ''
-    ..role = ''
-    ..firstName = ''
-    ..lastName = ''
-    ..company = ''
-    ..totalCredits = 0.0
-    ..firstLogin = false
-    ..isAdmin = false
-    ..summaryPrompt = ''
-    ..chatGr = ''
-    ..chatPersonality = ''
-    ..introCreditsAdded = false
-    ..chatImage = ''
-    ..whitelabel = false
-    ..wlLight = ''
-    ..wlDark = ''
-    ..walletAddress = '';
+  void _initializeFields() {
+    _email = snapshotData['email'] as String?;
+    _displayName = snapshotData['display_name'] as String?;
+    _photoUrl = snapshotData['photo_url'] as String?;
+    _uid = snapshotData['uid'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
+    _industry = snapshotData['industry'] as String?;
+    _role = snapshotData['role'] as String?;
+    _firstName = snapshotData['first_name'] as String?;
+    _lastName = snapshotData['last_name'] as String?;
+    _company = snapshotData['company'] as String?;
+    _totalCredits = castToType<double>(snapshotData['total_credits']);
+    _firstLogin = snapshotData['first_login'] as bool?;
+    _isAdmin = snapshotData['is_admin'] as bool?;
+    _summaryPrompt = snapshotData['summary_prompt'] as String?;
+    _chatGr = snapshotData['chat_gr'] as String?;
+    _chatPersonality = snapshotData['chat_personality'] as String?;
+    _introCreditsAdded = snapshotData['intro_credits_added'] as bool?;
+    _chatImage = snapshotData['chat_image'] as String?;
+    _whitelabel = snapshotData['whitelabel'] as bool?;
+    _wlLight = snapshotData['wl_light'] as String?;
+    _wlDark = snapshotData['wl_dark'] as String?;
+    _walletAddress = snapshotData['wallet_address'] as String?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
 
-  static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UsersRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UsersRecord.fromSnapshot(s));
 
-  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<UsersRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => UsersRecord.fromSnapshot(s));
 
-  UsersRecord._();
-  factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
-      _$UsersRecord;
+  static UsersRecord fromSnapshot(DocumentSnapshot snapshot) => UsersRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static UsersRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UsersRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'UsersRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createUsersRecordData({
@@ -146,34 +205,32 @@ Map<String, dynamic> createUsersRecordData({
   String? wlDark,
   String? walletAddress,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UsersRecord.serializer,
-    UsersRecord(
-      (u) => u
-        ..email = email
-        ..displayName = displayName
-        ..photoUrl = photoUrl
-        ..uid = uid
-        ..createdTime = createdTime
-        ..phoneNumber = phoneNumber
-        ..industry = industry
-        ..role = role
-        ..firstName = firstName
-        ..lastName = lastName
-        ..company = company
-        ..totalCredits = totalCredits
-        ..firstLogin = firstLogin
-        ..isAdmin = isAdmin
-        ..summaryPrompt = summaryPrompt
-        ..chatGr = chatGr
-        ..chatPersonality = chatPersonality
-        ..introCreditsAdded = introCreditsAdded
-        ..chatImage = chatImage
-        ..whitelabel = whitelabel
-        ..wlLight = wlLight
-        ..wlDark = wlDark
-        ..walletAddress = walletAddress,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'email': email,
+      'display_name': displayName,
+      'photo_url': photoUrl,
+      'uid': uid,
+      'created_time': createdTime,
+      'phone_number': phoneNumber,
+      'industry': industry,
+      'role': role,
+      'first_name': firstName,
+      'last_name': lastName,
+      'company': company,
+      'total_credits': totalCredits,
+      'first_login': firstLogin,
+      'is_admin': isAdmin,
+      'summary_prompt': summaryPrompt,
+      'chat_gr': chatGr,
+      'chat_personality': chatPersonality,
+      'intro_credits_added': introCreditsAdded,
+      'chat_image': chatImage,
+      'whitelabel': whitelabel,
+      'wl_light': wlLight,
+      'wl_dark': wlDark,
+      'wallet_address': walletAddress,
+    }.withoutNulls,
   );
 
   return firestoreData;

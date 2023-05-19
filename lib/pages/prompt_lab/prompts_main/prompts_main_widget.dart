@@ -94,7 +94,7 @@ class _PromptsMainWidgetState extends State<PromptsMainWidget> {
                         final listViewPromptlabRecord = snapshot.data!;
                         return Builder(
                           builder: (context) {
-                            final plPrompts = listViewPromptlabRecord.prompts!
+                            final plPrompts = listViewPromptlabRecord.prompts
                                 .toList()
                                 .take(100)
                                 .toList();
@@ -188,8 +188,7 @@ class _PromptsMainWidgetState extends State<PromptsMainWidget> {
                                                                   plPromptsIndex,
                                                               prompts:
                                                                   listViewPromptlabRecord
-                                                                      .prompts!
-                                                                      .toList(),
+                                                                      .prompts,
                                                             ),
                                                           ),
                                                         );
@@ -208,7 +207,7 @@ class _PromptsMainWidgetState extends State<PromptsMainWidget> {
                                                         children: [
                                                           TextSpan(
                                                             text: plPromptsItem
-                                                                .name!,
+                                                                .name,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelMedium
@@ -234,7 +233,7 @@ class _PromptsMainWidgetState extends State<PromptsMainWidget> {
                                                           ),
                                                           TextSpan(
                                                             text: plPromptsItem
-                                                                .prompt!,
+                                                                .prompt,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall

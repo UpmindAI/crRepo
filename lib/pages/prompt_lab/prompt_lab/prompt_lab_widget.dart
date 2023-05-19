@@ -92,6 +92,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
           ),
         ),
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -719,7 +720,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 3.0),
                                                                                         child: Text(
-                                                                                          columnPromptlabRecord.folderName!,
+                                                                                          columnPromptlabRecord.folderName,
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                 fontSize: 16.0,
@@ -955,7 +956,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(36.0, 0.0, 0.0, 0.0),
                                                                                 child: Builder(
                                                                                   builder: (context) {
-                                                                                    final children = columnPromptlabRecord.children!.toList().take(10).toList();
+                                                                                    final children = columnPromptlabRecord.children.toList().take(10).toList();
                                                                                     return ListView.builder(
                                                                                       padding: EdgeInsets.zero,
                                                                                       shrinkWrap: true,
@@ -1030,7 +1031,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                               ],
                                                                                                             ),
                                                                                                             Text(
-                                                                                                              childrenItem.folderName!,
+                                                                                                              childrenItem.folderName,
                                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                                     fontSize: 16.0,
@@ -1072,7 +1073,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                                           child: Container(
                                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                                             child: FolderOptionsSubWidget(
-                                                                                                                              folderRef: columnPromptlabRecord.children!.toList()[childrenIndex].docRef,
+                                                                                                                              folderRef: columnPromptlabRecord.children[childrenIndex].docRef,
                                                                                                                               index: childrenIndex,
                                                                                                                             ),
                                                                                                                           ),

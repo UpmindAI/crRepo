@@ -1,54 +1,76 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'feature_record.g.dart';
+class FeatureRecord extends FirestoreRecord {
+  FeatureRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class FeatureRecord
-    implements Built<FeatureRecord, FeatureRecordBuilder> {
-  static Serializer<FeatureRecord> get serializer => _$featureRecordSerializer;
+  // "iwant" field.
+  String? _iwant;
+  String get iwant => _iwant ?? '';
+  bool hasIwant() => _iwant != null;
 
-  String? get iwant;
+  // "because" field.
+  String? _because;
+  String get because => _because ?? '';
+  bool hasBecause() => _because != null;
 
-  String? get because;
+  // "additional" field.
+  String? _additional;
+  String get additional => _additional ?? '';
+  bool hasAdditional() => _additional != null;
 
-  String? get additional;
+  // "user_ref" field.
+  DocumentReference? _userRef;
+  DocumentReference? get userRef => _userRef;
+  bool hasUserRef() => _userRef != null;
 
-  @BuiltValueField(wireName: 'user_ref')
-  DocumentReference? get userRef;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(FeatureRecordBuilder builder) => builder
-    ..iwant = ''
-    ..because = ''
-    ..additional = '';
+  void _initializeFields() {
+    _iwant = snapshotData['iwant'] as String?;
+    _because = snapshotData['because'] as String?;
+    _additional = snapshotData['additional'] as String?;
+    _userRef = snapshotData['user_ref'] as DocumentReference?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('feature');
 
-  static Stream<FeatureRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<FeatureRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => FeatureRecord.fromSnapshot(s));
 
-  static Future<FeatureRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<FeatureRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => FeatureRecord.fromSnapshot(s));
 
-  FeatureRecord._();
-  factory FeatureRecord([void Function(FeatureRecordBuilder) updates]) =
-      _$FeatureRecord;
+  static FeatureRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      FeatureRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static FeatureRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      FeatureRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'FeatureRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createFeatureRecordData({
@@ -58,16 +80,14 @@ Map<String, dynamic> createFeatureRecordData({
   DocumentReference? userRef,
   DateTime? timestamp,
 }) {
-  final firestoreData = serializers.toFirestore(
-    FeatureRecord.serializer,
-    FeatureRecord(
-      (f) => f
-        ..iwant = iwant
-        ..because = because
-        ..additional = additional
-        ..userRef = userRef
-        ..timestamp = timestamp,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'iwant': iwant,
+      'because': because,
+      'additional': additional,
+      'user_ref': userRef,
+      'timestamp': timestamp,
+    }.withoutNulls,
   );
 
   return firestoreData;

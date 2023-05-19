@@ -268,7 +268,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                             12.0, 8.0, 12.0, 8.0),
                                         child: SelectionArea(
                                             child: Text(
-                                          columnSharedBotsRecord.shareUrl!,
+                                          columnSharedBotsRecord.shareUrl,
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .labelLarge
@@ -901,7 +901,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                               'Icon_copy_to_clipboard');
                                           await Clipboard.setData(ClipboardData(
                                               text: columnSharedBotsRecord
-                                                  .telegramUrl!));
+                                                  .telegramUrl));
                                         },
                                         child: FaIcon(
                                           FontAwesomeIcons.copy,
@@ -942,7 +942,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                                   12.0, 8.0, 12.0, 8.0),
                                           child: SelectionArea(
                                               child: Text(
-                                            columnSharedBotsRecord.telegramUrl!,
+                                            columnSharedBotsRecord.telegramUrl,
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
@@ -974,7 +974,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                                 'Icon_launch_u_r_l');
                                             await launchURL(
                                                 columnSharedBotsRecord
-                                                    .telegramUrl!);
+                                                    .telegramUrl);
                                           },
                                           child: Icon(
                                             Icons.launch,
@@ -1004,7 +1004,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                 ),
                                 SelectionArea(
                                     child: Text(
-                                  columnSharedBotsRecord.bid!,
+                                  columnSharedBotsRecord.bid,
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
                                 )),

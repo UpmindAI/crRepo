@@ -70,6 +70,7 @@ class _SearchTestWidgetState extends State<SearchTestWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

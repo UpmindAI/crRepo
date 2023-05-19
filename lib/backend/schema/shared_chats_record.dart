@@ -1,73 +1,116 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'shared_chats_record.g.dart';
+class SharedChatsRecord extends FirestoreRecord {
+  SharedChatsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SharedChatsRecord
-    implements Built<SharedChatsRecord, SharedChatsRecordBuilder> {
-  static Serializer<SharedChatsRecord> get serializer =>
-      _$sharedChatsRecordSerializer;
+  // "cid" field.
+  String? _cid;
+  String get cid => _cid ?? '';
+  bool hasCid() => _cid != null;
 
-  String? get cid;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "message" field.
+  String? _message;
+  String get message => _message ?? '';
+  bool hasMessage() => _message != null;
 
-  String? get message;
+  // "is_completion" field.
+  bool? _isCompletion;
+  bool get isCompletion => _isCompletion ?? false;
+  bool hasIsCompletion() => _isCompletion != null;
 
-  @BuiltValueField(wireName: 'is_completion')
-  bool? get isCompletion;
+  // "dataset_ids" field.
+  List<String>? _datasetIds;
+  List<String> get datasetIds => _datasetIds ?? const [];
+  bool hasDatasetIds() => _datasetIds != null;
 
-  @BuiltValueField(wireName: 'dataset_ids')
-  BuiltList<String>? get datasetIds;
+  // "qid" field.
+  String? _qid;
+  String get qid => _qid ?? '';
+  bool hasQid() => _qid != null;
 
-  String? get qid;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  bool hasPrompt() => _prompt != null;
 
-  String? get prompt;
+  // "completion" field.
+  String? _completion;
+  String get completion => _completion ?? '';
+  bool hasCompletion() => _completion != null;
 
-  String? get completion;
+  // "dataset_names" field.
+  List<String>? _datasetNames;
+  List<String> get datasetNames => _datasetNames ?? const [];
+  bool hasDatasetNames() => _datasetNames != null;
 
-  @BuiltValueField(wireName: 'dataset_names')
-  BuiltList<String>? get datasetNames;
+  // "doc_titles" field.
+  List<String>? _docTitles;
+  List<String> get docTitles => _docTitles ?? const [];
+  bool hasDocTitles() => _docTitles != null;
 
-  @BuiltValueField(wireName: 'doc_titles')
-  BuiltList<String>? get docTitles;
+  // "is_loading" field.
+  bool? _isLoading;
+  bool get isLoading => _isLoading ?? false;
+  bool hasIsLoading() => _isLoading != null;
 
-  @BuiltValueField(wireName: 'is_loading')
-  bool? get isLoading;
+  // "uid" field.
+  String? _uid;
+  String get uid => _uid ?? '';
+  bool hasUid() => _uid != null;
 
-  String? get uid;
+  // "is_error" field.
+  bool? _isError;
+  bool get isError => _isError ?? false;
+  bool hasIsError() => _isError != null;
 
-  @BuiltValueField(wireName: 'is_error')
-  bool? get isError;
+  // "sources" field.
+  List<SourcesStruct>? _sources;
+  List<SourcesStruct> get sources => _sources ?? const [];
+  bool hasSources() => _sources != null;
 
-  BuiltList<SourcesStruct>? get sources;
-
-  String? get bid;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "bid" field.
+  String? _bid;
+  String get bid => _bid ?? '';
+  bool hasBid() => _bid != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(SharedChatsRecordBuilder builder) => builder
-    ..cid = ''
-    ..message = ''
-    ..isCompletion = false
-    ..datasetIds = ListBuilder()
-    ..qid = ''
-    ..prompt = ''
-    ..completion = ''
-    ..datasetNames = ListBuilder()
-    ..docTitles = ListBuilder()
-    ..isLoading = false
-    ..uid = ''
-    ..isError = false
-    ..sources = ListBuilder()
-    ..bid = '';
+  void _initializeFields() {
+    _cid = snapshotData['cid'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _message = snapshotData['message'] as String?;
+    _isCompletion = snapshotData['is_completion'] as bool?;
+    _datasetIds = getDataList(snapshotData['dataset_ids']);
+    _qid = snapshotData['qid'] as String?;
+    _prompt = snapshotData['prompt'] as String?;
+    _completion = snapshotData['completion'] as String?;
+    _datasetNames = getDataList(snapshotData['dataset_names']);
+    _docTitles = getDataList(snapshotData['doc_titles']);
+    _isLoading = snapshotData['is_loading'] as bool?;
+    _uid = snapshotData['uid'] as String?;
+    _isError = snapshotData['is_error'] as bool?;
+    _sources = getStructList(
+      snapshotData['sources'],
+      SourcesStruct.fromMap,
+    );
+    _bid = snapshotData['bid'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -77,22 +120,27 @@ abstract class SharedChatsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('shared_chats').doc();
 
-  static Stream<SharedChatsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<SharedChatsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => SharedChatsRecord.fromSnapshot(s));
 
-  static Future<SharedChatsRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<SharedChatsRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => SharedChatsRecord.fromSnapshot(s));
 
-  SharedChatsRecord._();
-  factory SharedChatsRecord([void Function(SharedChatsRecordBuilder) updates]) =
-      _$SharedChatsRecord;
+  static SharedChatsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SharedChatsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static SharedChatsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SharedChatsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'SharedChatsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSharedChatsRecordData({
@@ -108,26 +156,20 @@ Map<String, dynamic> createSharedChatsRecordData({
   bool? isError,
   String? bid,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SharedChatsRecord.serializer,
-    SharedChatsRecord(
-      (s) => s
-        ..cid = cid
-        ..timestamp = timestamp
-        ..message = message
-        ..isCompletion = isCompletion
-        ..datasetIds = null
-        ..qid = qid
-        ..prompt = prompt
-        ..completion = completion
-        ..datasetNames = null
-        ..docTitles = null
-        ..isLoading = isLoading
-        ..uid = uid
-        ..isError = isError
-        ..sources = null
-        ..bid = bid,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'cid': cid,
+      'timestamp': timestamp,
+      'message': message,
+      'is_completion': isCompletion,
+      'qid': qid,
+      'prompt': prompt,
+      'completion': completion,
+      'is_loading': isLoading,
+      'uid': uid,
+      'is_error': isError,
+      'bid': bid,
+    }.withoutNulls,
   );
 
   return firestoreData;

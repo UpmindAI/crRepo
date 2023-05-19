@@ -79,6 +79,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -132,7 +133,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          context.goNamedAuth('Login', mounted);
+                          context.goNamedAuth('Login', context.mounted);
                         },
                         text: 'Logout',
                         options: FFButtonOptions(

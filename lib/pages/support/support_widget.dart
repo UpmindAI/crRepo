@@ -65,6 +65,7 @@ class _SupportWidgetState extends State<SupportWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

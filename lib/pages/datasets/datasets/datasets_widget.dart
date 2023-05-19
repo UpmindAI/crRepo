@@ -54,7 +54,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       logFirebaseEvent('DATASETS_PAGE_Datasets_ON_INIT_STATE');
       logFirebaseEvent('Datasets_update_app_state');
       FFAppState().selectedDocuments =
-          widget.activeDataset!.activeDocs!.toList().toList();
+          widget.activeDataset!.activeDocs.toList();
       FFAppState().currentPage = 'My Data';
     });
 
@@ -77,6 +77,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
+        top: true,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -219,7 +220,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     0.0),
                                                         child: Text(
                                                           columnUserDatasetsRecord
-                                                              .datasetName!,
+                                                              .datasetName,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .headlineSmall,
@@ -493,7 +494,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 setState(() {
                                                                   FFAppState().addToSelectedDataset(widget
                                                                       .activeDataset!
-                                                                      .datasetId!);
+                                                                      .datasetId);
                                                                 });
                                                                 logFirebaseEvent(
                                                                     'Text_navigate_to');
@@ -555,7 +556,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               FFAppState()
                                                                   .addToSelectedDataset(widget
                                                                       .activeDataset!
-                                                                      .datasetId!);
+                                                                      .datasetId);
                                                             });
                                                             logFirebaseEvent(
                                                                 'Icon_navigate_to');
@@ -599,7 +600,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               FFAppState()
                                                                   .addToSelectedDataset(widget
                                                                       .activeDataset!
-                                                                      .datasetId!);
+                                                                      .datasetId);
                                                             });
                                                             logFirebaseEvent(
                                                                 'Icon_navigate_to');
@@ -1461,7 +1462,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           child: Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                             child: Text(
-                                                                                              listViewUserDocsRecord.docTitle!.maybeHandleOverflow(
+                                                                                              listViewUserDocsRecord.docTitle.maybeHandleOverflow(
                                                                                                 maxChars: 90,
                                                                                                 replacement: '…',
                                                                                               ),
@@ -1523,7 +1524,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 onTap: () async {
                                                                                                   logFirebaseEvent('DATASETS_PAGE_Icon_3k0ck7z4_ON_TAP');
                                                                                                   logFirebaseEvent('Icon_launch_u_r_l');
-                                                                                                  await launchURL(listViewUserDocsRecord.url!);
+                                                                                                  await launchURL(listViewUserDocsRecord.url);
                                                                                                 },
                                                                                                 child: Icon(
                                                                                                   Icons.open_in_new,
@@ -1548,7 +1549,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 unselectedWidgetColor: FlutterFlowTheme.of(context).tertiary,
                                                                                               ),
                                                                                               child: Checkbox(
-                                                                                                value: _model.checkboxValueMap[listViewUserDocsRecord] ??= columnUserDatasetsRecord.activeDocs!.toList().contains(listViewUserDocsRecord.docId),
+                                                                                                value: _model.checkboxValueMap[listViewUserDocsRecord] ??= columnUserDatasetsRecord.activeDocs.contains(listViewUserDocsRecord.docId),
                                                                                                 onChanged: (newValue) async {
                                                                                                   setState(() => _model.checkboxValueMap[listViewUserDocsRecord] = newValue!);
                                                                                                   if (newValue!) {
@@ -1661,7 +1662,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                                                                                             child: Text(
-                                                                                              listViewUserDocsRecord.progressStatus!,
+                                                                                              listViewUserDocsRecord.progressStatus,
                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                                     color: listViewUserDocsRecord.progressStatus == 'Ready' ? FlutterFlowTheme.of(context).green : FlutterFlowTheme.of(context).secondary,
@@ -1694,7 +1695,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                     child: Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 1.0, 0.0),
                                                                                                       child: LinearPercentIndicator(
-                                                                                                        percent: functions.getPercentage(listViewUserDocsRecord.progressPercentage!)!,
+                                                                                                        percent: functions.getPercentage(listViewUserDocsRecord.progressPercentage)!,
                                                                                                         width: 120.0,
                                                                                                         lineHeight: 12.0,
                                                                                                         animation: true,
@@ -1989,7 +1990,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   FFAppState()
                                                                           .selectedDocuments =
                                                                       listViewUserDatasetsRecord
-                                                                          .activeDocs!
+                                                                          .activeDocs
                                                                           .toList();
                                                                 });
                                                                 logFirebaseEvent(
@@ -2076,7 +2077,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               0.0),
                                                                           child:
                                                                               AutoSizeText(
-                                                                            listViewUserDatasetsRecord.datasetName!.maybeHandleOverflow(
+                                                                            listViewUserDatasetsRecord.datasetName.maybeHandleOverflow(
                                                                               maxChars: 23,
                                                                               replacement: '…',
                                                                             ),

@@ -77,6 +77,7 @@ class _CookiePolicyWidgetState extends State<CookiePolicyWidget> {
               )
             : null,
         body: SafeArea(
+          top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

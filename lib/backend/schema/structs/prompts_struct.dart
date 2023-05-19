@@ -1,32 +1,93 @@
-import 'dart:async';
+// ignore_for_file: unnecessary_getters_setters
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../index.dart';
-import '../serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
-part 'prompts_struct.g.dart';
+import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-abstract class PromptsStruct
-    implements Built<PromptsStruct, PromptsStructBuilder> {
-  static Serializer<PromptsStruct> get serializer => _$promptsStructSerializer;
+class PromptsStruct extends FFFirebaseStruct {
+  PromptsStruct({
+    String? name,
+    String? prompt,
+    DateTime? timestamp,
+    FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
+  })  : _name = name,
+        _prompt = prompt,
+        _timestamp = timestamp,
+        super(firestoreUtilData);
 
-  String? get name;
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  set name(String? val) => _name = val;
+  bool hasName() => _name != null;
 
-  String? get prompt;
+  // "prompt" field.
+  String? _prompt;
+  String get prompt => _prompt ?? '';
+  set prompt(String? val) => _prompt = val;
+  bool hasPrompt() => _prompt != null;
 
-  DateTime? get timestamp;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  set timestamp(DateTime? val) => _timestamp = val;
+  bool hasTimestamp() => _timestamp != null;
 
-  /// Utility class for Firestore updates
-  FirestoreUtilData get firestoreUtilData;
+  static PromptsStruct fromMap(Map<String, dynamic> data) => PromptsStruct(
+        name: data['name'] as String?,
+        prompt: data['prompt'] as String?,
+        timestamp: data['timestamp'] as DateTime?,
+      );
 
-  static void _initializeBuilder(PromptsStructBuilder builder) => builder
-    ..name = ''
-    ..prompt = ''
-    ..firestoreUtilData = FirestoreUtilData();
+  static PromptsStruct? maybeFromMap(dynamic data) =>
+      data is Map<String, dynamic> ? PromptsStruct.fromMap(data) : null;
 
-  PromptsStruct._();
-  factory PromptsStruct([void Function(PromptsStructBuilder) updates]) =
-      _$PromptsStruct;
+  Map<String, dynamic> toMap() => {
+        'name': _name,
+        'prompt': _prompt,
+        'timestamp': _timestamp,
+      }.withoutNulls;
+
+  @override
+  Map<String, dynamic> toSerializableMap() => {
+        'name': serializeParam(
+          _name,
+          ParamType.String,
+        ),
+        'prompt': serializeParam(
+          _prompt,
+          ParamType.String,
+        ),
+        'timestamp': serializeParam(
+          _timestamp,
+          ParamType.DateTime,
+        ),
+      }.withoutNulls;
+
+  static PromptsStruct fromSerializableMap(Map<String, dynamic> data) =>
+      PromptsStruct(
+        name: deserializeParam(
+          data['name'],
+          ParamType.String,
+          false,
+        ),
+        prompt: deserializeParam(
+          data['prompt'],
+          ParamType.String,
+          false,
+        ),
+        timestamp: deserializeParam(
+          data['timestamp'],
+          ParamType.DateTime,
+          false,
+        ),
+      );
+
+  @override
+  String toString() => 'PromptsStruct(${toMap()})';
 }
 
 PromptsStruct createPromptsStruct({
@@ -39,28 +100,24 @@ PromptsStruct createPromptsStruct({
   bool delete = false,
 }) =>
     PromptsStruct(
-      (p) => p
-        ..name = name
-        ..prompt = prompt
-        ..timestamp = timestamp
-        ..firestoreUtilData = FirestoreUtilData(
-          clearUnsetFields: clearUnsetFields,
-          create: create,
-          delete: delete,
-          fieldValues: fieldValues,
-        ),
+      name: name,
+      prompt: prompt,
+      timestamp: timestamp,
+      firestoreUtilData: FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+        delete: delete,
+        fieldValues: fieldValues,
+      ),
     );
 
 PromptsStruct? updatePromptsStruct(
   PromptsStruct? prompts, {
   bool clearUnsetFields = true,
 }) =>
-    prompts != null
-        ? (prompts.toBuilder()
-              ..firestoreUtilData =
-                  FirestoreUtilData(clearUnsetFields: clearUnsetFields))
-            .build()
-        : null;
+    prompts
+      ?..firestoreUtilData =
+          FirestoreUtilData(clearUnsetFields: clearUnsetFields);
 
 void addPromptsStructData(
   Map<String, dynamic> firestoreData,
@@ -84,8 +141,6 @@ void addPromptsStructData(
 
   final create = prompts.firestoreUtilData.create;
   firestoreData.addAll(create ? mergeNestedFields(nestedData) : nestedData);
-
-  return;
 }
 
 Map<String, dynamic> getPromptsFirestoreData(
@@ -95,8 +150,7 @@ Map<String, dynamic> getPromptsFirestoreData(
   if (prompts == null) {
     return {};
   }
-  final firestoreData =
-      serializers.toFirestore(PromptsStruct.serializer, prompts);
+  final firestoreData = mapToFirestore(prompts.toMap());
 
   // Add any Firestore field values
   prompts.firestoreUtilData.fieldValues.forEach((k, v) => firestoreData[k] = v);
@@ -107,4 +161,4 @@ Map<String, dynamic> getPromptsFirestoreData(
 List<Map<String, dynamic>> getPromptsListFirestoreData(
   List<PromptsStruct>? promptss,
 ) =>
-    promptss?.map((p) => getPromptsFirestoreData(p, true)).toList() ?? [];
+    promptss?.map((e) => getPromptsFirestoreData(e, true)).toList() ?? [];

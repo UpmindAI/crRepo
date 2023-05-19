@@ -1,151 +1,225 @@
 import 'dart:async';
 
 import 'package:from_css_color/from_css_color.dart';
+import '/backend/algolia/algolia_manager.dart';
+
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'search_test_record.g.dart';
+class SearchTestRecord extends FirestoreRecord {
+  SearchTestRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class SearchTestRecord
-    implements Built<SearchTestRecord, SearchTestRecordBuilder> {
-  static Serializer<SearchTestRecord> get serializer =>
-      _$searchTestRecordSerializer;
+  // "firm" field.
+  String? _firm;
+  String get firm => _firm ?? '';
+  bool hasFirm() => _firm != null;
 
-  String? get firm;
+  // "award_title" field.
+  String? _awardTitle;
+  String get awardTitle => _awardTitle ?? '';
+  bool hasAwardTitle() => _awardTitle != null;
 
-  @BuiltValueField(wireName: 'award_title')
-  String? get awardTitle;
+  // "agency" field.
+  String? _agency;
+  String get agency => _agency ?? '';
+  bool hasAgency() => _agency != null;
 
-  String? get agency;
+  // "phase" field.
+  String? _phase;
+  String get phase => _phase ?? '';
+  bool hasPhase() => _phase != null;
 
-  String? get phase;
+  // "proposal_award_date" field.
+  DateTime? _proposalAwardDate;
+  DateTime? get proposalAwardDate => _proposalAwardDate;
+  bool hasProposalAwardDate() => _proposalAwardDate != null;
 
-  @BuiltValueField(wireName: 'proposal_award_date')
-  DateTime? get proposalAwardDate;
+  // "contract_end_date" field.
+  DateTime? _contractEndDate;
+  DateTime? get contractEndDate => _contractEndDate;
+  bool hasContractEndDate() => _contractEndDate != null;
 
-  @BuiltValueField(wireName: 'contract_end_date')
-  DateTime? get contractEndDate;
+  // "solicitation_year" field.
+  int? _solicitationYear;
+  int get solicitationYear => _solicitationYear ?? 0;
+  bool hasSolicitationYear() => _solicitationYear != null;
 
-  @BuiltValueField(wireName: 'solicitation_year')
-  int? get solicitationYear;
+  // "award_year" field.
+  int? _awardYear;
+  int get awardYear => _awardYear ?? 0;
+  bool hasAwardYear() => _awardYear != null;
 
-  @BuiltValueField(wireName: 'award_year')
-  int? get awardYear;
+  // "award_amount" field.
+  int? _awardAmount;
+  int get awardAmount => _awardAmount ?? 0;
+  bool hasAwardAmount() => _awardAmount != null;
 
-  @BuiltValueField(wireName: 'award_amount')
-  int? get awardAmount;
+  // "duns" field.
+  int? _duns;
+  int get duns => _duns ?? 0;
+  bool hasDuns() => _duns != null;
 
-  int? get duns;
+  // "number_employees" field.
+  int? _numberEmployees;
+  int get numberEmployees => _numberEmployees ?? 0;
+  bool hasNumberEmployees() => _numberEmployees != null;
 
-  @BuiltValueField(wireName: 'number_employees')
-  int? get numberEmployees;
+  // "address1" field.
+  String? _address1;
+  String get address1 => _address1 ?? '';
+  bool hasAddress1() => _address1 != null;
 
-  String? get address1;
+  // "address2" field.
+  String? _address2;
+  String get address2 => _address2 ?? '';
+  bool hasAddress2() => _address2 != null;
 
-  String? get address2;
+  // "city" field.
+  String? _city;
+  String get city => _city ?? '';
+  bool hasCity() => _city != null;
 
-  String? get city;
+  // "state" field.
+  String? _state;
+  String get state => _state ?? '';
+  bool hasState() => _state != null;
 
-  String? get state;
+  // "poc_name" field.
+  String? _pocName;
+  String get pocName => _pocName ?? '';
+  bool hasPocName() => _pocName != null;
 
-  @BuiltValueField(wireName: 'poc_name')
-  String? get pocName;
+  // "poc_phone" field.
+  String? _pocPhone;
+  String get pocPhone => _pocPhone ?? '';
+  bool hasPocPhone() => _pocPhone != null;
 
-  @BuiltValueField(wireName: 'poc_phone')
-  String? get pocPhone;
+  // "poc_email" field.
+  String? _pocEmail;
+  String get pocEmail => _pocEmail ?? '';
+  bool hasPocEmail() => _pocEmail != null;
 
-  @BuiltValueField(wireName: 'poc_email')
-  String? get pocEmail;
+  // "pi_name" field.
+  String? _piName;
+  String get piName => _piName ?? '';
+  bool hasPiName() => _piName != null;
 
-  @BuiltValueField(wireName: 'pi_name')
-  String? get piName;
+  // "pi_phone" field.
+  String? _piPhone;
+  String get piPhone => _piPhone ?? '';
+  bool hasPiPhone() => _piPhone != null;
 
-  @BuiltValueField(wireName: 'pi_phone')
-  String? get piPhone;
+  // "pi_email" field.
+  String? _piEmail;
+  String get piEmail => _piEmail ?? '';
+  bool hasPiEmail() => _piEmail != null;
 
-  @BuiltValueField(wireName: 'pi_email')
-  String? get piEmail;
+  // "ri_name" field.
+  String? _riName;
+  String get riName => _riName ?? '';
+  bool hasRiName() => _riName != null;
 
-  @BuiltValueField(wireName: 'ri_name')
-  String? get riName;
+  // "abstract" field.
+  String? _abstract;
+  String get abstract => _abstract ?? '';
+  bool hasAbstract() => _abstract != null;
 
-  String? get abstract;
+  // "award_link" field.
+  String? _awardLink;
+  String get awardLink => _awardLink ?? '';
+  bool hasAwardLink() => _awardLink != null;
 
-  @BuiltValueField(wireName: 'award_link')
-  String? get awardLink;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
-
-  static void _initializeBuilder(SearchTestRecordBuilder builder) => builder
-    ..firm = ''
-    ..awardTitle = ''
-    ..agency = ''
-    ..phase = ''
-    ..solicitationYear = 0
-    ..awardYear = 0
-    ..awardAmount = 0
-    ..duns = 0
-    ..numberEmployees = 0
-    ..address1 = ''
-    ..address2 = ''
-    ..city = ''
-    ..state = ''
-    ..pocName = ''
-    ..pocPhone = ''
-    ..pocEmail = ''
-    ..piName = ''
-    ..piPhone = ''
-    ..piEmail = ''
-    ..riName = ''
-    ..abstract = ''
-    ..awardLink = '';
+  void _initializeFields() {
+    _firm = snapshotData['firm'] as String?;
+    _awardTitle = snapshotData['award_title'] as String?;
+    _agency = snapshotData['agency'] as String?;
+    _phase = snapshotData['phase'] as String?;
+    _proposalAwardDate = snapshotData['proposal_award_date'] as DateTime?;
+    _contractEndDate = snapshotData['contract_end_date'] as DateTime?;
+    _solicitationYear = snapshotData['solicitation_year'] as int?;
+    _awardYear = snapshotData['award_year'] as int?;
+    _awardAmount = snapshotData['award_amount'] as int?;
+    _duns = snapshotData['duns'] as int?;
+    _numberEmployees = snapshotData['number_employees'] as int?;
+    _address1 = snapshotData['address1'] as String?;
+    _address2 = snapshotData['address2'] as String?;
+    _city = snapshotData['city'] as String?;
+    _state = snapshotData['state'] as String?;
+    _pocName = snapshotData['poc_name'] as String?;
+    _pocPhone = snapshotData['poc_phone'] as String?;
+    _pocEmail = snapshotData['poc_email'] as String?;
+    _piName = snapshotData['pi_name'] as String?;
+    _piPhone = snapshotData['pi_phone'] as String?;
+    _piEmail = snapshotData['pi_email'] as String?;
+    _riName = snapshotData['ri_name'] as String?;
+    _abstract = snapshotData['abstract'] as String?;
+    _awardLink = snapshotData['award_link'] as String?;
+  }
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('search_test');
 
-  static Stream<SearchTestRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<SearchTestRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => SearchTestRecord.fromSnapshot(s));
 
-  static Future<SearchTestRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<SearchTestRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => SearchTestRecord.fromSnapshot(s));
+
+  static SearchTestRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      SearchTestRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
+
+  static SearchTestRecord getDocumentFromData(
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      SearchTestRecord._(reference, mapFromFirestore(data));
 
   static SearchTestRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
-      SearchTestRecord(
-        (c) => c
-          ..firm = snapshot.data['firm']
-          ..awardTitle = snapshot.data['award_title']
-          ..agency = snapshot.data['agency']
-          ..phase = snapshot.data['phase']
-          ..proposalAwardDate = safeGet(() =>
-              DateTime.fromMillisecondsSinceEpoch(
-                  snapshot.data['proposal_award_date']))
-          ..contractEndDate = safeGet(() => DateTime.fromMillisecondsSinceEpoch(
-              snapshot.data['contract_end_date']))
-          ..solicitationYear = snapshot.data['solicitation_year']?.round()
-          ..awardYear = snapshot.data['award_year']?.round()
-          ..awardAmount = snapshot.data['award_amount']?.round()
-          ..duns = snapshot.data['duns']?.round()
-          ..numberEmployees = snapshot.data['number_employees']?.round()
-          ..address1 = snapshot.data['address1']
-          ..address2 = snapshot.data['address2']
-          ..city = snapshot.data['city']
-          ..state = snapshot.data['state']
-          ..pocName = snapshot.data['poc_name']
-          ..pocPhone = snapshot.data['poc_phone']
-          ..pocEmail = snapshot.data['poc_email']
-          ..piName = snapshot.data['pi_name']
-          ..piPhone = snapshot.data['pi_phone']
-          ..piEmail = snapshot.data['pi_email']
-          ..riName = snapshot.data['ri_name']
-          ..abstract = snapshot.data['abstract']
-          ..awardLink = snapshot.data['award_link']
-          ..ffRef = SearchTestRecord.collection.doc(snapshot.objectID),
+      SearchTestRecord.getDocumentFromData(
+        {
+          'firm': snapshot.data['firm'],
+          'award_title': snapshot.data['award_title'],
+          'agency': snapshot.data['agency'],
+          'phase': snapshot.data['phase'],
+          'proposal_award_date': safeGet(
+            () => DateTime.fromMillisecondsSinceEpoch(
+                snapshot.data['proposal_award_date']),
+          ),
+          'contract_end_date': safeGet(
+            () => DateTime.fromMillisecondsSinceEpoch(
+                snapshot.data['contract_end_date']),
+          ),
+          'solicitation_year': snapshot.data['solicitation_year']?.round(),
+          'award_year': snapshot.data['award_year']?.round(),
+          'award_amount': snapshot.data['award_amount']?.round(),
+          'duns': snapshot.data['duns']?.round(),
+          'number_employees': snapshot.data['number_employees']?.round(),
+          'address1': snapshot.data['address1'],
+          'address2': snapshot.data['address2'],
+          'city': snapshot.data['city'],
+          'state': snapshot.data['state'],
+          'poc_name': snapshot.data['poc_name'],
+          'poc_phone': snapshot.data['poc_phone'],
+          'poc_email': snapshot.data['poc_email'],
+          'pi_name': snapshot.data['pi_name'],
+          'pi_phone': snapshot.data['pi_phone'],
+          'pi_email': snapshot.data['pi_email'],
+          'ri_name': snapshot.data['ri_name'],
+          'abstract': snapshot.data['abstract'],
+          'award_link': snapshot.data['award_link'],
+        },
+        SearchTestRecord.collection.doc(snapshot.objectID),
       );
 
   static Future<List<SearchTestRecord>> search({
@@ -166,14 +240,9 @@ abstract class SearchTestRecord
           )
           .then((r) => r.map(fromAlgolia).toList());
 
-  SearchTestRecord._();
-  factory SearchTestRecord([void Function(SearchTestRecordBuilder) updates]) =
-      _$SearchTestRecord;
-
-  static SearchTestRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+  @override
+  String toString() =>
+      'SearchTestRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createSearchTestRecordData({
@@ -202,35 +271,33 @@ Map<String, dynamic> createSearchTestRecordData({
   String? abstract,
   String? awardLink,
 }) {
-  final firestoreData = serializers.toFirestore(
-    SearchTestRecord.serializer,
-    SearchTestRecord(
-      (s) => s
-        ..firm = firm
-        ..awardTitle = awardTitle
-        ..agency = agency
-        ..phase = phase
-        ..proposalAwardDate = proposalAwardDate
-        ..contractEndDate = contractEndDate
-        ..solicitationYear = solicitationYear
-        ..awardYear = awardYear
-        ..awardAmount = awardAmount
-        ..duns = duns
-        ..numberEmployees = numberEmployees
-        ..address1 = address1
-        ..address2 = address2
-        ..city = city
-        ..state = state
-        ..pocName = pocName
-        ..pocPhone = pocPhone
-        ..pocEmail = pocEmail
-        ..piName = piName
-        ..piPhone = piPhone
-        ..piEmail = piEmail
-        ..riName = riName
-        ..abstract = abstract
-        ..awardLink = awardLink,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'firm': firm,
+      'award_title': awardTitle,
+      'agency': agency,
+      'phase': phase,
+      'proposal_award_date': proposalAwardDate,
+      'contract_end_date': contractEndDate,
+      'solicitation_year': solicitationYear,
+      'award_year': awardYear,
+      'award_amount': awardAmount,
+      'duns': duns,
+      'number_employees': numberEmployees,
+      'address1': address1,
+      'address2': address2,
+      'city': city,
+      'state': state,
+      'poc_name': pocName,
+      'poc_phone': pocPhone,
+      'poc_email': pocEmail,
+      'pi_name': piName,
+      'pi_phone': piPhone,
+      'pi_email': piEmail,
+      'ri_name': riName,
+      'abstract': abstract,
+      'award_link': awardLink,
+    }.withoutNulls,
   );
 
   return firestoreData;

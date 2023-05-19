@@ -1,31 +1,75 @@
-import 'dart:async';
+// ignore_for_file: unnecessary_getters_setters
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../index.dart';
-import '../serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
-part 'pl_child_struct.g.dart';
+import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-abstract class PlChildStruct
-    implements Built<PlChildStruct, PlChildStructBuilder> {
-  static Serializer<PlChildStruct> get serializer => _$plChildStructSerializer;
+class PlChildStruct extends FFFirebaseStruct {
+  PlChildStruct({
+    String? folderName,
+    DocumentReference? docRef,
+    FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
+  })  : _folderName = folderName,
+        _docRef = docRef,
+        super(firestoreUtilData);
 
-  @BuiltValueField(wireName: 'folder_name')
-  String? get folderName;
+  // "folder_name" field.
+  String? _folderName;
+  String get folderName => _folderName ?? '';
+  set folderName(String? val) => _folderName = val;
+  bool hasFolderName() => _folderName != null;
 
-  @BuiltValueField(wireName: 'doc_ref')
-  DocumentReference? get docRef;
+  // "doc_ref" field.
+  DocumentReference? _docRef;
+  DocumentReference? get docRef => _docRef;
+  set docRef(DocumentReference? val) => _docRef = val;
+  bool hasDocRef() => _docRef != null;
 
-  /// Utility class for Firestore updates
-  FirestoreUtilData get firestoreUtilData;
+  static PlChildStruct fromMap(Map<String, dynamic> data) => PlChildStruct(
+        folderName: data['folder_name'] as String?,
+        docRef: data['doc_ref'] as DocumentReference?,
+      );
 
-  static void _initializeBuilder(PlChildStructBuilder builder) => builder
-    ..folderName = ''
-    ..firestoreUtilData = FirestoreUtilData();
+  static PlChildStruct? maybeFromMap(dynamic data) =>
+      data is Map<String, dynamic> ? PlChildStruct.fromMap(data) : null;
 
-  PlChildStruct._();
-  factory PlChildStruct([void Function(PlChildStructBuilder) updates]) =
-      _$PlChildStruct;
+  Map<String, dynamic> toMap() => {
+        'folder_name': _folderName,
+        'doc_ref': _docRef,
+      }.withoutNulls;
+
+  @override
+  Map<String, dynamic> toSerializableMap() => {
+        'folder_name': serializeParam(
+          _folderName,
+          ParamType.String,
+        ),
+        'doc_ref': serializeParam(
+          _docRef,
+          ParamType.DocumentReference,
+        ),
+      }.withoutNulls;
+
+  static PlChildStruct fromSerializableMap(Map<String, dynamic> data) =>
+      PlChildStruct(
+        folderName: deserializeParam(
+          data['folder_name'],
+          ParamType.String,
+          false,
+        ),
+        docRef: deserializeParam(
+          data['doc_ref'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['users', 'promptlab_sub0'],
+        ),
+      );
+
+  @override
+  String toString() => 'PlChildStruct(${toMap()})';
 }
 
 PlChildStruct createPlChildStruct({
@@ -37,27 +81,23 @@ PlChildStruct createPlChildStruct({
   bool delete = false,
 }) =>
     PlChildStruct(
-      (p) => p
-        ..folderName = folderName
-        ..docRef = docRef
-        ..firestoreUtilData = FirestoreUtilData(
-          clearUnsetFields: clearUnsetFields,
-          create: create,
-          delete: delete,
-          fieldValues: fieldValues,
-        ),
+      folderName: folderName,
+      docRef: docRef,
+      firestoreUtilData: FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+        delete: delete,
+        fieldValues: fieldValues,
+      ),
     );
 
 PlChildStruct? updatePlChildStruct(
   PlChildStruct? plChild, {
   bool clearUnsetFields = true,
 }) =>
-    plChild != null
-        ? (plChild.toBuilder()
-              ..firestoreUtilData =
-                  FirestoreUtilData(clearUnsetFields: clearUnsetFields))
-            .build()
-        : null;
+    plChild
+      ?..firestoreUtilData =
+          FirestoreUtilData(clearUnsetFields: clearUnsetFields);
 
 void addPlChildStructData(
   Map<String, dynamic> firestoreData,
@@ -81,8 +121,6 @@ void addPlChildStructData(
 
   final create = plChild.firestoreUtilData.create;
   firestoreData.addAll(create ? mergeNestedFields(nestedData) : nestedData);
-
-  return;
 }
 
 Map<String, dynamic> getPlChildFirestoreData(
@@ -92,8 +130,7 @@ Map<String, dynamic> getPlChildFirestoreData(
   if (plChild == null) {
     return {};
   }
-  final firestoreData =
-      serializers.toFirestore(PlChildStruct.serializer, plChild);
+  final firestoreData = mapToFirestore(plChild.toMap());
 
   // Add any Firestore field values
   plChild.firestoreUtilData.fieldValues.forEach((k, v) => firestoreData[k] = v);
@@ -104,4 +141,4 @@ Map<String, dynamic> getPlChildFirestoreData(
 List<Map<String, dynamic>> getPlChildListFirestoreData(
   List<PlChildStruct>? plChilds,
 ) =>
-    plChilds?.map((p) => getPlChildFirestoreData(p, true)).toList() ?? [];
+    plChilds?.map((e) => getPlChildFirestoreData(e, true)).toList() ?? [];

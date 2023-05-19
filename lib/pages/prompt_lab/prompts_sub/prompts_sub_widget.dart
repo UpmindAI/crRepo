@@ -106,7 +106,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                             child: Builder(
                               builder: (context) {
                                 final subPrompts = columnPromptlabSub0Record
-                                    .prompts!
+                                    .prompts
                                     .toList()
                                     .take(100)
                                     .toList();
@@ -226,7 +226,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                                                               TextSpan(
                                                                 text:
                                                                     subPromptsItem
-                                                                        .name!,
+                                                                        .name,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
@@ -253,7 +253,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                                                               TextSpan(
                                                                 text:
                                                                     subPromptsItem
-                                                                        .prompt!,
+                                                                        .prompt,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodySmall

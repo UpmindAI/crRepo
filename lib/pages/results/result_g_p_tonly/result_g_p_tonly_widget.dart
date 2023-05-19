@@ -65,6 +65,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: StreamBuilder<List<UserCompletionsRecord>>(
             stream: queryUserCompletionsRecord(
               parent: currentUserReference,
@@ -396,7 +397,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
                                                                 SelectionArea(
                                                                     child: Text(
                                                               columnUserCompletionsRecord!
-                                                                  .prompt!,
+                                                                  .prompt,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -469,7 +470,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
                                                                 SelectionArea(
                                                                     child: Text(
                                                               columnUserCompletionsRecord!
-                                                                  .completion!,
+                                                                  .completion,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -848,7 +849,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
                                                                     'Button_launch_u_r_l');
                                                                 await launchURL(
                                                                     columnUserCompletionsRecord!
-                                                                        .url!);
+                                                                        .url);
                                                               },
                                                               text:
                                                                   'Download .docx',

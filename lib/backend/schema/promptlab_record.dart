@@ -1,35 +1,53 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'promptlab_record.g.dart';
+class PromptlabRecord extends FirestoreRecord {
+  PromptlabRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class PromptlabRecord
-    implements Built<PromptlabRecord, PromptlabRecordBuilder> {
-  static Serializer<PromptlabRecord> get serializer =>
-      _$promptlabRecordSerializer;
+  // "prompts" field.
+  List<PromptsStruct>? _prompts;
+  List<PromptsStruct> get prompts => _prompts ?? const [];
+  bool hasPrompts() => _prompts != null;
 
-  BuiltList<PromptsStruct>? get prompts;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "folder_name" field.
+  String? _folderName;
+  String get folderName => _folderName ?? '';
+  bool hasFolderName() => _folderName != null;
 
-  @BuiltValueField(wireName: 'folder_name')
-  String? get folderName;
-
-  BuiltList<PlChildStruct>? get children;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "children" field.
+  List<PlChildStruct>? _children;
+  List<PlChildStruct> get children => _children ?? const [];
+  bool hasChildren() => _children != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(PromptlabRecordBuilder builder) => builder
-    ..prompts = ListBuilder()
-    ..folderName = ''
-    ..children = ListBuilder();
+  void _initializeFields() {
+    _prompts = getStructList(
+      snapshotData['prompts'],
+      PromptsStruct.fromMap,
+    );
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _folderName = snapshotData['folder_name'] as String?;
+    _children = getStructList(
+      snapshotData['children'],
+      PlChildStruct.fromMap,
+    );
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -39,37 +57,38 @@ abstract class PromptlabRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('promptlab').doc();
 
-  static Stream<PromptlabRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<PromptlabRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => PromptlabRecord.fromSnapshot(s));
 
-  static Future<PromptlabRecord> getDocumentOnce(DocumentReference ref) => ref
-      .get()
-      .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Future<PromptlabRecord> getDocumentOnce(DocumentReference ref) =>
+      ref.get().then((s) => PromptlabRecord.fromSnapshot(s));
 
-  PromptlabRecord._();
-  factory PromptlabRecord([void Function(PromptlabRecordBuilder) updates]) =
-      _$PromptlabRecord;
+  static PromptlabRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      PromptlabRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static PromptlabRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      PromptlabRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'PromptlabRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createPromptlabRecordData({
   DateTime? timestamp,
   String? folderName,
 }) {
-  final firestoreData = serializers.toFirestore(
-    PromptlabRecord.serializer,
-    PromptlabRecord(
-      (p) => p
-        ..prompts = null
-        ..timestamp = timestamp
-        ..folderName = folderName
-        ..children = null,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'timestamp': timestamp,
+      'folder_name': folderName,
+    }.withoutNulls,
   );
 
   return firestoreData;

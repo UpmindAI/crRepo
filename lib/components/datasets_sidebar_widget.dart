@@ -223,7 +223,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                 setState(() {
                                                                   FFAppState().addToSelectedDataset(
                                                                       listViewUserDatasetsRecord
-                                                                          .datasetId!);
+                                                                          .datasetId);
                                                                 });
                                                               } else {
                                                                 logFirebaseEvent(
@@ -233,7 +233,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                 setState(() {
                                                                   FFAppState().removeFromSelectedDataset(
                                                                       listViewUserDatasetsRecord
-                                                                          .datasetId!);
+                                                                          .datasetId);
                                                                 });
                                                               }
                                                             },
@@ -287,7 +287,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                   FFAppState()
                                                                           .selectedDocuments =
                                                                       listViewUserDatasetsRecord
-                                                                          .activeDocs!
+                                                                          .activeDocs
                                                                           .toList();
                                                                 });
                                                                 logFirebaseEvent(
@@ -315,7 +315,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                               child:
                                                                   AutoSizeText(
                                                                 listViewUserDatasetsRecord
-                                                                    .datasetName!
+                                                                    .datasetName
                                                                     .maybeHandleOverflow(
                                                                   maxChars: 23,
                                                                   replacement:

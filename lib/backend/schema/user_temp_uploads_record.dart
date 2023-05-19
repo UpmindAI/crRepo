@@ -1,53 +1,71 @@
 import 'dart:async';
 
+import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+
 import 'index.dart';
-import 'serializers.dart';
-import 'package:built_value/built_value.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
-part 'user_temp_uploads_record.g.dart';
+class UserTempUploadsRecord extends FirestoreRecord {
+  UserTempUploadsRecord._(
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
+    _initializeFields();
+  }
 
-abstract class UserTempUploadsRecord
-    implements Built<UserTempUploadsRecord, UserTempUploadsRecordBuilder> {
-  static Serializer<UserTempUploadsRecord> get serializer =>
-      _$userTempUploadsRecordSerializer;
+  // "doc_title" field.
+  String? _docTitle;
+  String get docTitle => _docTitle ?? '';
+  bool hasDocTitle() => _docTitle != null;
 
-  @BuiltValueField(wireName: 'doc_title')
-  String? get docTitle;
+  // "doc_id" field.
+  String? _docId;
+  String get docId => _docId ?? '';
+  bool hasDocId() => _docId != null;
 
-  @BuiltValueField(wireName: 'doc_id')
-  String? get docId;
+  // "dataset_name" field.
+  String? _datasetName;
+  String get datasetName => _datasetName ?? '';
+  bool hasDatasetName() => _datasetName != null;
 
-  @BuiltValueField(wireName: 'dataset_name')
-  String? get datasetName;
+  // "dataset_id" field.
+  String? _datasetId;
+  String get datasetId => _datasetId ?? '';
+  bool hasDatasetId() => _datasetId != null;
 
-  @BuiltValueField(wireName: 'dataset_id')
-  String? get datasetId;
+  // "timestamp" field.
+  DateTime? _timestamp;
+  DateTime? get timestamp => _timestamp;
+  bool hasTimestamp() => _timestamp != null;
 
-  DateTime? get timestamp;
+  // "chunk_size" field.
+  double? _chunkSize;
+  double get chunkSize => _chunkSize ?? 0.0;
+  bool hasChunkSize() => _chunkSize != null;
 
-  @BuiltValueField(wireName: 'chunk_size')
-  double? get chunkSize;
+  // "urls" field.
+  String? _urls;
+  String get urls => _urls ?? '';
+  bool hasUrls() => _urls != null;
 
-  String? get urls;
-
-  @BuiltValueField(wireName: 'url_id')
-  String? get urlId;
-
-  @BuiltValueField(wireName: kDocumentReferenceField)
-  DocumentReference? get ffRef;
-  DocumentReference get reference => ffRef!;
+  // "url_id" field.
+  String? _urlId;
+  String get urlId => _urlId ?? '';
+  bool hasUrlId() => _urlId != null;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(UserTempUploadsRecordBuilder builder) =>
-      builder
-        ..docTitle = ''
-        ..docId = ''
-        ..datasetName = ''
-        ..datasetId = ''
-        ..chunkSize = 0.0
-        ..urls = ''
-        ..urlId = '';
+  void _initializeFields() {
+    _docTitle = snapshotData['doc_title'] as String?;
+    _docId = snapshotData['doc_id'] as String?;
+    _datasetName = snapshotData['dataset_name'] as String?;
+    _datasetId = snapshotData['dataset_id'] as String?;
+    _timestamp = snapshotData['timestamp'] as DateTime?;
+    _chunkSize = castToType<double>(snapshotData['chunk_size']);
+    _urls = snapshotData['urls'] as String?;
+    _urlId = snapshotData['url_id'] as String?;
+  }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -57,23 +75,27 @@ abstract class UserTempUploadsRecord
   static DocumentReference createDoc(DocumentReference parent) =>
       parent.collection('user_temp_uploads').doc();
 
-  static Stream<UserTempUploadsRecord> getDocument(DocumentReference ref) => ref
-      .snapshots()
-      .map((s) => serializers.deserializeWith(serializer, serializedData(s))!);
+  static Stream<UserTempUploadsRecord> getDocument(DocumentReference ref) =>
+      ref.snapshots().map((s) => UserTempUploadsRecord.fromSnapshot(s));
 
   static Future<UserTempUploadsRecord> getDocumentOnce(DocumentReference ref) =>
-      ref.get().then(
-          (s) => serializers.deserializeWith(serializer, serializedData(s))!);
+      ref.get().then((s) => UserTempUploadsRecord.fromSnapshot(s));
 
-  UserTempUploadsRecord._();
-  factory UserTempUploadsRecord(
-          [void Function(UserTempUploadsRecordBuilder) updates]) =
-      _$UserTempUploadsRecord;
+  static UserTempUploadsRecord fromSnapshot(DocumentSnapshot snapshot) =>
+      UserTempUploadsRecord._(
+        snapshot.reference,
+        mapFromFirestore(snapshot.data() as Map<String, dynamic>),
+      );
 
   static UserTempUploadsRecord getDocumentFromData(
-          Map<String, dynamic> data, DocumentReference reference) =>
-      serializers.deserializeWith(serializer,
-          {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
+    Map<String, dynamic> data,
+    DocumentReference reference,
+  ) =>
+      UserTempUploadsRecord._(reference, mapFromFirestore(data));
+
+  @override
+  String toString() =>
+      'UserTempUploadsRecord(reference: ${reference.path}, data: $snapshotData)';
 }
 
 Map<String, dynamic> createUserTempUploadsRecordData({
@@ -86,19 +108,17 @@ Map<String, dynamic> createUserTempUploadsRecordData({
   String? urls,
   String? urlId,
 }) {
-  final firestoreData = serializers.toFirestore(
-    UserTempUploadsRecord.serializer,
-    UserTempUploadsRecord(
-      (u) => u
-        ..docTitle = docTitle
-        ..docId = docId
-        ..datasetName = datasetName
-        ..datasetId = datasetId
-        ..timestamp = timestamp
-        ..chunkSize = chunkSize
-        ..urls = urls
-        ..urlId = urlId,
-    ),
+  final firestoreData = mapToFirestore(
+    <String, dynamic>{
+      'doc_title': docTitle,
+      'doc_id': docId,
+      'dataset_name': datasetName,
+      'dataset_id': datasetId,
+      'timestamp': timestamp,
+      'chunk_size': chunkSize,
+      'urls': urls,
+      'url_id': urlId,
+    }.withoutNulls,
   );
 
   return firestoreData;

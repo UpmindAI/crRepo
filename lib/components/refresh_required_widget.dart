@@ -120,7 +120,7 @@ class _RefreshRequiredWidgetState extends State<RefreshRequiredWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Current version: v0.${columnVersionControlRecord!.version?.toString()}',
+                                'Current version: v0.${columnVersionControlRecord!.version.toString()}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
