@@ -89,6 +89,11 @@ class SharedChatsRecord extends FirestoreRecord {
   String get bid => _bid ?? '';
   bool hasBid() => _bid != null;
 
+  // "engine" field.
+  String? _engine;
+  String get engine => _engine ?? '';
+  bool hasEngine() => _engine != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -110,6 +115,7 @@ class SharedChatsRecord extends FirestoreRecord {
       SourcesStruct.fromMap,
     );
     _bid = snapshotData['bid'] as String?;
+    _engine = snapshotData['engine'] as String?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -155,6 +161,7 @@ Map<String, dynamic> createSharedChatsRecordData({
   String? uid,
   bool? isError,
   String? bid,
+  String? engine,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -169,6 +176,7 @@ Map<String, dynamic> createSharedChatsRecordData({
       'uid': uid,
       'is_error': isError,
       'bid': bid,
+      'engine': engine,
     }.withoutNulls,
   );
 
