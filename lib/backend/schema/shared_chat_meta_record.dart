@@ -114,6 +114,14 @@ class SharedChatMetaRecord extends FirestoreRecord {
   @override
   String toString() =>
       'SharedChatMetaRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is SharedChatMetaRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createSharedChatMetaRecordData({

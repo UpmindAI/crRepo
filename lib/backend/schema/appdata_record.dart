@@ -47,6 +47,14 @@ class AppdataRecord extends FirestoreRecord {
   @override
   String toString() =>
       'AppdataRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is AppdataRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createAppdataRecordData({

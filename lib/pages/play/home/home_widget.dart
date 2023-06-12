@@ -676,11 +676,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     isDismissible: false,
                                     enableDrag: false,
                                     context: context,
-                                    builder: (bottomSheetContext) {
+                                    builder: (context) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(bottomSheetContext)
-                                                .viewInsets,
+                                            MediaQuery.of(context).viewInsets,
                                         child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
@@ -1301,7 +1300,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                                               context.pushNamed(
                                                                                 'retreivingMIX',
-                                                                                queryParams: {
+                                                                                queryParameters: {
                                                                                   'gr': serializeParam(
                                                                                     'no',
                                                                                     ParamType.String,
@@ -1468,7 +1467,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                                               context.pushNamed(
                                                                                 'retreivingMIX',
-                                                                                queryParams: {
+                                                                                queryParameters: {
                                                                                   'gr': serializeParam(
                                                                                     'yes',
                                                                                     ParamType.String,
@@ -1664,10 +1663,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     context:
                                                                         context,
                                                                     builder:
-                                                                        (bottomSheetContext) {
+                                                                        (context) {
                                                                       return Padding(
                                                                         padding:
-                                                                            MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                            MediaQuery.of(context).viewInsets,
                                                                         child:
                                                                             Container(
                                                                           height:
@@ -2032,9 +2031,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           context:
                                                                               context,
                                                                           builder:
-                                                                              (bottomSheetContext) {
+                                                                              (context) {
                                                                             return Padding(
-                                                                              padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                              padding: MediaQuery.of(context).viewInsets,
                                                                               child: Container(
                                                                                 height: MediaQuery.of(context).size.height * 1.0,
                                                                                 child: AddDatasetWidget(),
@@ -2288,13 +2287,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         logFirebaseEvent('Text_update_app_state');
                                                                                         FFAppState().update(() {
                                                                                           FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
-                                                                                          FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList();
+                                                                                          FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList().cast<String>();
                                                                                         });
                                                                                         logFirebaseEvent('Text_navigate_to');
 
                                                                                         context.pushNamed(
                                                                                           'Datasets',
-                                                                                          queryParams: {
+                                                                                          queryParameters: {
                                                                                             'activeDataset': serializeParam(
                                                                                               listViewUserDatasetsRecord,
                                                                                               ParamType.Document,

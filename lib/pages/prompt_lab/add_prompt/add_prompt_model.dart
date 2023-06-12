@@ -28,6 +28,8 @@ class AddPromptModel extends FlutterFlowModel {
     promptFieldController?.dispose();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

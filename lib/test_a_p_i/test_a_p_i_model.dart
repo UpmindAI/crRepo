@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 class TestAPIModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   UserPromptsRecord? setPrompttextMIX;
   // Stores action output result for [Backend Call - API (MixedQuery)] action in Button widget.
@@ -26,7 +27,11 @@ class TestAPIModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {}
 
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

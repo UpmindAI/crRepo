@@ -26,7 +26,6 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
   late ResultGPTonlyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -51,7 +50,6 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -60,7 +58,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -520,7 +518,7 @@ class _ResultGPTonlyWidgetState extends State<ResultGPTonlyWidget> {
 
                                                         context.pushNamed(
                                                           'Home',
-                                                          queryParams: {
+                                                          queryParameters: {
                                                             'userCompletion':
                                                                 serializeParam(
                                                               columnUserCompletionsRecord,

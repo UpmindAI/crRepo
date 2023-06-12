@@ -1068,11 +1068,10 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                 0x1DFFFFFF),
                                                             enableDrag: false,
                                                             context: context,
-                                                            builder:
-                                                                (bottomSheetContext) {
+                                                            builder: (context) {
                                                               return Padding(
                                                                 padding: MediaQuery.of(
-                                                                        bottomSheetContext)
+                                                                        context)
                                                                     .viewInsets,
                                                                 child:
                                                                     Container(
@@ -1190,10 +1189,10 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                     context:
                                                                         context,
                                                                     builder:
-                                                                        (bottomSheetContext) {
+                                                                        (context) {
                                                                       return Padding(
                                                                         padding:
-                                                                            MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                            MediaQuery.of(context).viewInsets,
                                                                         child:
                                                                             Container(
                                                                           height:
@@ -1372,10 +1371,10 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                               enableDrag: false,
                                                               context: context,
                                                               builder:
-                                                                  (bottomSheetContext) {
+                                                                  (context) {
                                                                 return Padding(
                                                                   padding: MediaQuery.of(
-                                                                          bottomSheetContext)
+                                                                          context)
                                                                       .viewInsets,
                                                                   child:
                                                                       Container(

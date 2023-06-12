@@ -46,6 +46,7 @@ class PromptLabModel extends FlutterFlowModel {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
   // State field(s) for searchBar widget.
@@ -94,6 +95,7 @@ class PromptLabModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
     searchBarController?.dispose();
     nameFolderController?.dispose();
@@ -104,6 +106,8 @@ class PromptLabModel extends FlutterFlowModel {
     plCompletionModel.dispose();
     datasetsSidebarModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

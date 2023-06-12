@@ -102,6 +102,14 @@ class PlPromptsRecord extends FirestoreRecord {
   @override
   String toString() =>
       'PlPromptsRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is PlPromptsRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createPlPromptsRecordData({

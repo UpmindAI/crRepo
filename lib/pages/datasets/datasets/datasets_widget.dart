@@ -54,7 +54,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       logFirebaseEvent('DATASETS_PAGE_Datasets_ON_INIT_STATE');
       logFirebaseEvent('Datasets_update_app_state');
       FFAppState().selectedDocuments =
-          widget.activeDataset!.activeDocs.toList();
+          widget.activeDataset!.activeDocs.toList().cast<String>();
       FFAppState().currentPage = 'My Data';
     });
 
@@ -262,10 +262,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               enableDrag: false,
                                                               context: context,
                                                               builder:
-                                                                  (bottomSheetContext) {
+                                                                  (context) {
                                                                 return Padding(
                                                                   padding: MediaQuery.of(
-                                                                          bottomSheetContext)
+                                                                          context)
                                                                       .viewInsets,
                                                                   child:
                                                                       Container(
@@ -427,10 +427,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 context:
                                                                     context,
                                                                 builder:
-                                                                    (bottomSheetContext) {
+                                                                    (context) {
                                                                   return Padding(
                                                                     padding: MediaQuery.of(
-                                                                            bottomSheetContext)
+                                                                            context)
                                                                         .viewInsets,
                                                                     child:
                                                                         Container(
@@ -750,10 +750,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 context:
                                                                     context,
                                                                 builder:
-                                                                    (bottomSheetContext) {
+                                                                    (context) {
                                                                   return Padding(
                                                                     padding: MediaQuery.of(
-                                                                            bottomSheetContext)
+                                                                            context)
                                                                         .viewInsets,
                                                                     child:
                                                                         Container(
@@ -1092,10 +1092,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               enableDrag: false,
                                                               context: context,
                                                               builder:
-                                                                  (bottomSheetContext) {
+                                                                  (context) {
                                                                 return Padding(
                                                                   padding: MediaQuery.of(
-                                                                          bottomSheetContext)
+                                                                          context)
                                                                       .viewInsets,
                                                                   child:
                                                                       Container(
@@ -1491,9 +1491,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                 enableDrag: false,
                                                                                                 context: context,
-                                                                                                builder: (bottomSheetContext) {
+                                                                                                builder: (context) {
                                                                                                   return Padding(
-                                                                                                    padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                    padding: MediaQuery.of(context).viewInsets,
                                                                                                     child: Container(
                                                                                                       height: MediaQuery.of(context).size.height * 1.0,
                                                                                                       child: EditTitleWidget(
@@ -1852,12 +1852,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 .overlay,
                                                         enableDrag: false,
                                                         context: context,
-                                                        builder:
-                                                            (bottomSheetContext) {
+                                                        builder: (context) {
                                                           return Padding(
-                                                            padding: MediaQuery.of(
-                                                                    bottomSheetContext)
-                                                                .viewInsets,
+                                                            padding:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
                                                             child: Container(
                                                               height: MediaQuery.of(
                                                                           context)
@@ -1991,7 +1991,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           .selectedDocuments =
                                                                       listViewUserDatasetsRecord
                                                                           .activeDocs
-                                                                          .toList();
+                                                                          .toList()
+                                                                          .cast<
+                                                                              String>();
                                                                 });
                                                                 logFirebaseEvent(
                                                                     'Container_navigate_to');
@@ -1999,7 +2001,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 context
                                                                     .pushNamed(
                                                                   'Datasets',
-                                                                  queryParams: {
+                                                                  queryParameters:
+                                                                      {
                                                                     'activeDataset':
                                                                         serializeParam(
                                                                       listViewUserDatasetsRecord,

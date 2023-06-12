@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 class RetreivingGPTModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (GPTquery)] action in retreivingGPT widget.
   ApiCallResponse? apiResultGPT;
   // Model for mainMenu component.
@@ -28,8 +29,11 @@ class RetreivingGPTModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

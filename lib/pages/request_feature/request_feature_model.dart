@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 class RequestFeatureModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
@@ -33,11 +34,14 @@ class RequestFeatureModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
     textController1?.dispose();
     textController2?.dispose();
     textController3?.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

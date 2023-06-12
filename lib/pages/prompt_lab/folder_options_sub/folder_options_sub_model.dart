@@ -25,6 +25,8 @@ class FolderOptionsSubModel extends FlutterFlowModel {
     textController?.dispose();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

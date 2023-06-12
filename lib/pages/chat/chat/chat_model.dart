@@ -43,6 +43,7 @@ class ChatModel extends FlutterFlowModel {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   // Model for mainMenu component.
@@ -96,6 +97,7 @@ class ChatModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
     chatColumn?.dispose();
     startFieldController?.dispose();
@@ -105,6 +107,8 @@ class ChatModel extends FlutterFlowModel {
     columnController2?.dispose();
     listViewController2?.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

@@ -65,6 +65,14 @@ class SupportRecord extends FirestoreRecord {
   @override
   String toString() =>
       'SupportRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is SupportRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createSupportRecordData({

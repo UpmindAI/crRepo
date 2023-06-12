@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/white_label_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
@@ -38,6 +39,8 @@ class WhiteLabelModel extends FlutterFlowModel {
   void initState(BuildContext context) {}
 
   void dispose() {}
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

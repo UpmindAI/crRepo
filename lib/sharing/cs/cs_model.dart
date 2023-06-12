@@ -39,6 +39,7 @@ class CsModel extends FlutterFlowModel {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   // State field(s) for chatColumn widget.
@@ -65,10 +66,13 @@ class CsModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     chatColumn?.dispose();
     startFieldController?.dispose();
     sendFieldController?.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

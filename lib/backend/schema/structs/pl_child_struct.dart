@@ -70,6 +70,16 @@ class PlChildStruct extends FFFirebaseStruct {
 
   @override
   String toString() => 'PlChildStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is PlChildStruct &&
+        folderName == other.folderName &&
+        docRef == other.docRef;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash([folderName, docRef]);
 }
 
 PlChildStruct createPlChildStruct({

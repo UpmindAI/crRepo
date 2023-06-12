@@ -119,11 +119,10 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                         FlutterFlowTheme.of(context).overlay,
                                     enableDrag: false,
                                     context: context,
-                                    builder: (bottomSheetContext) {
+                                    builder: (context) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(bottomSheetContext)
-                                                .viewInsets,
+                                            MediaQuery.of(context).viewInsets,
                                         child: Container(
                                           height: MediaQuery.of(context)
                                                   .size

@@ -88,6 +88,17 @@ class PromptsStruct extends FFFirebaseStruct {
 
   @override
   String toString() => 'PromptsStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is PromptsStruct &&
+        name == other.name &&
+        prompt == other.prompt &&
+        timestamp == other.timestamp;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash([name, prompt, timestamp]);
 }
 
 PromptsStruct createPromptsStruct({
