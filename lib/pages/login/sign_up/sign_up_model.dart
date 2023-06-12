@@ -71,6 +71,8 @@ class SignUpModel extends FlutterFlowModel {
     passwordRepeatController?.dispose();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

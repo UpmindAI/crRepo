@@ -41,7 +41,6 @@ class _CsWidgetState extends State<CsWidget> {
   late CsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -75,7 +74,6 @@ class _CsWidgetState extends State<CsWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -84,7 +82,7 @@ class _CsWidgetState extends State<CsWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -296,7 +294,8 @@ class _CsWidgetState extends State<CsWidget> {
 
                                                               context.pushNamed(
                                                                 'cs',
-                                                                queryParams: {
+                                                                queryParameters:
+                                                                    {
                                                                   'bid':
                                                                       serializeParam(
                                                                     widget.bid,
@@ -678,11 +677,11 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                           barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                                           enableDrag: false,
                                                                                                                           context: context,
-                                                                                                                          builder: (bottomSheetContext) {
+                                                                                                                          builder: (context) {
                                                                                                                             return GestureDetector(
-                                                                                                                              onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                                              onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                               child: Padding(
-                                                                                                                                padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                                                padding: MediaQuery.of(context).viewInsets,
                                                                                                                                 child: Container(
                                                                                                                                   height: MediaQuery.of(context).size.height * 0.8,
                                                                                                                                   child: SharedChatChunksWidget(
@@ -1138,7 +1137,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     context
                                                                         .pushNamed(
                                                                       'cs',
-                                                                      queryParams:
+                                                                      queryParameters:
                                                                           {
                                                                         'bid':
                                                                             serializeParam(

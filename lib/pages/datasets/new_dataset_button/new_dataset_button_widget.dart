@@ -82,9 +82,9 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
                 barrierColor: FlutterFlowTheme.of(context).overlay,
                 enableDrag: false,
                 context: context,
-                builder: (bottomSheetContext) {
+                builder: (context) {
                   return Padding(
-                    padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                    padding: MediaQuery.of(context).viewInsets,
                     child: Container(
                       height: MediaQuery.of(context).size.height * 1.0,
                       child: AddDatasetWidget(),

@@ -67,6 +67,14 @@ class SummPromptHistoryRecord extends FirestoreRecord {
   @override
   String toString() =>
       'SummPromptHistoryRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is SummPromptHistoryRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createSummPromptHistoryRecordData({

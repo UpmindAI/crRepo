@@ -251,10 +251,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                   barrierColor: Color(0x1DFFFFFF),
                                   enableDrag: false,
                                   context: context,
-                                  builder: (bottomSheetContext) {
+                                  builder: (context) {
                                     return Padding(
-                                      padding: MediaQuery.of(bottomSheetContext)
-                                          .viewInsets,
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height *
@@ -393,11 +393,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       barrierColor: Color(0x1DFFFFFF),
                                       enableDrag: false,
                                       context: context,
-                                      builder: (bottomSheetContext) {
+                                      builder: (context) {
                                         return Padding(
                                           padding:
-                                              MediaQuery.of(bottomSheetContext)
-                                                  .viewInsets,
+                                              MediaQuery.of(context).viewInsets,
                                           child: Container(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -596,10 +595,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                   barrierColor: Color(0x1DFFFFFF),
                                   enableDrag: false,
                                   context: context,
-                                  builder: (bottomSheetContext) {
+                                  builder: (context) {
                                     return Padding(
-                                      padding: MediaQuery.of(bottomSheetContext)
-                                          .viewInsets,
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
                                       child: Container(
                                         height:
                                             MediaQuery.of(context).size.height *
@@ -736,11 +735,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       barrierColor: Color(0x1DFFFFFF),
                                       enableDrag: false,
                                       context: context,
-                                      builder: (bottomSheetContext) {
+                                      builder: (context) {
                                         return Padding(
                                           padding:
-                                              MediaQuery.of(bottomSheetContext)
-                                                  .viewInsets,
+                                              MediaQuery.of(context).viewInsets,
                                           child: Container(
                                             height: MediaQuery.of(context)
                                                     .size

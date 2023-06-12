@@ -44,7 +44,6 @@ class _ChatWidgetState extends State<ChatWidget> {
   late ChatModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -82,7 +81,6 @@ class _ChatWidgetState extends State<ChatWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -91,7 +89,7 @@ class _ChatWidgetState extends State<ChatWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -709,17 +707,17 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               Color(0x1DFFFFFF),
                                                           enableDrag: false,
                                                           context: context,
-                                                          builder:
-                                                              (bottomSheetContext) {
+                                                          builder: (context) {
                                                             return GestureDetector(
                                                               onTap: () => FocusScope
                                                                       .of(
                                                                           context)
                                                                   .requestFocus(
-                                                                      _unfocusNode),
+                                                                      _model
+                                                                          .unfocusNode),
                                                               child: Padding(
                                                                 padding: MediaQuery.of(
-                                                                        bottomSheetContext)
+                                                                        context)
                                                                     .viewInsets,
                                                                 child:
                                                                     Container(
@@ -826,17 +824,17 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               Color(0x1A090F13),
                                                           enableDrag: false,
                                                           context: context,
-                                                          builder:
-                                                              (bottomSheetContext) {
+                                                          builder: (context) {
                                                             return GestureDetector(
                                                               onTap: () => FocusScope
                                                                       .of(
                                                                           context)
                                                                   .requestFocus(
-                                                                      _unfocusNode),
+                                                                      _model
+                                                                          .unfocusNode),
                                                               child: Padding(
                                                                 padding: MediaQuery.of(
-                                                                        bottomSheetContext)
+                                                                        context)
                                                                     .viewInsets,
                                                                 child:
                                                                     Container(
@@ -1134,16 +1132,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     .overlay,
                                                             enableDrag: false,
                                                             context: context,
-                                                            builder:
-                                                                (bottomSheetContext) {
+                                                            builder: (context) {
                                                               return GestureDetector(
                                                                 onTap: () => FocusScope.of(
                                                                         context)
                                                                     .requestFocus(
-                                                                        _unfocusNode),
+                                                                        _model
+                                                                            .unfocusNode),
                                                                 child: Padding(
                                                                   padding: MediaQuery.of(
-                                                                          bottomSheetContext)
+                                                                          context)
                                                                       .viewInsets,
                                                                   child:
                                                                       Container(
@@ -1635,11 +1633,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                               barrierColor: Color(0x1A090F13),
                                                                                                               enableDrag: false,
                                                                                                               context: context,
-                                                                                                              builder: (bottomSheetContext) {
+                                                                                                              builder: (context) {
                                                                                                                 return GestureDetector(
-                                                                                                                  onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                                  onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                   child: Padding(
-                                                                                                                    padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                                    padding: MediaQuery.of(context).viewInsets,
                                                                                                                     child: Container(
                                                                                                                       height: MediaQuery.of(context).size.height * 0.8,
                                                                                                                       child: ChatChunksWidget(
@@ -2637,14 +2635,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     context:
                                                                         context,
                                                                     builder:
-                                                                        (bottomSheetContext) {
+                                                                        (context) {
                                                                       return GestureDetector(
                                                                         onTap: () =>
-                                                                            FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                            FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                              MediaQuery.of(context).viewInsets,
                                                                           child:
                                                                               Container(
                                                                             height:
@@ -2921,7 +2919,7 @@ class _ChatWidgetState extends State<ChatWidget> {
 
                                                                                     context.pushNamed(
                                                                                       'Datasets',
-                                                                                      queryParams: {
+                                                                                      queryParameters: {
                                                                                         'activeDataset': serializeParam(
                                                                                           listViewUserDatasetsRecord,
                                                                                           ParamType.Document,

@@ -28,6 +28,8 @@ class FolderOptionsModel extends FlutterFlowModel {
     instantTimer?.cancel();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

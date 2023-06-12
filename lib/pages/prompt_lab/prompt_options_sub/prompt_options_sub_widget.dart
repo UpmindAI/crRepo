@@ -449,7 +449,7 @@ class _PromptOptionsSubWidgetState extends State<PromptOptionsSubWidget> {
 
                                   context.pushNamed(
                                     'Home',
-                                    queryParams: {
+                                    queryParameters: {
                                       'plPrompt': serializeParam(
                                         _model.textController2.text,
                                         ParamType.String,
@@ -505,7 +505,7 @@ class _PromptOptionsSubWidgetState extends State<PromptOptionsSubWidget> {
 
                                     context.pushNamed(
                                       'Chat',
-                                      queryParams: {
+                                      queryParameters: {
                                         'plPrompt': serializeParam(
                                           _model.textController2.text,
                                           ParamType.String,

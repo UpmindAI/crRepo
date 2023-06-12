@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 class SearchTestModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
   // State field(s) for searchInput widget.
@@ -22,9 +23,12 @@ class SearchTestModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
     searchInputController?.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

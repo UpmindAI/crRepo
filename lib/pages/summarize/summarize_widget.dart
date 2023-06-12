@@ -34,7 +34,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
   late SummarizeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -58,7 +57,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -67,7 +65,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -1019,11 +1017,11 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                             context:
                                                                                 context,
                                                                             builder:
-                                                                                (bottomSheetContext) {
+                                                                                (context) {
                                                                               return GestureDetector(
-                                                                                onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                 child: Padding(
-                                                                                  padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                  padding: MediaQuery.of(context).viewInsets,
                                                                                   child: Container(
                                                                                     height: MediaQuery.of(context).size.height * 1.0,
                                                                                     child: SummaryPromptFieldWidget(
@@ -1587,7 +1585,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
 
                                                                                                     context.pushNamed(
                                                                                                       'Home',
-                                                                                                      queryParams: {
+                                                                                                      queryParameters: {
                                                                                                         'userCompletion': serializeParam(
                                                                                                           columnUserCompletionsRecord,
                                                                                                           ParamType.Document,
@@ -1915,14 +1913,14 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                     context:
                                                                         context,
                                                                     builder:
-                                                                        (bottomSheetContext) {
+                                                                        (context) {
                                                                       return GestureDetector(
                                                                         onTap: () =>
-                                                                            FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                            FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                              MediaQuery.of(context).viewInsets,
                                                                           child:
                                                                               Container(
                                                                             height:
@@ -2196,13 +2194,13 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                   logFirebaseEvent('Text_update_app_state');
                                                                                   FFAppState().update(() {
                                                                                     FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
-                                                                                    FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList();
+                                                                                    FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs.toList().cast<String>();
                                                                                   });
                                                                                   logFirebaseEvent('Text_navigate_to');
 
                                                                                   context.pushNamed(
                                                                                     'Datasets',
-                                                                                    queryParams: {
+                                                                                    queryParameters: {
                                                                                       'activeDataset': serializeParam(
                                                                                         listViewUserDatasetsRecord,
                                                                                         ParamType.Document,

@@ -45,6 +45,8 @@ class SharePopupModel extends FlutterFlowModel {
     textController2?.dispose();
   }
 
+  /// Action blocks are added here.
+
   /// Additional helper methods are added here.
 
 }

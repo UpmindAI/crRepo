@@ -148,6 +148,21 @@ class SourcesStruct extends FFFirebaseStruct {
 
   @override
   String toString() => 'SourcesStruct(${toMap()})';
+
+  @override
+  bool operator ==(Object other) {
+    return other is SourcesStruct &&
+        chunks == other.chunks &&
+        datasetIds == other.datasetIds &&
+        datasetNames == other.datasetNames &&
+        docTitles == other.docTitles &&
+        pagePercentages == other.pagePercentages &&
+        scores == other.scores;
+  }
+
+  @override
+  int get hashCode => const ListEquality().hash(
+      [chunks, datasetIds, datasetNames, docTitles, pagePercentages, scores]);
 }
 
 SourcesStruct createSourcesStruct({

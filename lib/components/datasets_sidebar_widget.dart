@@ -288,7 +288,9 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                           .selectedDocuments =
                                                                       listViewUserDatasetsRecord
                                                                           .activeDocs
-                                                                          .toList();
+                                                                          .toList()
+                                                                          .cast<
+                                                                              String>();
                                                                 });
                                                                 logFirebaseEvent(
                                                                     'Text_navigate_to');
@@ -296,7 +298,8 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                 context
                                                                     .pushNamed(
                                                                   'Datasets',
-                                                                  queryParams: {
+                                                                  queryParameters:
+                                                                      {
                                                                     'activeDataset':
                                                                         serializeParam(
                                                                       listViewUserDatasetsRecord,

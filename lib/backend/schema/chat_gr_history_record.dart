@@ -66,6 +66,14 @@ class ChatGrHistoryRecord extends FirestoreRecord {
   @override
   String toString() =>
       'ChatGrHistoryRecord(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is ChatGrHistoryRecord &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createChatGrHistoryRecordData({

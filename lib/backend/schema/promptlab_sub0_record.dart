@@ -75,6 +75,14 @@ class PromptlabSub0Record extends FirestoreRecord {
   @override
   String toString() =>
       'PromptlabSub0Record(reference: ${reference.path}, data: $snapshotData)';
+
+  @override
+  int get hashCode => reference.path.hashCode;
+
+  @override
+  bool operator ==(other) =>
+      other is PromptlabSub0Record &&
+      reference.path.hashCode == other.reference.path.hashCode;
 }
 
 Map<String, dynamic> createPromptlabSub0RecordData({

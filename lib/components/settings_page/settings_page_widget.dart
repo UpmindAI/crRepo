@@ -483,10 +483,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           barrierColor: Color(0x1AFFFFFF),
                           enableDrag: false,
                           context: context,
-                          builder: (bottomSheetContext) {
+                          builder: (context) {
                             return Padding(
-                              padding:
-                                  MediaQuery.of(bottomSheetContext).viewInsets,
+                              padding: MediaQuery.of(context).viewInsets,
                               child: Container(
                                 height:
                                     MediaQuery.of(context).size.height * 1.0,

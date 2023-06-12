@@ -17,35 +17,70 @@ class FFAppState extends ChangeNotifier {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
-    _selectedDataset =
-        prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
-    _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
-    _selectedDocuments =
-        prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
-    _setChat = prefs.getString('ff_setChat')?.ref ?? _setChat;
-    if (prefs.containsKey('ff_apiSuccess')) {
-      try {
-        _apiSuccess = jsonDecode(prefs.getString('ff_apiSuccess') ?? '');
-      } catch (e) {
-        print("Can't decode persisted json. Error: $e.");
+    _safeInit(() {
+      _selectedDataset =
+          prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
+    });
+    _safeInit(() {
+      _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
+    });
+    _safeInit(() {
+      _selectedDocuments =
+          prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
+    });
+    _safeInit(() {
+      _setChat = prefs.getString('ff_setChat')?.ref ?? _setChat;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_apiSuccess')) {
+        try {
+          _apiSuccess = jsonDecode(prefs.getString('ff_apiSuccess') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
       }
-    }
-
-    _setDropdown = prefs.getString('ff_setDropdown') ?? _setDropdown;
-    _setTopKplay = prefs.getInt('ff_setTopKplay') ?? _setTopKplay;
-    _setTopKchat = prefs.getInt('ff_setTopKchat') ?? _setTopKchat;
-    _setChatDropdown =
-        prefs.getString('ff_setChatDropdown') ?? _setChatDropdown;
-    _setChatGR = prefs.getString('ff_setChatGR') ?? _setChatGR;
-    _chatPersSwitch = prefs.getBool('ff_chatPersSwitch') ?? _chatPersSwitch;
-    _setTopK = prefs.getDouble('ff_setTopK') ?? _setTopK;
-    _setSystem = prefs.getString('ff_setSystem') ?? _setSystem;
-    _setContentPL = prefs.getString('ff_setContentPL') ?? _setContentPL;
-    _setCompletionPL =
-        prefs.getString('ff_setCompletionPL')?.ref ?? _setCompletionPL;
-    _setPromptPL = prefs.getString('ff_setPromptPL') ?? _setPromptPL;
-    _grOn = prefs.getBool('ff_grOn') ?? _grOn;
-    _chatGPTengine = prefs.getString('ff_chatGPTengine') ?? _chatGPTengine;
+    });
+    _safeInit(() {
+      _setDropdown = prefs.getString('ff_setDropdown') ?? _setDropdown;
+    });
+    _safeInit(() {
+      _setTopKplay = prefs.getInt('ff_setTopKplay') ?? _setTopKplay;
+    });
+    _safeInit(() {
+      _setTopKchat = prefs.getInt('ff_setTopKchat') ?? _setTopKchat;
+    });
+    _safeInit(() {
+      _setChatDropdown =
+          prefs.getString('ff_setChatDropdown') ?? _setChatDropdown;
+    });
+    _safeInit(() {
+      _setChatGR = prefs.getString('ff_setChatGR') ?? _setChatGR;
+    });
+    _safeInit(() {
+      _chatPersSwitch = prefs.getBool('ff_chatPersSwitch') ?? _chatPersSwitch;
+    });
+    _safeInit(() {
+      _setTopK = prefs.getDouble('ff_setTopK') ?? _setTopK;
+    });
+    _safeInit(() {
+      _setSystem = prefs.getString('ff_setSystem') ?? _setSystem;
+    });
+    _safeInit(() {
+      _setContentPL = prefs.getString('ff_setContentPL') ?? _setContentPL;
+    });
+    _safeInit(() {
+      _setCompletionPL =
+          prefs.getString('ff_setCompletionPL')?.ref ?? _setCompletionPL;
+    });
+    _safeInit(() {
+      _setPromptPL = prefs.getString('ff_setPromptPL') ?? _setPromptPL;
+    });
+    _safeInit(() {
+      _grOn = prefs.getBool('ff_grOn') ?? _grOn;
+    });
+    _safeInit(() {
+      _chatGPTengine = prefs.getString('ff_chatGPTengine') ?? _chatGPTengine;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -93,9 +128,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateSelectedDatasetAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_selectedDataset[_index]);
+    _selectedDataset[_index] = updateFn(_selectedDataset[_index]);
     prefs.setStringList('ff_selectedDataset', _selectedDataset);
   }
 
@@ -148,9 +183,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateSelectedDocumentsAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_selectedDocuments[_index]);
+    _selectedDocuments[_index] = updateFn(_selectedDocuments[_index]);
     prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
   }
 
@@ -225,9 +260,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateChainDropdownAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_chainDropdown[_index]);
+    _chainDropdown[_index] = updateFn(_chainDropdown[_index]);
   }
 
   String _setDropdown = 'My Data + GPT';
@@ -272,7 +307,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_chatPersSwitch', _value);
   }
 
-  int _version = 32;
+  int _version = 33;
   int get version => _version;
   set version(int _value) {
     _version = _value;
@@ -353,9 +388,9 @@ class FFAppState extends ChangeNotifier {
 
   void updateEmptyListAtIndex(
     int _index,
-    Function(String) updateFn,
+    String Function(String) updateFn,
   ) {
-    updateFn(_emptyList[_index]);
+    _emptyList[_index] = updateFn(_emptyList[_index]);
   }
 
   bool _grOn = false;
@@ -387,4 +422,16 @@ LatLng? _latLngFromString(String? val) {
   final lat = double.parse(split.first);
   final lng = double.parse(split.last);
   return LatLng(lat, lng);
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

@@ -183,11 +183,10 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                                                                   .overlay,
                                                           enableDrag: false,
                                                           context: context,
-                                                          builder:
-                                                              (bottomSheetContext) {
+                                                          builder: (context) {
                                                             return Padding(
-                                                              padding: MediaQuery.of(
-                                                                      bottomSheetContext)
+                                                              padding: MediaQuery
+                                                                      .of(context)
                                                                   .viewInsets,
                                                               child: Container(
                                                                 height: MediaQuery.of(

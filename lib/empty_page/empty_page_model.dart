@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 class EmptyPageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
 
@@ -19,8 +20,11 @@ class EmptyPageModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 

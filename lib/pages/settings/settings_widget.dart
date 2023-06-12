@@ -23,7 +23,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   late SettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -38,7 +37,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -47,7 +45,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -190,13 +188,12 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       barrierColor: Color(0x00000000),
                                       enableDrag: false,
                                       context: context,
-                                      builder: (bottomSheetContext) {
+                                      builder: (context) {
                                         return GestureDetector(
                                           onTap: () => FocusScope.of(context)
-                                              .requestFocus(_unfocusNode),
+                                              .requestFocus(_model.unfocusNode),
                                           child: Padding(
-                                            padding: MediaQuery.of(
-                                                    bottomSheetContext)
+                                            padding: MediaQuery.of(context)
                                                 .viewInsets,
                                             child: Container(
                                               height: 400.0,

@@ -40,7 +40,6 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
   late PromptLabModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
@@ -67,7 +66,6 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
@@ -76,7 +74,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -763,11 +761,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                     barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                     enableDrag: false,
                                                                                                     context: context,
-                                                                                                    builder: (bottomSheetContext) {
+                                                                                                    builder: (context) {
                                                                                                       return GestureDetector(
-                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                          padding: MediaQuery.of(context).viewInsets,
                                                                                                           child: Container(
                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                             child: FolderOptionsWidget(
@@ -812,11 +810,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                     barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                     enableDrag: false,
                                                                                                     context: context,
-                                                                                                    builder: (bottomSheetContext) {
+                                                                                                    builder: (context) {
                                                                                                       return GestureDetector(
-                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                          padding: MediaQuery.of(context).viewInsets,
                                                                                                           child: Container(
                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                             child: AddPromptWidget(
@@ -877,11 +875,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                     barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                     enableDrag: false,
                                                                                                     context: context,
-                                                                                                    builder: (bottomSheetContext) {
+                                                                                                    builder: (context) {
                                                                                                       return GestureDetector(
-                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                          padding: MediaQuery.of(context).viewInsets,
                                                                                                           child: Container(
                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                             child: AddSubFolderWidget(
@@ -1065,11 +1063,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                                     backgroundColor: Colors.transparent,
                                                                                                                     enableDrag: false,
                                                                                                                     context: context,
-                                                                                                                    builder: (bottomSheetContext) {
+                                                                                                                    builder: (context) {
                                                                                                                       return GestureDetector(
-                                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                         child: Padding(
-                                                                                                                          padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                                          padding: MediaQuery.of(context).viewInsets,
                                                                                                                           child: Container(
                                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                                             child: FolderOptionsSubWidget(
@@ -1102,11 +1100,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                                     barrierColor: FlutterFlowTheme.of(context).overlay,
                                                                                                                     enableDrag: false,
                                                                                                                     context: context,
-                                                                                                                    builder: (bottomSheetContext) {
+                                                                                                                    builder: (context) {
                                                                                                                       return GestureDetector(
-                                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                                                        onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                         child: Padding(
-                                                                                                                          padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                                                          padding: MediaQuery.of(context).viewInsets,
                                                                                                                           child: Container(
                                                                                                                             height: MediaQuery.of(context).size.height * 1.0,
                                                                                                                             child: AddPromptWidget(

@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 class RetreivingMIXModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (GPTquery)] action in retreivingMIX widget.
   ApiCallResponse? apiResultGPT2;
   // Stores action output result for [Backend Call - API (MixedQuery)] action in retreivingMIX widget.
@@ -30,8 +31,11 @@ class RetreivingMIXModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    unfocusNode.dispose();
     mainMenuModel.dispose();
   }
+
+  /// Action blocks are added here.
 
   /// Additional helper methods are added here.
 
