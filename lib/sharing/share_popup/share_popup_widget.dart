@@ -821,7 +821,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                   builder: (context) => FFButtonWidget(
                                     onPressed: () async {
                                       logFirebaseEvent(
-                                          'SHARE_POPUP_CREATE_A_TELEGRAM_BOT_BTN_ON');
+                                          'SHARE_POPUP_SHARE_TO_TELEGRAM_BTN_ON_TAP');
                                       logFirebaseEvent('Button_backend_call');
 
                                       final sharedBotsUpdateData =
@@ -837,7 +837,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                         _model.hasTelegram = true;
                                       });
                                     },
-                                    text: 'Create a Telegram Bot',
+                                    text: 'Share to Telegram',
                                     icon: FaIcon(
                                       FontAwesomeIcons.telegramPlane,
                                     ),
