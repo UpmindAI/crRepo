@@ -1,11 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/payment_popup_widget.dart';
+import '/components/ref_popup_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1242,6 +1246,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               0.0, 12.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AuthUserStreamWidget(
                                 builder: (context) => InkWell(
@@ -1347,10 +1352,101 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'Refer PAAL to a Friend!',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'MAIN_MENU_COMP_Container_rw7u9mvm_ON_TAP');
+                                  if (valueOrDefault(
+                                              currentUserDocument?.refCode,
+                                              '') !=
+                                          null &&
+                                      valueOrDefault(
+                                              currentUserDocument?.refCode,
+                                              '') !=
+                                          '') {
+                                    logFirebaseEvent('Container_bottom_sheet');
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).overlay,
+                                      barrierColor:
+                                          FlutterFlowTheme.of(context).overlay,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child: Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                1.0,
+                                            child: RefPopupWidget(),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  } else {
+                                    logFirebaseEvent('Container_backend_call');
+
+                                    final usersUpdateData =
+                                        createUsersRecordData(
+                                      refCode: random_data.randomString(
+                                        7,
+                                        7,
+                                        true,
+                                        false,
+                                        true,
+                                      ),
+                                    );
+                                    await currentUserReference!
+                                        .update(usersUpdateData);
+                                    logFirebaseEvent('Container_bottom_sheet');
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).overlay,
+                                      barrierColor:
+                                          FlutterFlowTheme.of(context).overlay,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.of(context).viewInsets,
+                                          child: Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                1.0,
+                                            child: RefPopupWidget(),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 8.0, 12.0, 8.0),
+                                    child: Text(
+                                      'Refer PAAL to a Friend!',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
