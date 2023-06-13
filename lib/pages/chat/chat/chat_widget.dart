@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/main_menu/main_menu_widget.dart';
+import '/components/ref_popup_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -630,10 +631,109 @@ class _ChatWidgetState extends State<ChatWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
-                                  child: wrapWithModel(
-                                    model: _model.mainMenuModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: MainMenuWidget(),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'CHAT_PAGE_Container_1v4kn1n7_ON_TAP');
+                                      if (valueOrDefault(
+                                                  currentUserDocument?.refCode,
+                                                  '') !=
+                                              null &&
+                                          valueOrDefault(
+                                                  currentUserDocument?.refCode,
+                                                  '') !=
+                                              '') {
+                                        logFirebaseEvent(
+                                            'mainMenu_bottom_sheet');
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlay,
+                                          barrierColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlay,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode),
+                                              child: Padding(
+                                                padding: MediaQuery.of(context)
+                                                    .viewInsets,
+                                                child: Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      1.0,
+                                                  child: RefPopupWidget(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      } else {
+                                        logFirebaseEvent(
+                                            'mainMenu_backend_call');
+
+                                        final usersUpdateData =
+                                            createUsersRecordData(
+                                          refCode: random_data.randomString(
+                                            7,
+                                            7,
+                                            true,
+                                            false,
+                                            true,
+                                          ),
+                                        );
+                                        await currentUserReference!
+                                            .update(usersUpdateData);
+                                        logFirebaseEvent(
+                                            'mainMenu_bottom_sheet');
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlay,
+                                          barrierColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .overlay,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode),
+                                              child: Padding(
+                                                padding: MediaQuery.of(context)
+                                                    .viewInsets,
+                                                child: Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      1.0,
+                                                  child: RefPopupWidget(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      }
+                                    },
+                                    child: wrapWithModel(
+                                      model: _model.mainMenuModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: MainMenuWidget(),
+                                    ),
                                   ),
                                 ),
                               ),

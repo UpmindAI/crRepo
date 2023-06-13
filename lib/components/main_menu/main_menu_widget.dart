@@ -1169,7 +1169,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
+                              0.0, 8.0, 0.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -1231,6 +1231,11 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               ),
                             ],
                           ),
+                        ),
+                        Divider(
+                          height: 12.0,
+                          thickness: 2.0,
+                          color: FlutterFlowTheme.of(context).lineColor,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -1331,6 +1336,21 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                     ],
                                   ),
                                 ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Refer PAAL to a Friend!',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context).bodyMedium,
                               ),
                             ],
                           ),

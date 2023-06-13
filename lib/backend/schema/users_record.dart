@@ -129,6 +129,11 @@ class UsersRecord extends FirestoreRecord {
   String get walletAddress => _walletAddress ?? '';
   bool hasWalletAddress() => _walletAddress != null;
 
+  // "ref_code" field.
+  String? _refCode;
+  String get refCode => _refCode ?? '';
+  bool hasRefCode() => _refCode != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -153,6 +158,7 @@ class UsersRecord extends FirestoreRecord {
     _wlLight = snapshotData['wl_light'] as String?;
     _wlDark = snapshotData['wl_dark'] as String?;
     _walletAddress = snapshotData['wallet_address'] as String?;
+    _refCode = snapshotData['ref_code'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -212,6 +218,7 @@ Map<String, dynamic> createUsersRecordData({
   String? wlLight,
   String? wlDark,
   String? walletAddress,
+  String? refCode,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -238,6 +245,7 @@ Map<String, dynamic> createUsersRecordData({
       'wl_light': wlLight,
       'wl_dark': wlDark,
       'wallet_address': walletAddress,
+      'ref_code': refCode,
     }.withoutNulls,
   );
 
