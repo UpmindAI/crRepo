@@ -1982,34 +1982,6 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 12.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).gray200,
-                            border: Border.all(
-                              color: FlutterFlowTheme.of(context).secondary,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 8.0, 8.0),
-                            child: Image.asset(
-                              'assets/images/secure-stripe-payment-logo.png',
-                              width: 300.0,
-                              height: 43.0,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
