@@ -1,7 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +70,7 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Your Referral Code Code',
+                          'Your Referral Code',
                           style: FlutterFlowTheme.of(context).bodyMedium,
                         ),
                       ],
@@ -80,36 +82,83 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 200.0,
-                          height: 48.0,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AuthUserStreamWidget(
-                                builder: (context) => SelectionArea(
-                                    child: Text(
-                                  valueOrDefault(
-                                      currentUserDocument?.refCode, ''),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        fontSize: 16.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
-                                )),
+                        AlignedTooltip(
+                          content: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  4.0, 4.0, 4.0, 4.0),
+                              child: Text(
+                                'Copy to Clipboard',
+                                style: FlutterFlowTheme.of(context).bodyLarge,
+                              )),
+                          offset: 4.0,
+                          preferredDirection: AxisDirection.down,
+                          borderRadius: BorderRadius.circular(8.0),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 4.0,
+                          tailBaseWidth: 24.0,
+                          tailLength: 12.0,
+                          waitDuration: Duration(milliseconds: 100),
+                          showDuration: Duration(milliseconds: 1500),
+                          triggerMode: TooltipTriggerMode.tap,
+                          child: MouseRegion(
+                            opaque: false,
+                            cursor: MouseCursor.defer ?? MouseCursor.defer,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'REF_POPUP_COMP_Container_fmcb3rte_ON_TAP');
+                                logFirebaseEvent('Container_copy_to_clipboard');
+                                await Clipboard.setData(ClipboardData(
+                                    text: valueOrDefault(
+                                        currentUserDocument?.refCode, '')));
+                              },
+                              child: Container(
+                                width: 200.0,
+                                height: 48.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AuthUserStreamWidget(
+                                      builder: (context) => SelectionArea(
+                                          child: Text(
+                                        valueOrDefault(
+                                            currentUserDocument?.refCode, ''),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              fontSize: 16.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
+                                      )),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
+                            ),
+                            onEnter: ((event) async {
+                              setState(() => _model.mouseRegionHovered = true);
+                            }),
+                            onExit: ((event) async {
+                              setState(() => _model.mouseRegionHovered = false);
+                            }),
                           ),
                         ),
                       ],
