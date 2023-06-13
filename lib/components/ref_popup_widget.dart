@@ -55,13 +55,39 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
           children: [
             Container(
               width: 350.0,
-              height: 100.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 4.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent(
+                                'REF_POPUP_COMP_Icon_4qblg8ve_ON_TAP');
+                            logFirebaseEvent('Icon_close_dialog,_drawer,_etc');
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
@@ -77,7 +103,8 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 24.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +121,7 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                           preferredDirection: AxisDirection.down,
                           borderRadius: BorderRadius.circular(8.0),
                           backgroundColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                              FlutterFlowTheme.of(context).primaryBackground,
                           elevation: 4.0,
                           tailBaseWidth: 24.0,
                           tailLength: 12.0,
@@ -129,8 +156,7 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     AuthUserStreamWidget(
-                                      builder: (context) => SelectionArea(
-                                          child: Text(
+                                      builder: (context) => Text(
                                         valueOrDefault(
                                             currentUserDocument?.refCode, ''),
                                         style: FlutterFlowTheme.of(context)
@@ -147,7 +173,7 @@ class _RefPopupWidgetState extends State<RefPopupWidget> {
                                                               context)
                                                           .bodyMediumFamily),
                                             ),
-                                      )),
+                                      ),
                                     ),
                                   ],
                                 ),

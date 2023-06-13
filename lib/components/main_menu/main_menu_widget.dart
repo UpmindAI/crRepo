@@ -1449,6 +1449,10 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               .secondary
                                           : FlutterFlowTheme.of(context)
                                               .secondaryBackground,
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
