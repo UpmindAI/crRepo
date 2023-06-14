@@ -1911,7 +1911,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                                             logFirebaseEvent(
                                                                 'Button_launch_u_r_l');
                                                             await launchURL(
-                                                                'https://omp.dev/contact/');
+                                                                'https://forms.gle/rMV3tArh8rLyNc6e8');
                                                           },
                                                           text: 'Get a Quote',
                                                           options:
