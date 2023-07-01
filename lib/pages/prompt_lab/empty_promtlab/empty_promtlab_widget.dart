@@ -131,153 +131,154 @@ class _EmptyPromtlabWidgetState extends State<EmptyPromtlabWidget> {
                                 'EMPTY_PROMTLAB_COMP_Text_avk3x5hb_ON_TAP');
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData1 =
-                                createPromptlabRecordData(
-                              folderName: 'Articles',
-                            );
                             var promptlabRecordReference1 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference1
-                                .set(promptlabCreateData1);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Articles',
+                            ));
                             _model.articlesFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData1,
+                                    createPromptlabRecordData(
+                                      folderName: 'Articles',
+                                    ),
                                     promptlabRecordReference1);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData2 =
-                                createPromptlabRecordData(
-                              folderName: 'Blog Posts',
-                            );
                             var promptlabRecordReference2 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference2
-                                .set(promptlabCreateData2);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Blog Posts',
+                            ));
                             _model.blogFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData2,
+                                    createPromptlabRecordData(
+                                      folderName: 'Blog Posts',
+                                    ),
                                     promptlabRecordReference2);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData3 =
-                                createPromptlabRecordData(
-                              folderName: 'Text Summarization',
-                            );
                             var promptlabRecordReference3 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference3
-                                .set(promptlabCreateData3);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Text Summarization',
+                            ));
                             _model.summarizerFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData3,
+                                    createPromptlabRecordData(
+                                      folderName: 'Text Summarization',
+                                    ),
                                     promptlabRecordReference3);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData4 =
-                                createPromptlabRecordData(
-                              folderName: 'Sentiment Analysis',
-                            );
                             var promptlabRecordReference4 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference4
-                                .set(promptlabCreateData4);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Sentiment Analysis',
+                            ));
                             _model.sentimentAnalysisFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData4,
+                                    createPromptlabRecordData(
+                                      folderName: 'Sentiment Analysis',
+                                    ),
                                     promptlabRecordReference4);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData5 =
-                                createPromptlabRecordData(
-                              folderName: 'Chatbots and Conversational AI',
-                            );
                             var promptlabRecordReference5 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference5
-                                .set(promptlabCreateData5);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Chatbots and Conversational AI',
+                            ));
                             _model.chatbotsandConversationalAIFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData5,
+                                    createPromptlabRecordData(
+                                      folderName:
+                                          'Chatbots and Conversational AI',
+                                    ),
                                     promptlabRecordReference5);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData6 =
-                                createPromptlabRecordData(
-                              folderName: 'Machine Translation',
-                            );
                             var promptlabRecordReference6 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference6
-                                .set(promptlabCreateData6);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Machine Translation',
+                            ));
                             _model.machineTranslationFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData6,
+                                    createPromptlabRecordData(
+                                      folderName: 'Machine Translation',
+                                    ),
                                     promptlabRecordReference6);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData7 =
-                                createPromptlabRecordData(
-                              folderName: 'Named Entity Recognition',
-                            );
                             var promptlabRecordReference7 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference7
-                                .set(promptlabCreateData7);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Named Entity Recognition',
+                            ));
                             _model.namedEntityRecognitionFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData7,
+                                    createPromptlabRecordData(
+                                      folderName: 'Named Entity Recognition',
+                                    ),
                                     promptlabRecordReference7);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData8 =
-                                createPromptlabRecordData(
-                              folderName: 'Anomaly Detection',
-                            );
                             var promptlabRecordReference8 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference8
-                                .set(promptlabCreateData8);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Anomaly Detection',
+                            ));
                             _model.anomalyDetectionFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData8,
+                                    createPromptlabRecordData(
+                                      folderName: 'Anomaly Detection',
+                                    ),
                                     promptlabRecordReference8);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData9 =
-                                createPromptlabRecordData(
-                              folderName: 'Content-based Filtering',
-                            );
                             var promptlabRecordReference9 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference9
-                                .set(promptlabCreateData9);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Content-based Filtering',
+                            ));
                             _model.contentbasedFilteringFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData9,
+                                    createPromptlabRecordData(
+                                      folderName: 'Content-based Filtering',
+                                    ),
                                     promptlabRecordReference9);
                             logFirebaseEvent('Text_backend_call');
 
-                            final promptlabCreateData10 =
-                                createPromptlabRecordData(
-                              folderName: 'Data Augmentation',
-                            );
                             var promptlabRecordReference10 =
                                 PromptlabRecord.createDoc(
                                     currentUserReference!);
                             await promptlabRecordReference10
-                                .set(promptlabCreateData10);
+                                .set(createPromptlabRecordData(
+                              folderName: 'Data Augmentation',
+                            ));
                             _model.dataAugmentationFolder =
                                 PromptlabRecord.getDocumentFromData(
-                                    promptlabCreateData10,
+                                    createPromptlabRecordData(
+                                      folderName: 'Data Augmentation',
+                                    ),
                                     promptlabRecordReference10);
 
                             setState(() {});

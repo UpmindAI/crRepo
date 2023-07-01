@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -90,4 +92,23 @@ Map<String, dynamic> createChatPersHistoryRecordData({
   );
 
   return firestoreData;
+}
+
+class ChatPersHistoryRecordDocumentEquality
+    implements Equality<ChatPersHistoryRecord> {
+  const ChatPersHistoryRecordDocumentEquality();
+
+  @override
+  bool equals(ChatPersHistoryRecord? e1, ChatPersHistoryRecord? e2) {
+    return e1?.personality == e2?.personality &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.isFavorite == e2?.isFavorite;
+  }
+
+  @override
+  int hash(ChatPersHistoryRecord? e) =>
+      const ListEquality().hash([e?.personality, e?.timestamp, e?.isFavorite]);
+
+  @override
+  bool isValidKey(Object? o) => o is ChatPersHistoryRecord;
 }

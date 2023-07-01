@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -130,4 +132,36 @@ Map<String, dynamic> createUserTempUploadsRecordData({
   );
 
   return firestoreData;
+}
+
+class UserTempUploadsRecordDocumentEquality
+    implements Equality<UserTempUploadsRecord> {
+  const UserTempUploadsRecordDocumentEquality();
+
+  @override
+  bool equals(UserTempUploadsRecord? e1, UserTempUploadsRecord? e2) {
+    return e1?.docTitle == e2?.docTitle &&
+        e1?.docId == e2?.docId &&
+        e1?.datasetName == e2?.datasetName &&
+        e1?.datasetId == e2?.datasetId &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.chunkSize == e2?.chunkSize &&
+        e1?.urls == e2?.urls &&
+        e1?.urlId == e2?.urlId;
+  }
+
+  @override
+  int hash(UserTempUploadsRecord? e) => const ListEquality().hash([
+        e?.docTitle,
+        e?.docId,
+        e?.datasetName,
+        e?.datasetId,
+        e?.timestamp,
+        e?.chunkSize,
+        e?.urls,
+        e?.urlId
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UserTempUploadsRecord;
 }

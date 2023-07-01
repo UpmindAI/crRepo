@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -99,4 +101,24 @@ Map<String, dynamic> createFeatureRecordData({
   );
 
   return firestoreData;
+}
+
+class FeatureRecordDocumentEquality implements Equality<FeatureRecord> {
+  const FeatureRecordDocumentEquality();
+
+  @override
+  bool equals(FeatureRecord? e1, FeatureRecord? e2) {
+    return e1?.iwant == e2?.iwant &&
+        e1?.because == e2?.because &&
+        e1?.additional == e2?.additional &&
+        e1?.userRef == e2?.userRef &&
+        e1?.timestamp == e2?.timestamp;
+  }
+
+  @override
+  int hash(FeatureRecord? e) => const ListEquality()
+      .hash([e?.iwant, e?.because, e?.additional, e?.userRef, e?.timestamp]);
+
+  @override
+  bool isValidKey(Object? o) => o is FeatureRecord;
 }

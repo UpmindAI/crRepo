@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -157,4 +159,46 @@ Map<String, dynamic> createSharedBotsRecordData({
   );
 
   return firestoreData;
+}
+
+class SharedBotsRecordDocumentEquality implements Equality<SharedBotsRecord> {
+  const SharedBotsRecordDocumentEquality();
+
+  @override
+  bool equals(SharedBotsRecord? e1, SharedBotsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.bid == e2?.bid &&
+        listEquality.equals(e1?.docTitles, e2?.docTitles) &&
+        listEquality.equals(e1?.docIds, e2?.docIds) &&
+        e1?.guardrail == e2?.guardrail &&
+        e1?.system == e2?.system &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.topK == e2?.topK &&
+        e1?.image == e2?.image &&
+        e1?.uid == e2?.uid &&
+        listEquality.equals(e1?.datasetIds, e2?.datasetIds) &&
+        e1?.telegramUrl == e2?.telegramUrl &&
+        e1?.shareUrl == e2?.shareUrl &&
+        e1?.engine == e2?.engine;
+  }
+
+  @override
+  int hash(SharedBotsRecord? e) => const ListEquality().hash([
+        e?.bid,
+        e?.docTitles,
+        e?.docIds,
+        e?.guardrail,
+        e?.system,
+        e?.timestamp,
+        e?.topK,
+        e?.image,
+        e?.uid,
+        e?.datasetIds,
+        e?.telegramUrl,
+        e?.shareUrl,
+        e?.engine
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is SharedBotsRecord;
 }

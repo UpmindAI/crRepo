@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -178,4 +180,50 @@ Map<String, dynamic> createChatsRecordData({
   );
 
   return firestoreData;
+}
+
+class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
+  const ChatsRecordDocumentEquality();
+
+  @override
+  bool equals(ChatsRecord? e1, ChatsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.cid == e2?.cid &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.message == e2?.message &&
+        e1?.isCompletion == e2?.isCompletion &&
+        listEquality.equals(e1?.datasetIds, e2?.datasetIds) &&
+        listEquality.equals(e1?.chunks, e2?.chunks) &&
+        e1?.qid == e2?.qid &&
+        e1?.prompt == e2?.prompt &&
+        e1?.completion == e2?.completion &&
+        listEquality.equals(e1?.datasetNames, e2?.datasetNames) &&
+        listEquality.equals(e1?.docTitles, e2?.docTitles) &&
+        e1?.isLoading == e2?.isLoading &&
+        e1?.uid == e2?.uid &&
+        e1?.isError == e2?.isError &&
+        listEquality.equals(e1?.sources, e2?.sources);
+  }
+
+  @override
+  int hash(ChatsRecord? e) => const ListEquality().hash([
+        e?.cid,
+        e?.timestamp,
+        e?.message,
+        e?.isCompletion,
+        e?.datasetIds,
+        e?.chunks,
+        e?.qid,
+        e?.prompt,
+        e?.completion,
+        e?.datasetNames,
+        e?.docTitles,
+        e?.isLoading,
+        e?.uid,
+        e?.isError,
+        e?.sources
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is ChatsRecord;
 }

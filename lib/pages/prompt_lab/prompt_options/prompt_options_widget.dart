@@ -145,7 +145,7 @@ class _PromptOptionsWidgetState extends State<PromptOptionsWidget> {
                           children: [
                             Expanded(
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -216,7 +216,7 @@ class _PromptOptionsWidgetState extends State<PromptOptionsWidget> {
                         children: [
                           Expanded(
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
+                              width: MediaQuery.sizeOf(context).width * 1.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -300,7 +300,7 @@ class _PromptOptionsWidgetState extends State<PromptOptionsWidget> {
                                     'PROMPT_OPTIONS_COMP_SAVE_BTN_ON_TAP');
                                 logFirebaseEvent('Button_backend_call');
 
-                                final promptlabUpdateData1 = {
+                                await columnPromptlabRecord.reference.update({
                                   'prompts': FieldValue.arrayUnion([
                                     getPromptsFirestoreData(
                                       createPromptsStruct(
@@ -312,12 +312,10 @@ class _PromptOptionsWidgetState extends State<PromptOptionsWidget> {
                                       true,
                                     )
                                   ]),
-                                };
-                                await columnPromptlabRecord.reference
-                                    .update(promptlabUpdateData1);
+                                });
                                 logFirebaseEvent('Button_backend_call');
 
-                                final promptlabUpdateData2 = {
+                                await columnPromptlabRecord.reference.update({
                                   'prompts': FieldValue.arrayRemove([
                                     getPromptsFirestoreData(
                                       updatePromptsStruct(
@@ -327,9 +325,7 @@ class _PromptOptionsWidgetState extends State<PromptOptionsWidget> {
                                       true,
                                     )
                                   ]),
-                                };
-                                await columnPromptlabRecord.reference
-                                    .update(promptlabUpdateData2);
+                                });
                                 logFirebaseEvent('Button_bottom_sheet');
                                 Navigator.pop(context);
                               },

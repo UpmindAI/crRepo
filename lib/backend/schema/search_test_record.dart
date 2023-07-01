@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:from_css_color/from_css_color.dart';
 import '/backend/algolia/algolia_manager.dart';
+import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
@@ -144,11 +145,11 @@ class SearchTestRecord extends FirestoreRecord {
     _phase = snapshotData['phase'] as String?;
     _proposalAwardDate = snapshotData['proposal_award_date'] as DateTime?;
     _contractEndDate = snapshotData['contract_end_date'] as DateTime?;
-    _solicitationYear = snapshotData['solicitation_year'] as int?;
-    _awardYear = snapshotData['award_year'] as int?;
-    _awardAmount = snapshotData['award_amount'] as int?;
-    _duns = snapshotData['duns'] as int?;
-    _numberEmployees = snapshotData['number_employees'] as int?;
+    _solicitationYear = castToType<int>(snapshotData['solicitation_year']);
+    _awardYear = castToType<int>(snapshotData['award_year']);
+    _awardAmount = castToType<int>(snapshotData['award_amount']);
+    _duns = castToType<int>(snapshotData['duns']);
+    _numberEmployees = castToType<int>(snapshotData['number_employees']);
     _address1 = snapshotData['address1'] as String?;
     _address2 = snapshotData['address2'] as String?;
     _city = snapshotData['city'] as String?;
@@ -309,4 +310,67 @@ Map<String, dynamic> createSearchTestRecordData({
   );
 
   return firestoreData;
+}
+
+class SearchTestRecordDocumentEquality implements Equality<SearchTestRecord> {
+  const SearchTestRecordDocumentEquality();
+
+  @override
+  bool equals(SearchTestRecord? e1, SearchTestRecord? e2) {
+    return e1?.firm == e2?.firm &&
+        e1?.awardTitle == e2?.awardTitle &&
+        e1?.agency == e2?.agency &&
+        e1?.phase == e2?.phase &&
+        e1?.proposalAwardDate == e2?.proposalAwardDate &&
+        e1?.contractEndDate == e2?.contractEndDate &&
+        e1?.solicitationYear == e2?.solicitationYear &&
+        e1?.awardYear == e2?.awardYear &&
+        e1?.awardAmount == e2?.awardAmount &&
+        e1?.duns == e2?.duns &&
+        e1?.numberEmployees == e2?.numberEmployees &&
+        e1?.address1 == e2?.address1 &&
+        e1?.address2 == e2?.address2 &&
+        e1?.city == e2?.city &&
+        e1?.state == e2?.state &&
+        e1?.pocName == e2?.pocName &&
+        e1?.pocPhone == e2?.pocPhone &&
+        e1?.pocEmail == e2?.pocEmail &&
+        e1?.piName == e2?.piName &&
+        e1?.piPhone == e2?.piPhone &&
+        e1?.piEmail == e2?.piEmail &&
+        e1?.riName == e2?.riName &&
+        e1?.abstract == e2?.abstract &&
+        e1?.awardLink == e2?.awardLink;
+  }
+
+  @override
+  int hash(SearchTestRecord? e) => const ListEquality().hash([
+        e?.firm,
+        e?.awardTitle,
+        e?.agency,
+        e?.phase,
+        e?.proposalAwardDate,
+        e?.contractEndDate,
+        e?.solicitationYear,
+        e?.awardYear,
+        e?.awardAmount,
+        e?.duns,
+        e?.numberEmployees,
+        e?.address1,
+        e?.address2,
+        e?.city,
+        e?.state,
+        e?.pocName,
+        e?.pocPhone,
+        e?.pocEmail,
+        e?.piName,
+        e?.piPhone,
+        e?.piEmail,
+        e?.riName,
+        e?.abstract,
+        e?.awardLink
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is SearchTestRecord;
 }

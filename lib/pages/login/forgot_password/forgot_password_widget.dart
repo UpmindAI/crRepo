@@ -133,7 +133,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
       body: Align(
         alignment: AlignmentDirectional(0.0, 0.0),
         child: Container(
-          width: MediaQuery.of(context).size.width * 1.0,
+          width: MediaQuery.sizeOf(context).width * 1.0,
           constraints: BoxConstraints(
             maxWidth: 1140.0,
           ),

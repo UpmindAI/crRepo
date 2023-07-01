@@ -65,7 +65,7 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
               color: Colors.transparent,
               elevation: 2.0,
               child: Container(
-                width: MediaQuery.of(context).size.width * 7.0,
+                width: MediaQuery.sizeOf(context).width * 7.0,
                 constraints: BoxConstraints(
                   maxWidth: 700.0,
                 ),
@@ -155,12 +155,10 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
                                 'EDIT_DATASET_TITLE_COMP_SAVE_BTN_ON_TAP');
                             logFirebaseEvent('Button_backend_call');
 
-                            final userDatasetsUpdateData =
-                                createUserDatasetsRecordData(
-                              datasetName: _model.textController.text,
-                            );
                             await widget.activeDatasetT!.reference
-                                .update(userDatasetsUpdateData);
+                                .update(createUserDatasetsRecordData(
+                              datasetName: _model.textController.text,
+                            ));
                             logFirebaseEvent('Button_wait__delay');
                             await Future.delayed(
                                 const Duration(milliseconds: 500));

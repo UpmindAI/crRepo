@@ -107,7 +107,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(24.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       height: 580.0,
                                       decoration: BoxDecoration(
@@ -121,8 +121,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                         children: [
                                           ClipRRect(
                                             child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
                                               decoration: BoxDecoration(
@@ -747,10 +746,10 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      1.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -862,7 +861,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(24.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       height: 600.0,
                                       decoration: BoxDecoration(
@@ -883,8 +882,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                         children: [
                                           ClipRRect(
                                             child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
                                               decoration: BoxDecoration(
@@ -1315,10 +1313,10 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      1.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -1426,7 +1424,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(24.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       height: 580.0,
                                       decoration: BoxDecoration(
@@ -1439,8 +1437,7 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
+                                            width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             decoration: BoxDecoration(
@@ -1883,10 +1880,10 @@ class _PaymentPopupWidgetState extends State<PaymentPopupWidget> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      1.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)

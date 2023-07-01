@@ -132,10 +132,9 @@ class _CsWidgetState extends State<CsWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -155,10 +154,9 @@ class _CsWidgetState extends State<CsWidget> {
                             child: Stack(
                               children: [
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -190,9 +188,9 @@ class _CsWidgetState extends State<CsWidget> {
                                   alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
@@ -392,14 +390,14 @@ class _CsWidgetState extends State<CsWidget> {
                                                                 1.0, 1.0),
                                                         children: [
                                                           Container(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .width *
                                                                 1.0,
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .height *
                                                                 1.0,
                                                             decoration:
@@ -681,9 +679,9 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                                                             return GestureDetector(
                                                                                                                               onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                               child: Padding(
-                                                                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                                                                padding: MediaQuery.viewInsetsOf(context),
                                                                                                                                 child: Container(
-                                                                                                                                  height: MediaQuery.of(context).size.height * 0.8,
+                                                                                                                                  height: MediaQuery.sizeOf(context).height * 0.8,
                                                                                                                                   child: SharedChatChunksWidget(
                                                                                                                                     chatDoc: chatColumnSharedChatsRecord,
                                                                                                                                   ),
@@ -765,7 +763,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                                         child: Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                           child: Container(
-                                                                                            width: MediaQuery.of(context).size.width * 1.0,
+                                                                                            width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                             decoration: BoxDecoration(
                                                                                               color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                               borderRadius: BorderRadius.circular(12.0),
@@ -1035,8 +1033,12 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     logFirebaseEvent(
                                                                         'startField_createMeta');
 
-                                                                    final sharedChatMetaCreateData =
-                                                                        createSharedChatMetaRecordData(
+                                                                    var sharedChatMetaRecordReference =
+                                                                        SharedChatMetaRecord.createDoc(
+                                                                            columnSharedBotsRecord!.reference);
+                                                                    await sharedChatMetaRecordReference
+                                                                        .set(
+                                                                            createSharedChatMetaRecordData(
                                                                       cid: random_data
                                                                           .randomString(
                                                                         10,
@@ -1049,16 +1051,20 @@ class _CsWidgetState extends State<CsWidget> {
                                                                           .bid,
                                                                       createdOn:
                                                                           getCurrentTimestamp,
-                                                                    );
-                                                                    var sharedChatMetaRecordReference =
-                                                                        SharedChatMetaRecord.createDoc(
-                                                                            columnSharedBotsRecord!.reference);
-                                                                    await sharedChatMetaRecordReference
-                                                                        .set(
-                                                                            sharedChatMetaCreateData);
+                                                                    ));
                                                                     _model.createSharedChatMetaPaal =
                                                                         SharedChatMetaRecord.getDocumentFromData(
-                                                                            sharedChatMetaCreateData,
+                                                                            createSharedChatMetaRecordData(
+                                                                              cid: random_data.randomString(
+                                                                                10,
+                                                                                10,
+                                                                                true,
+                                                                                true,
+                                                                                true,
+                                                                              ),
+                                                                              bid: widget.bid,
+                                                                              createdOn: getCurrentTimestamp,
+                                                                            ),
                                                                             sharedChatMetaRecordReference);
                                                                     logFirebaseEvent(
                                                                         'startField_update_widget_state');
@@ -1071,8 +1077,12 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     logFirebaseEvent(
                                                                         'startField_backend_call');
 
-                                                                    final sharedChatsCreateData =
-                                                                        createSharedChatsRecordData(
+                                                                    var sharedChatsRecordReference =
+                                                                        SharedChatsRecord.createDoc(
+                                                                            columnSharedBotsRecord!.reference);
+                                                                    await sharedChatsRecordReference
+                                                                        .set(
+                                                                            createSharedChatsRecordData(
                                                                       prompt: _model
                                                                           .startFieldController
                                                                           .text,
@@ -1095,16 +1105,24 @@ class _CsWidgetState extends State<CsWidget> {
                                                                       ),
                                                                       engine: columnSharedBotsRecord!
                                                                           .engine,
-                                                                    );
-                                                                    var sharedChatsRecordReference =
-                                                                        SharedChatsRecord.createDoc(
-                                                                            columnSharedBotsRecord!.reference);
-                                                                    await sharedChatsRecordReference
-                                                                        .set(
-                                                                            sharedChatsCreateData);
+                                                                    ));
                                                                     _model.shareChatMessage =
                                                                         SharedChatsRecord.getDocumentFromData(
-                                                                            sharedChatsCreateData,
+                                                                            createSharedChatsRecordData(
+                                                                              prompt: _model.startFieldController.text,
+                                                                              cid: _model.createSharedChatMetaPaal!.cid,
+                                                                              timestamp: getCurrentTimestamp,
+                                                                              isCompletion: false,
+                                                                              bid: widget.bid,
+                                                                              qid: random_data.randomString(
+                                                                                10,
+                                                                                10,
+                                                                                true,
+                                                                                true,
+                                                                                true,
+                                                                              ),
+                                                                              engine: columnSharedBotsRecord!.engine,
+                                                                            ),
                                                                             sharedChatsRecordReference);
                                                                     logFirebaseEvent(
                                                                         'startField_clear_text_fields');
@@ -1169,8 +1187,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                               .String,
                                                                         ),
                                                                       }.withoutNulls,
-                                                                      extra: <
-                                                                          String,
+                                                                      extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
                                                                             TransitionInfo(
@@ -1309,8 +1326,12 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     logFirebaseEvent(
                                                                         'sendField_sendMessage');
 
-                                                                    final sharedChatsCreateData =
-                                                                        createSharedChatsRecordData(
+                                                                    var sharedChatsRecordReference =
+                                                                        SharedChatsRecord.createDoc(
+                                                                            columnSharedBotsRecord!.reference);
+                                                                    await sharedChatsRecordReference
+                                                                        .set(
+                                                                            createSharedChatsRecordData(
                                                                       cid: FFAppState()
                                                                           .setShareCID,
                                                                       timestamp:
@@ -1332,16 +1353,24 @@ class _CsWidgetState extends State<CsWidget> {
                                                                           .bid,
                                                                       engine: columnSharedBotsRecord!
                                                                           .engine,
-                                                                    );
-                                                                    var sharedChatsRecordReference =
-                                                                        SharedChatsRecord.createDoc(
-                                                                            columnSharedBotsRecord!.reference);
-                                                                    await sharedChatsRecordReference
-                                                                        .set(
-                                                                            sharedChatsCreateData);
+                                                                    ));
                                                                     _model.shareChatSendCopy =
                                                                         SharedChatsRecord.getDocumentFromData(
-                                                                            sharedChatsCreateData,
+                                                                            createSharedChatsRecordData(
+                                                                              cid: FFAppState().setShareCID,
+                                                                              timestamp: getCurrentTimestamp,
+                                                                              isCompletion: false,
+                                                                              qid: random_data.randomString(
+                                                                                11,
+                                                                                11,
+                                                                                true,
+                                                                                true,
+                                                                                true,
+                                                                              ),
+                                                                              prompt: _model.sendFieldController.text,
+                                                                              bid: widget.bid,
+                                                                              engine: columnSharedBotsRecord!.engine,
+                                                                            ),
                                                                             sharedChatsRecordReference);
                                                                     logFirebaseEvent(
                                                                         'sendField_clear_text_fields');
@@ -1591,9 +1620,9 @@ class _CsWidgetState extends State<CsWidget> {
                                   alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,

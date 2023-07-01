@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -250,4 +252,67 @@ Map<String, dynamic> createUsersRecordData({
   );
 
   return firestoreData;
+}
+
+class UsersRecordDocumentEquality implements Equality<UsersRecord> {
+  const UsersRecordDocumentEquality();
+
+  @override
+  bool equals(UsersRecord? e1, UsersRecord? e2) {
+    return e1?.email == e2?.email &&
+        e1?.displayName == e2?.displayName &&
+        e1?.photoUrl == e2?.photoUrl &&
+        e1?.uid == e2?.uid &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.industry == e2?.industry &&
+        e1?.role == e2?.role &&
+        e1?.firstName == e2?.firstName &&
+        e1?.lastName == e2?.lastName &&
+        e1?.company == e2?.company &&
+        e1?.totalCredits == e2?.totalCredits &&
+        e1?.firstLogin == e2?.firstLogin &&
+        e1?.isAdmin == e2?.isAdmin &&
+        e1?.summaryPrompt == e2?.summaryPrompt &&
+        e1?.chatGr == e2?.chatGr &&
+        e1?.chatPersonality == e2?.chatPersonality &&
+        e1?.introCreditsAdded == e2?.introCreditsAdded &&
+        e1?.chatImage == e2?.chatImage &&
+        e1?.whitelabel == e2?.whitelabel &&
+        e1?.wlLight == e2?.wlLight &&
+        e1?.wlDark == e2?.wlDark &&
+        e1?.walletAddress == e2?.walletAddress &&
+        e1?.refCode == e2?.refCode;
+  }
+
+  @override
+  int hash(UsersRecord? e) => const ListEquality().hash([
+        e?.email,
+        e?.displayName,
+        e?.photoUrl,
+        e?.uid,
+        e?.createdTime,
+        e?.phoneNumber,
+        e?.industry,
+        e?.role,
+        e?.firstName,
+        e?.lastName,
+        e?.company,
+        e?.totalCredits,
+        e?.firstLogin,
+        e?.isAdmin,
+        e?.summaryPrompt,
+        e?.chatGr,
+        e?.chatPersonality,
+        e?.introCreditsAdded,
+        e?.chatImage,
+        e?.whitelabel,
+        e?.wlLight,
+        e?.wlDark,
+        e?.walletAddress,
+        e?.refCode
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UsersRecord;
 }

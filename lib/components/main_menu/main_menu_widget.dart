@@ -34,12 +34,12 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
   var hasContainerTriggered1 = false;
   var hasContainerTriggered2 = false;
   final animationsMap = {
-    'textOnPageLoadAnimation': AnimationInfo(
+    'iconOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         ShakeEffect(
           curve: Curves.easeInOut,
-          delay: 200.ms,
+          delay: 800.ms,
           duration: 1000.ms,
           hz: 10,
           offset: Offset(0.0, 0.0),
@@ -47,12 +47,12 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
         ),
       ],
     ),
-    'iconOnPageLoadAnimation1': AnimationInfo(
+    'textOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         ShakeEffect(
           curve: Curves.easeInOut,
-          delay: 800.ms,
+          delay: 200.ms,
           duration: 1000.ms,
           hz: 10,
           offset: Offset(0.0, 0.0),
@@ -178,8 +178,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
         color: Colors.transparent,
         elevation: 1.0,
         child: Container(
-          width: MediaQuery.of(context).size.width * 1.0,
-          height: MediaQuery.of(context).size.height * 1.0,
+          width: MediaQuery.sizeOf(context).width * 1.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: [
@@ -337,6 +337,93 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       logFirebaseEvent('MAIN_MENU_COMP_contentView_1_ON_TAP');
+                      logFirebaseEvent('contentView_1_update_app_state');
+                      setState(() {
+                        FFAppState().setPromptPL = '';
+                      });
+                      logFirebaseEvent('contentView_1_navigate_to');
+
+                      context.pushNamed('Chat');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12.0),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
+                              child: Container(
+                                width: 4.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: FaIcon(
+                                FontAwesomeIcons.robot,
+                                color: FFAppState().currentPage == 'Chat'
+                                    ? FlutterFlowTheme.of(context).accentOne
+                                    : FlutterFlowTheme.of(context).grayIcon,
+                                size: 28.0,
+                              ).animateOnPageLoad(
+                                  animationsMap['iconOnPageLoadAnimation1']!),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: AutoSizeText(
+                                'Chat',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: FFAppState().currentPage == 'Chat'
+                                          ? FlutterFlowTheme.of(context)
+                                              .accentOne
+                                          : FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      logFirebaseEvent('MAIN_MENU_COMP_contentView_1_ON_TAP');
                       logFirebaseEvent('contentView_1_navigate_to');
 
                       context.pushNamed('Home');
@@ -439,93 +526,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       logFirebaseEvent('MAIN_MENU_COMP_contentView_1_ON_TAP');
-                      logFirebaseEvent('contentView_1_update_app_state');
-                      setState(() {
-                        FFAppState().setPromptPL = '';
-                      });
-                      logFirebaseEvent('contentView_1_navigate_to');
-
-                      context.pushNamed('Chat');
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12.0),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 12.0, 0.0),
-                              child: Container(
-                                width: 4.0,
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: FaIcon(
-                                FontAwesomeIcons.robot,
-                                color: FFAppState().currentPage == 'Chat'
-                                    ? FlutterFlowTheme.of(context).accentOne
-                                    : FlutterFlowTheme.of(context).grayIcon,
-                                size: 28.0,
-                              ).animateOnPageLoad(
-                                  animationsMap['iconOnPageLoadAnimation1']!),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: AutoSizeText(
-                                'Chat',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleSmallFamily,
-                                      color: FFAppState().currentPage == 'Chat'
-                                          ? FlutterFlowTheme.of(context)
-                                              .accentOne
-                                          : FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmallFamily),
-                                    ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      logFirebaseEvent('MAIN_MENU_COMP_contentView_1_ON_TAP');
                       logFirebaseEvent('contentView_1_navigate_to');
 
                       context.pushNamed('Summarize');
@@ -581,7 +581,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 0.0, 0.0),
                               child: AutoSizeText(
-                                'Summarize',
+                                'Derive',
                                 style: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -890,8 +890,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               if (Theme.of(context).brightness ==
                                   Brightness.light)
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -1031,8 +1030,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               if (Theme.of(context).brightness ==
                                   Brightness.dark)
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   decoration: BoxDecoration(),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -1194,10 +1192,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                     builder: (context) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.viewInsetsOf(context),
                                         child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           child: PaymentPopupWidget(),
@@ -1386,11 +1383,10 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                         context: context,
                                         builder: (context) {
                                           return Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
+                                              height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   1.0,
                                               child: RefPopupWidget(),
@@ -1402,8 +1398,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                       logFirebaseEvent(
                                           'Container_backend_call');
 
-                                      final usersUpdateData =
-                                          createUsersRecordData(
+                                      await currentUserReference!
+                                          .update(createUsersRecordData(
                                         refCode: random_data.randomString(
                                           7,
                                           7,
@@ -1411,9 +1407,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                           false,
                                           true,
                                         ),
-                                      );
-                                      await currentUserReference!
-                                          .update(usersUpdateData);
+                                      ));
                                       logFirebaseEvent(
                                           'Container_bottom_sheet');
                                       await showModalBottomSheet(
@@ -1428,11 +1422,10 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                         context: context,
                                         builder: (context) {
                                           return Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
+                                              height: MediaQuery.sizeOf(context)
                                                       .height *
                                                   1.0,
                                               child: RefPopupWidget(),

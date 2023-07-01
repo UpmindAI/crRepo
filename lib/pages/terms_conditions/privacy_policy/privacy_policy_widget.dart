@@ -128,18 +128,18 @@ class _PrivacyPolicyWidgetState extends State<PrivacyPolicyWidget> {
                               color: Colors.transparent,
                               elevation: 1.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
-                                height:
-                                    MediaQuery.of(context).size.height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                 ),
                                 child: FlutterFlowWebView(
-                                  url: 'https://omp.dev/privacy-policy-crisp/',
+                                  content:
+                                      'https://omp.dev/privacy-policy-crisp/',
                                   bypass: false,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   verticalScroll: false,
                                   horizontalScroll: false,
                                 ),

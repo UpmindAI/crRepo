@@ -115,7 +115,7 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 1.0,
+                    width: MediaQuery.sizeOf(context).width * 1.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -127,7 +127,7 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 12.0, 0.0),
                           child: Container(
-                            width: MediaQuery.of(context).size.width * 1.0,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
                             child: TextFormField(
                               controller: _model.textController,
                               autofocus: true,
@@ -181,12 +181,10 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                                   'FOLDER_OPTIONS_COMP_SAVE_BTN_ON_TAP');
                               logFirebaseEvent('Button_backend_call');
 
-                              final promptlabUpdateData =
-                                  createPromptlabRecordData(
-                                folderName: _model.textController.text,
-                              );
                               await widget.folderDoc!.reference
-                                  .update(promptlabUpdateData);
+                                  .update(createPromptlabRecordData(
+                                folderName: _model.textController.text,
+                              ));
                               logFirebaseEvent('Button_bottom_sheet');
                               Navigator.pop(context);
                             },
@@ -225,7 +223,7 @@ class _FolderOptionsWidgetState extends State<FolderOptionsWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 50.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,

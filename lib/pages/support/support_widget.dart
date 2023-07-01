@@ -82,9 +82,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                           children: [
                             Expanded(
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
-                                height:
-                                    MediaQuery.of(context).size.height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -115,7 +114,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                 child: Container(
                                   width: double.infinity,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -132,10 +131,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         FlutterFlowWebView(
-                                          url: 'https://omp.dev/support-paal/',
+                                          content:
+                                              'https://omp.dev/support-paal/',
                                           bypass: false,
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           verticalScroll: false,

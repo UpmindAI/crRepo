@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -91,4 +93,23 @@ Map<String, dynamic> createSupportRecordData({
   );
 
   return firestoreData;
+}
+
+class SupportRecordDocumentEquality implements Equality<SupportRecord> {
+  const SupportRecordDocumentEquality();
+
+  @override
+  bool equals(SupportRecord? e1, SupportRecord? e2) {
+    return e1?.uid == e2?.uid &&
+        e1?.userRef == e2?.userRef &&
+        e1?.question == e2?.question &&
+        e1?.timestamp == e2?.timestamp;
+  }
+
+  @override
+  int hash(SupportRecord? e) => const ListEquality()
+      .hash([e?.uid, e?.userRef, e?.question, e?.timestamp]);
+
+  @override
+  bool isValidKey(Object? o) => o is SupportRecord;
 }

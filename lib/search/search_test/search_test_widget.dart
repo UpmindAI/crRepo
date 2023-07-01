@@ -86,9 +86,8 @@ class _SearchTestWidgetState extends State<SearchTestWidget> {
                           children: [
                             Expanded(
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
-                                height:
-                                    MediaQuery.of(context).size.height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -117,10 +116,9 @@ class _SearchTestWidgetState extends State<SearchTestWidget> {
                                 color: Colors.transparent,
                                 elevation: 2.0,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,

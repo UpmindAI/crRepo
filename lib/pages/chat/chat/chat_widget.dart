@@ -116,7 +116,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                         context.pushNamed('promptLab');
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         height: 40.0,
                         decoration: BoxDecoration(
                           color:
@@ -155,8 +155,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                   children: [
                     Expanded(
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        height: MediaQuery.of(context).size.height * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -202,7 +202,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                     final columnPromptlabRecord =
                                         columnPromptlabRecordList[columnIndex];
                                     return Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -214,8 +214,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
+                                            width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             decoration: BoxDecoration(
@@ -623,10 +622,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -666,13 +664,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       .requestFocus(
                                                           _model.unfocusNode),
                                               child: Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
                                                 child: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      1.0,
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          1.0,
                                                   child: RefPopupWidget(),
                                                 ),
                                               ),
@@ -683,8 +682,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                         logFirebaseEvent(
                                             'mainMenu_backend_call');
 
-                                        final usersUpdateData =
-                                            createUsersRecordData(
+                                        await currentUserReference!
+                                            .update(createUsersRecordData(
                                           refCode: random_data.randomString(
                                             7,
                                             7,
@@ -692,9 +691,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             false,
                                             true,
                                           ),
-                                        );
-                                        await currentUserReference!
-                                            .update(usersUpdateData);
+                                        ));
                                         logFirebaseEvent(
                                             'mainMenu_bottom_sheet');
                                         await showModalBottomSheet(
@@ -714,13 +711,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       .requestFocus(
                                                           _model.unfocusNode),
                                               child: Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
                                                 child: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      1.0,
+                                                  height:
+                                                      MediaQuery.sizeOf(context)
+                                                              .height *
+                                                          1.0,
                                                   child: RefPopupWidget(),
                                                 ),
                                               ),
@@ -754,9 +752,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -816,14 +814,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       _model
                                                                           .unfocusNode),
                                                               child: Padding(
-                                                                padding: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
                                                                 child:
                                                                     Container(
-                                                                  height: MediaQuery.of(
+                                                                  height: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .height *
                                                                       1.0,
                                                                   child:
@@ -933,14 +930,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       _model
                                                                           .unfocusNode),
                                                               child: Padding(
-                                                                padding: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
                                                                 child:
                                                                     Container(
-                                                                  height: MediaQuery.of(
+                                                                  height: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .height *
                                                                       0.8,
                                                                   child:
@@ -1135,8 +1131,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           logFirebaseEvent(
                                                               'Button_backend_call');
 
-                                                          final sharedBotsCreateData =
-                                                              {
+                                                          var sharedBotsRecordReference =
+                                                              SharedBotsRecord
+                                                                  .collection
+                                                                  .doc();
+                                                          await sharedBotsRecordReference
+                                                              .set({
                                                             ...createSharedBotsRecordData(
                                                               bid:
                                                                   _model.setBid,
@@ -1204,19 +1204,78 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             'dataset_ids':
                                                                 FFAppState()
                                                                     .selectedDataset,
-                                                          };
-                                                          var sharedBotsRecordReference =
-                                                              SharedBotsRecord
-                                                                  .collection
-                                                                  .doc();
-                                                          await sharedBotsRecordReference
-                                                              .set(
-                                                                  sharedBotsCreateData);
+                                                          });
                                                           _model.createBot =
                                                               SharedBotsRecord
-                                                                  .getDocumentFromData(
-                                                                      sharedBotsCreateData,
-                                                                      sharedBotsRecordReference);
+                                                                  .getDocumentFromData({
+                                                            ...createSharedBotsRecordData(
+                                                              bid:
+                                                                  _model.setBid,
+                                                              guardrail: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatGr,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatGr,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatGr,
+                                                                      '')
+                                                                  : '',
+                                                              system: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatPersonality,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatPersonality,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatPersonality,
+                                                                      '')
+                                                                  : '',
+                                                              timestamp:
+                                                                  getCurrentTimestamp,
+                                                              topK: FFAppState()
+                                                                  .setTopKchat
+                                                                  .toDouble(),
+                                                              image: valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatImage,
+                                                                              '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.chatImage,
+                                                                              '') !=
+                                                                          ''
+                                                                  ? valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.chatImage,
+                                                                      '')
+                                                                  : random_data
+                                                                      .randomImageUrl(
+                                                                      200,
+                                                                      200,
+                                                                    ),
+                                                              uid:
+                                                                  currentUserUid,
+                                                              shareUrl:
+                                                                  'https://paal.omp.dev/cs?bid=${_model.setBid}&cid=0',
+                                                              engine: FFAppState()
+                                                                  .chatGPTengine,
+                                                            ),
+                                                            'dataset_ids':
+                                                                FFAppState()
+                                                                    .selectedDataset,
+                                                          }, sharedBotsRecordReference);
                                                           logFirebaseEvent(
                                                               'Button_bottom_sheet');
                                                           await showModalBottomSheet(
@@ -1240,15 +1299,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         _model
                                                                             .unfocusNode),
                                                                 child: Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
                                                                       Container(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        1.0,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
                                                                     child:
                                                                         SharePopupWidget(
                                                                       bid: _model
@@ -1338,16 +1396,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             1.0, 1.0),
                                                     children: [
                                                       Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            1.0,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            1.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        height:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .height *
+                                                                1.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1450,7 +1508,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     child: Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                       child: Container(
-                                                                                        width: MediaQuery.of(context).size.width * 1.0,
+                                                                                        width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                         decoration: BoxDecoration(
                                                                                           color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                         ),
@@ -1737,9 +1795,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                                                 return GestureDetector(
                                                                                                                   onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                   child: Padding(
-                                                                                                                    padding: MediaQuery.of(context).viewInsets,
+                                                                                                                    padding: MediaQuery.viewInsetsOf(context),
                                                                                                                     child: Container(
-                                                                                                                      height: MediaQuery.of(context).size.height * 0.8,
+                                                                                                                      height: MediaQuery.sizeOf(context).height * 0.8,
                                                                                                                       child: ChatChunksWidget(
                                                                                                                         chatDoc: chatColumnChatsRecord,
                                                                                                                       ),
@@ -2007,8 +2065,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   logFirebaseEvent(
                                                                       'startField_createMeta');
 
-                                                                  final chatMetaCreateData =
-                                                                      {
+                                                                  var chatMetaRecordReference =
+                                                                      ChatMetaRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!);
+                                                                  await chatMetaRecordReference
+                                                                      .set({
                                                                     ...createChatMetaRecordData(
                                                                       createdOn:
                                                                           getCurrentTimestamp,
@@ -2024,18 +2086,26 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           .startFieldController
                                                                           .text
                                                                     ],
-                                                                  };
-                                                                  var chatMetaRecordReference =
-                                                                      ChatMetaRecord
-                                                                          .createDoc(
-                                                                              currentUserReference!);
-                                                                  await chatMetaRecordReference
-                                                                      .set(
-                                                                          chatMetaCreateData);
+                                                                  });
                                                                   _model.createChatForm =
-                                                                      ChatMetaRecord.getDocumentFromData(
-                                                                          chatMetaCreateData,
-                                                                          chatMetaRecordReference);
+                                                                      ChatMetaRecord
+                                                                          .getDocumentFromData({
+                                                                    ...createChatMetaRecordData(
+                                                                      createdOn:
+                                                                          getCurrentTimestamp,
+                                                                      cid: FFAppState()
+                                                                          .setCid,
+                                                                      isLoading:
+                                                                          true,
+                                                                      uid:
+                                                                          currentUserUid,
+                                                                    ),
+                                                                    'prompts': [
+                                                                      _model
+                                                                          .startFieldController
+                                                                          .text
+                                                                    ],
+                                                                  }, chatMetaRecordReference);
                                                                   logFirebaseEvent(
                                                                       'startField_update_app_state');
                                                                   setState(() {
@@ -2048,8 +2118,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   logFirebaseEvent(
                                                                       'startField_backend_call');
 
-                                                                  final chatsCreateData =
-                                                                      {
+                                                                  var chatsRecordReference =
+                                                                      ChatsRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!);
+                                                                  await chatsRecordReference
+                                                                      .set({
                                                                     ...createChatsRecordData(
                                                                       cid: FFAppState()
                                                                           .setCid,
@@ -2076,18 +2150,37 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .map((e) =>
                                                                             e.datasetId)
                                                                         .toList(),
-                                                                  };
-                                                                  var chatsRecordReference =
-                                                                      ChatsRecord
-                                                                          .createDoc(
-                                                                              currentUserReference!);
-                                                                  await chatsRecordReference
-                                                                      .set(
-                                                                          chatsCreateData);
+                                                                  });
                                                                   _model.createMessageForm =
-                                                                      ChatsRecord.getDocumentFromData(
-                                                                          chatsCreateData,
-                                                                          chatsRecordReference);
+                                                                      ChatsRecord
+                                                                          .getDocumentFromData({
+                                                                    ...createChatsRecordData(
+                                                                      cid: FFAppState()
+                                                                          .setCid,
+                                                                      timestamp:
+                                                                          getCurrentTimestamp,
+                                                                      isCompletion:
+                                                                          false,
+                                                                      qid: random_data
+                                                                          .randomString(
+                                                                        11,
+                                                                        11,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      ),
+                                                                      prompt: _model
+                                                                          .startFieldController
+                                                                          .text,
+                                                                      uid:
+                                                                          currentUserUid,
+                                                                    ),
+                                                                    'dataset_ids': _model
+                                                                        .checkboxCheckedItems
+                                                                        .map((e) =>
+                                                                            e.datasetId)
+                                                                        .toList(),
+                                                                  }, chatsRecordReference);
                                                                   logFirebaseEvent(
                                                                       'startField_clear_text_fields');
                                                                   setState(() {
@@ -2283,8 +2376,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   logFirebaseEvent(
                                                                       'sendField_sendMessage');
 
-                                                                  final chatsCreateData =
-                                                                      {
+                                                                  var chatsRecordReference =
+                                                                      ChatsRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!);
+                                                                  await chatsRecordReference
+                                                                      .set({
                                                                     ...createChatsRecordData(
                                                                       cid: FFAppState()
                                                                           .setCid,
@@ -2311,23 +2408,43 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .map((e) =>
                                                                             e.datasetId)
                                                                         .toList(),
-                                                                  };
-                                                                  var chatsRecordReference =
-                                                                      ChatsRecord
-                                                                          .createDoc(
-                                                                              currentUserReference!);
-                                                                  await chatsRecordReference
-                                                                      .set(
-                                                                          chatsCreateData);
+                                                                  });
                                                                   _model.chatMessageNewFromField =
-                                                                      ChatsRecord.getDocumentFromData(
-                                                                          chatsCreateData,
-                                                                          chatsRecordReference);
+                                                                      ChatsRecord
+                                                                          .getDocumentFromData({
+                                                                    ...createChatsRecordData(
+                                                                      cid: FFAppState()
+                                                                          .setCid,
+                                                                      timestamp:
+                                                                          getCurrentTimestamp,
+                                                                      isCompletion:
+                                                                          false,
+                                                                      qid: random_data
+                                                                          .randomString(
+                                                                        11,
+                                                                        11,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      ),
+                                                                      prompt: _model
+                                                                          .sendFieldController
+                                                                          .text,
+                                                                      uid:
+                                                                          currentUserUid,
+                                                                    ),
+                                                                    'dataset_ids': _model
+                                                                        .checkboxCheckedItems
+                                                                        .map((e) =>
+                                                                            e.datasetId)
+                                                                        .toList(),
+                                                                  }, chatsRecordReference);
                                                                   logFirebaseEvent(
                                                                       'sendField_backend_call');
 
-                                                                  final chatMetaUpdateData =
-                                                                      {
+                                                                  await FFAppState()
+                                                                      .setChat!
+                                                                      .update({
                                                                     'prompts':
                                                                         FieldValue
                                                                             .arrayUnion([
@@ -2335,11 +2452,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           .sendFieldController
                                                                           .text
                                                                     ]),
-                                                                  };
-                                                                  await FFAppState()
-                                                                      .setChat!
-                                                                      .update(
-                                                                          chatMetaUpdateData);
+                                                                  });
                                                                   logFirebaseEvent(
                                                                       'sendField_clear_text_fields');
                                                                   setState(() {
@@ -2613,9 +2726,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -2742,7 +2855,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              MediaQuery.of(context).viewInsets,
+                                                                              MediaQuery.viewInsetsOf(context),
                                                                           child:
                                                                               Container(
                                                                             height:
@@ -2841,8 +2954,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                               ),
                                             ),
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
                                               height: 780.0,
@@ -2919,9 +3031,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 .transparent,
                                                             elevation: 2.0,
                                                             child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
                                                                       .width *
                                                                   1.0,
                                                               height: 40.0,

@@ -90,8 +90,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                     children: [
                       Expanded(
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -193,8 +193,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                           onTap: () => FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode),
                                           child: Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
                                             child: Container(
                                               height: 400.0,
                                               child: AdminToolsWidget(),

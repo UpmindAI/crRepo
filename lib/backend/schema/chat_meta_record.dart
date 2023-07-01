@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -140,4 +142,40 @@ Map<String, dynamic> createChatMetaRecordData({
   );
 
   return firestoreData;
+}
+
+class ChatMetaRecordDocumentEquality implements Equality<ChatMetaRecord> {
+  const ChatMetaRecordDocumentEquality();
+
+  @override
+  bool equals(ChatMetaRecord? e1, ChatMetaRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.createdOn == e2?.createdOn &&
+        e1?.cid == e2?.cid &&
+        listEquality.equals(e1?.qids, e2?.qids) &&
+        e1?.firstMessage == e2?.firstMessage &&
+        listEquality.equals(e1?.prompts, e2?.prompts) &&
+        e1?.isLoading == e2?.isLoading &&
+        listEquality.equals(e1?.completions, e2?.completions) &&
+        e1?.lastMessage == e2?.lastMessage &&
+        e1?.uid == e2?.uid &&
+        e1?.image == e2?.image;
+  }
+
+  @override
+  int hash(ChatMetaRecord? e) => const ListEquality().hash([
+        e?.createdOn,
+        e?.cid,
+        e?.qids,
+        e?.firstMessage,
+        e?.prompts,
+        e?.isLoading,
+        e?.completions,
+        e?.lastMessage,
+        e?.uid,
+        e?.image
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is ChatMetaRecord;
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -112,4 +114,33 @@ Map<String, dynamic> createUserDatasetsRecordData({
   );
 
   return firestoreData;
+}
+
+class UserDatasetsRecordDocumentEquality
+    implements Equality<UserDatasetsRecord> {
+  const UserDatasetsRecordDocumentEquality();
+
+  @override
+  bool equals(UserDatasetsRecord? e1, UserDatasetsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.datasetId == e2?.datasetId &&
+        e1?.datasetName == e2?.datasetName &&
+        e1?.description == e2?.description &&
+        e1?.pictureUrl == e2?.pictureUrl &&
+        e1?.createdOn == e2?.createdOn &&
+        listEquality.equals(e1?.activeDocs, e2?.activeDocs);
+  }
+
+  @override
+  int hash(UserDatasetsRecord? e) => const ListEquality().hash([
+        e?.datasetId,
+        e?.datasetName,
+        e?.description,
+        e?.pictureUrl,
+        e?.createdOn,
+        e?.activeDocs
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UserDatasetsRecord;
 }

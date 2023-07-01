@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -67,4 +69,19 @@ Map<String, dynamic> createAppdataRecordData({
   );
 
   return firestoreData;
+}
+
+class AppdataRecordDocumentEquality implements Equality<AppdataRecord> {
+  const AppdataRecordDocumentEquality();
+
+  @override
+  bool equals(AppdataRecord? e1, AppdataRecord? e2) {
+    return e1?.chatImage == e2?.chatImage;
+  }
+
+  @override
+  int hash(AppdataRecord? e) => const ListEquality().hash([e?.chatImage]);
+
+  @override
+  bool isValidKey(Object? o) => o is AppdataRecord;
 }

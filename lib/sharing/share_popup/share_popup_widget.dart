@@ -122,10 +122,9 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                                     builder: (context) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.viewInsetsOf(context),
                                         child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           child: BotListWidget(),
@@ -815,63 +814,54 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              if (valueOrDefault<bool>(
-                                  currentUserDocument?.isAdmin, false))
-                                AuthUserStreamWidget(
-                                  builder: (context) => FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'SHARE_POPUP_SHARE_TO_TELEGRAM_BTN_ON_TAP');
-                                      logFirebaseEvent('Button_backend_call');
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'SHARE_POPUP_SHARE_TO_TELEGRAM_BTN_ON_TAP');
+                                  logFirebaseEvent('Button_backend_call');
 
-                                      final sharedBotsUpdateData =
-                                          createSharedBotsRecordData(
-                                        telegramUrl:
-                                            'https://t.me/MyPaalBot?start=${widget.bid}',
-                                      );
-                                      await widget.botRef!
-                                          .update(sharedBotsUpdateData);
-                                      logFirebaseEvent(
-                                          'Button_update_widget_state');
-                                      setState(() {
-                                        _model.hasTelegram = true;
-                                      });
-                                    },
-                                    text: 'Share to Telegram',
-                                    icon: FaIcon(
-                                      FontAwesomeIcons.telegramPlane,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 240.0,
-                                      height: 32.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: Colors.white,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
-                                          ),
-                                      elevation: 1.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(0.0),
-                                    ),
-                                  ),
+                                  await widget.botRef!
+                                      .update(createSharedBotsRecordData(
+                                    telegramUrl:
+                                        'https://t.me/MyPaalBot?start=${widget.bid}',
+                                  ));
+                                  logFirebaseEvent(
+                                      'Button_update_widget_state');
+                                  setState(() {
+                                    _model.hasTelegram = true;
+                                  });
+                                },
+                                text: 'Share to Telegram',
+                                icon: FaIcon(
+                                  FontAwesomeIcons.telegramPlane,
                                 ),
+                                options: FFButtonOptions(
+                                  width: 240.0,
+                                  height: 32.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleSmallFamily,
+                                        color: Colors.white,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmallFamily),
+                                      ),
+                                  elevation: 1.0,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0.0),
+                                ),
+                              ),
                             ],
                           ),
                         ),

@@ -205,14 +205,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                   'PAYMENT_COMP_10_FREE_CREDITS_BTN_ON_TAP');
                               logFirebaseEvent('Button_backend_call');
 
-                              final usersUpdateData = {
+                              await currentUserReference!.update({
                                 ...createUsersRecordData(
                                   introCreditsAdded: true,
                                 ),
                                 'total_credits': FieldValue.increment(10.0),
-                              };
-                              await currentUserReference!
-                                  .update(usersUpdateData);
+                              });
                               logFirebaseEvent('Button_bottom_sheet');
                               Navigator.pop(context);
                               logFirebaseEvent('Button_navigate_to');

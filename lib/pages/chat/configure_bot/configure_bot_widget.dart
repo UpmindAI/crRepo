@@ -4,7 +4,6 @@ import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -436,11 +435,9 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                             logFirebaseEvent(
                                                 'CostumGuardrail_backend_call');
 
-                                            final usersUpdateData = {
+                                            await currentUserReference!.update({
                                               'chat_gr': FieldValue.delete(),
-                                            };
-                                            await currentUserReference!
-                                                .update(usersUpdateData);
+                                            });
                                           }
                                         },
                                       ),
@@ -477,6 +474,23 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                         builder: (context) => TextFormField(
                                           controller:
                                               _model.guardRailController,
+                                          onChanged: (_) =>
+                                              EasyDebounce.debounce(
+                                            '_model.guardRailController',
+                                            Duration(milliseconds: 50),
+                                            () async {
+                                              logFirebaseEvent(
+                                                  'CONFIGURE_BOT_guardRail_ON_TEXTFIELD_CHA');
+                                              logFirebaseEvent(
+                                                  'guardRail_backend_call');
+
+                                              await currentUserReference!
+                                                  .update(createUsersRecordData(
+                                                chatGr: _model
+                                                    .guardRailController.text,
+                                              ));
+                                            },
+                                          ),
                                           autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -562,82 +576,6 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment: AlignmentDirectional(1.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 0.0, 0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            logFirebaseEvent(
-                                                'CONFIGURE_BOT_COMP_SAVE_BTN_ON_TAP');
-                                            logFirebaseEvent(
-                                                'Button_backend_call');
-
-                                            final usersUpdateData =
-                                                createUsersRecordData(
-                                              chatGr: _model
-                                                  .guardRailController.text,
-                                            );
-                                            await currentUserReference!
-                                                .update(usersUpdateData);
-                                            logFirebaseEvent(
-                                                'Button_backend_call');
-
-                                            final chatGrHistoryCreateData =
-                                                createChatGrHistoryRecordData(
-                                              timestamp: getCurrentTimestamp,
-                                              isFavorite: false,
-                                              gr: _model
-                                                  .guardRailController.text,
-                                            );
-                                            await ChatGrHistoryRecord.createDoc(
-                                                    currentUserReference!)
-                                                .set(chatGrHistoryCreateData);
-                                          },
-                                          text: 'Save',
-                                          options: FFButtonOptions(
-                                            height: 32.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 8.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 1.0,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(0.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
                                 ),
                               ],
                             ),
@@ -943,6 +881,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                 true);
                                                             var selectedUploadedFiles =
                                                                 <FFUploadedFile>[];
+
                                                             var downloadUrls =
                                                                 <String>[];
                                                             try {
@@ -1015,14 +954,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                           logFirebaseEvent(
                                                               'Icon_backend_call');
 
-                                                          final usersUpdateData =
-                                                              createUsersRecordData(
-                                                            chatImage: _model
-                                                                .uploadedFileUrl1,
-                                                          );
                                                           await currentUserReference!
                                                               .update(
-                                                                  usersUpdateData);
+                                                                  createUsersRecordData(
+                                                            chatImage: _model
+                                                                .uploadedFileUrl1,
+                                                          ));
                                                           logFirebaseEvent(
                                                               'Icon_show_snack_bar');
                                                           ScaffoldMessenger.of(
@@ -1070,14 +1007,13 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                             context: context,
                                                             builder: (context) {
                                                               return Padding(
-                                                                padding: MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
                                                                 child:
                                                                     Container(
-                                                                  height: MediaQuery.of(
+                                                                  height: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .height *
                                                                       1.0,
                                                                   child:
@@ -1160,15 +1096,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                   logFirebaseEvent(
                                                                       'Icon_backend_call');
 
-                                                                  final usersUpdateData =
-                                                                      {
+                                                                  await currentUserReference!
+                                                                      .update({
                                                                     'chat_image':
                                                                         FieldValue
                                                                             .delete(),
-                                                                  };
-                                                                  await currentUserReference!
-                                                                      .update(
-                                                                          usersUpdateData);
+                                                                  });
                                                                   logFirebaseEvent(
                                                                       'Icon_bottom_sheet');
                                                                   Navigator.pop(
@@ -1192,11 +1125,11 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                         (context) {
                                                                       return Padding(
                                                                         padding:
-                                                                            MediaQuery.of(context).viewInsets,
+                                                                            MediaQuery.viewInsetsOf(context),
                                                                         child:
                                                                             Container(
                                                                           height:
-                                                                              MediaQuery.of(context).size.height * 1.0,
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
                                                                           child:
                                                                               ConfigureBotWidget(),
                                                                         ),
@@ -1251,6 +1184,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                                       true);
                                                               var selectedUploadedFiles =
                                                                   <FFUploadedFile>[];
+
                                                               var downloadUrls =
                                                                   <String>[];
                                                               try {
@@ -1317,14 +1251,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                             logFirebaseEvent(
                                                                 'Card_backend_call');
 
-                                                            final usersUpdateData =
-                                                                createUsersRecordData(
-                                                              chatImage: _model
-                                                                  .uploadedFileUrl2,
-                                                            );
                                                             await currentUserReference!
                                                                 .update(
-                                                                    usersUpdateData);
+                                                                    createUsersRecordData(
+                                                              chatImage: _model
+                                                                  .uploadedFileUrl2,
+                                                            ));
                                                             logFirebaseEvent(
                                                                 'Card_show_snack_bar');
                                                             ScaffoldMessenger
@@ -1373,15 +1305,14 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                               builder:
                                                                   (context) {
                                                                 return Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
                                                                       Container(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        1.0,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
                                                                     child:
                                                                         ConfigureBotWidget(),
                                                                   ),
@@ -1541,12 +1472,11 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                                 logFirebaseEvent(
                                                     'persSwitch_backend_call');
 
-                                                final usersUpdateData = {
+                                                await currentUserReference!
+                                                    .update({
                                                   'chat_personality':
                                                       FieldValue.delete(),
-                                                };
-                                                await currentUserReference!
-                                                    .update(usersUpdateData);
+                                                });
                                               }
                                             },
                                           ),
@@ -1570,6 +1500,23 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                       builder: (context) => TextFormField(
                                         controller:
                                             _model.chatPersonalityController,
+                                        onChanged: (_) => EasyDebounce.debounce(
+                                          '_model.chatPersonalityController',
+                                          Duration(milliseconds: 50),
+                                          () async {
+                                            logFirebaseEvent(
+                                                'CONFIGURE_BOT_chatPersonality_ON_TEXTFIE');
+                                            logFirebaseEvent(
+                                                'chatPersonality_backend_call');
+
+                                            await currentUserReference!
+                                                .update(createUsersRecordData(
+                                              chatPersonality: _model
+                                                  .chatPersonalityController
+                                                  .text,
+                                            ));
+                                          },
+                                        ),
                                         autofocus: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
@@ -1650,92 +1597,6 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                             .asValidator(context),
                                       ),
                                     ),
-                                  ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (_model.persSwitchValue ?? true)
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(1.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12.0, 0.0, 0.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                logFirebaseEvent(
-                                                    'CONFIGURE_BOT_COMP_SAVE_BTN_ON_TAP');
-                                                logFirebaseEvent(
-                                                    'Button_backend_call');
-
-                                                final usersUpdateData =
-                                                    createUsersRecordData(
-                                                  chatPersonality: _model
-                                                      .chatPersonalityController
-                                                      .text,
-                                                );
-                                                await currentUserReference!
-                                                    .update(usersUpdateData);
-                                                logFirebaseEvent(
-                                                    'Button_backend_call');
-
-                                                final chatPersHistoryCreateData =
-                                                    createChatPersHistoryRecordData(
-                                                  timestamp:
-                                                      getCurrentTimestamp,
-                                                  isFavorite: false,
-                                                  personality: _model
-                                                      .chatPersonalityController
-                                                      .text,
-                                                );
-                                                await ChatPersHistoryRecord
-                                                        .createDoc(
-                                                            currentUserReference!)
-                                                    .set(
-                                                        chatPersHistoryCreateData);
-                                              },
-                                              text: 'Save',
-                                              options: FFButtonOptions(
-                                                height: 32.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                elevation: 1.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(0.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                    ],
                                   ),
                                 ],
                               ),

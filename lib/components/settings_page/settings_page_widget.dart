@@ -52,7 +52,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
     return Align(
       alignment: AlignmentDirectional(0.0, -1.0),
       child: Container(
-        width: MediaQuery.of(context).size.width * 1.0,
+        width: MediaQuery.sizeOf(context).width * 1.0,
         constraints: BoxConstraints(
           maxWidth: 1240.0,
         ),
@@ -110,6 +110,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       m.storagePath, context))) {
                                 setState(() => _model.isDataUploading = true);
                                 var selectedUploadedFiles = <FFUploadedFile>[];
+
                                 var downloadUrls = <String>[];
                                 try {
                                   selectedUploadedFiles = selectedMedia
@@ -154,11 +155,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   const Duration(milliseconds: 500));
                               logFirebaseEvent('Card_backend_call');
 
-                              final usersUpdateData = createUsersRecordData(
-                                photoUrl: _model.uploadedFileUrl,
-                              );
                               await currentUserReference!
-                                  .update(usersUpdateData);
+                                  .update(createUsersRecordData(
+                                photoUrl: _model.uploadedFileUrl,
+                              ));
                               logFirebaseEvent('Card_show_snack_bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -485,10 +485,9 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           context: context,
                           builder: (context) {
                             return Padding(
-                              padding: MediaQuery.of(context).viewInsets,
+                              padding: MediaQuery.viewInsetsOf(context),
                               child: Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 child: WhiteLabelWidget(),
                               ),
                             );

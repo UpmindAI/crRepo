@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -100,4 +102,24 @@ Map<String, dynamic> createPromptlabRecordData({
   );
 
   return firestoreData;
+}
+
+class PromptlabRecordDocumentEquality implements Equality<PromptlabRecord> {
+  const PromptlabRecordDocumentEquality();
+
+  @override
+  bool equals(PromptlabRecord? e1, PromptlabRecord? e2) {
+    const listEquality = ListEquality();
+    return listEquality.equals(e1?.prompts, e2?.prompts) &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.folderName == e2?.folderName &&
+        listEquality.equals(e1?.children, e2?.children);
+  }
+
+  @override
+  int hash(PromptlabRecord? e) => const ListEquality()
+      .hash([e?.prompts, e?.timestamp, e?.folderName, e?.children]);
+
+  @override
+  bool isValidKey(Object? o) => o is PromptlabRecord;
 }

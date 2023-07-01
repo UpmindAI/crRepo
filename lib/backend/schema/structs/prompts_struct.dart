@@ -125,10 +125,13 @@ PromptsStruct createPromptsStruct({
 PromptsStruct? updatePromptsStruct(
   PromptsStruct? prompts, {
   bool clearUnsetFields = true,
+  bool create = false,
 }) =>
     prompts
-      ?..firestoreUtilData =
-          FirestoreUtilData(clearUnsetFields: clearUnsetFields);
+      ?..firestoreUtilData = FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+      );
 
 void addPromptsStructData(
   Map<String, dynamic> firestoreData,

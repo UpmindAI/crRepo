@@ -52,7 +52,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
-            width: MediaQuery.of(context).size.width * 1.0,
+            width: MediaQuery.sizeOf(context).width * 1.0,
             constraints: BoxConstraints(
               maxWidth: 1240.0,
             ),
@@ -193,7 +193,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     return;
                                   }
 
-                                  context.goNamedAuth('Home', context.mounted);
+                                  context.goNamedAuth('Chat', context.mounted);
                                 },
                                 text: 'Sign up with Google',
                                 icon: Icon(
@@ -606,7 +606,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 logFirebaseEvent('Button_auth');
                                 await authManager.sendEmailVerification();
 
-                                context.goNamedAuth('Home', context.mounted);
+                                context.goNamedAuth('Chat', context.mounted);
                               },
                               text: 'Sign up',
                               options: FFButtonOptions(

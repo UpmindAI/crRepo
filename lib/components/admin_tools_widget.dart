@@ -165,8 +165,8 @@ class _AdminToolsWidgetState extends State<AdminToolsWidget> {
                                         context: context,
                                         builder: (context) {
                                           return Padding(
-                                            padding: MediaQuery.of(context)
-                                                .viewInsets,
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
                                             child: Container(
                                               height: 700.0,
                                               child: PaymentWidget(),

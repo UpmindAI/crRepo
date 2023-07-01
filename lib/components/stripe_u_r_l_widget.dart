@@ -57,7 +57,7 @@ class _StripeURLWidgetState extends State<StripeURLWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: FlutterFlowWebView(
-                url: 'https://buy.stripe.com/fZe7vGdT6eBu4Zq144',
+                content: 'https://buy.stripe.com/fZe7vGdT6eBu4Zq144',
                 bypass: false,
                 width: 1000.0,
                 height: 800.0,

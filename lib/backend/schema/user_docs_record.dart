@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -76,7 +78,7 @@ class UserDocsRecord extends FirestoreRecord {
     _processing = snapshotData['processing'] as bool?;
     _fileType = snapshotData['file_type'] as String?;
     _progressStatus = snapshotData['progress_status'] as String?;
-    _progressPercentage = snapshotData['progress_percentage'] as int?;
+    _progressPercentage = castToType<int>(snapshotData['progress_percentage']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -146,4 +148,39 @@ Map<String, dynamic> createUserDocsRecordData({
   );
 
   return firestoreData;
+}
+
+class UserDocsRecordDocumentEquality implements Equality<UserDocsRecord> {
+  const UserDocsRecordDocumentEquality();
+
+  @override
+  bool equals(UserDocsRecord? e1, UserDocsRecord? e2) {
+    return e1?.datasetId == e2?.datasetId &&
+        e1?.isActive == e2?.isActive &&
+        e1?.docId == e2?.docId &&
+        e1?.docTitle == e2?.docTitle &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.url == e2?.url &&
+        e1?.processing == e2?.processing &&
+        e1?.fileType == e2?.fileType &&
+        e1?.progressStatus == e2?.progressStatus &&
+        e1?.progressPercentage == e2?.progressPercentage;
+  }
+
+  @override
+  int hash(UserDocsRecord? e) => const ListEquality().hash([
+        e?.datasetId,
+        e?.isActive,
+        e?.docId,
+        e?.docTitle,
+        e?.timestamp,
+        e?.url,
+        e?.processing,
+        e?.fileType,
+        e?.progressStatus,
+        e?.progressPercentage
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UserDocsRecord;
 }
