@@ -879,6 +879,19 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   ),
                                                                 );
                                                                 logFirebaseEvent(
+                                                                    'scrapeURL_update_widget_state');
+                                                                setState(() {
+                                                                  _model.urlID =
+                                                                      random_data
+                                                                          .randomString(
+                                                                    6,
+                                                                    6,
+                                                                    true,
+                                                                    true,
+                                                                    true,
+                                                                  );
+                                                                });
+                                                                logFirebaseEvent(
                                                                     'scrapeURL_backend_call');
 
                                                                 var userTempUrlsRecordReference =
@@ -942,8 +955,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     await ScrapeServerCall
                                                                         .call(
                                                                   urlId: _model
-                                                                      .createURLdocu!
-                                                                      .urlId,
+                                                                      .urlID,
                                                                   idToken:
                                                                       currentJwtToken,
                                                                   datasetId: widget
