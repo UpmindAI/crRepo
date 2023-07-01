@@ -29,6 +29,10 @@ class DatasetsModel extends FlutterFlowModel {
 
   bool urlTooltip = false;
 
+  String? urlID;
+
+  String? datasetID;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for mainMenu component.
