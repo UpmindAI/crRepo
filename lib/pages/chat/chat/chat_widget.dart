@@ -1987,7 +1987,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           .text
                                                                     ],
                                                                   });
-                                                                  _model.createChatForm =
+                                                                  _model.createChatForm1 =
                                                                       ChatMetaRecord
                                                                           .getDocumentFromData({
                                                                     ...createChatMetaRecordData(
@@ -2012,7 +2012,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     FFAppState()
                                                                             .setChat =
                                                                         _model
-                                                                            .createChatForm!
+                                                                            .createChatForm1!
                                                                             .reference;
                                                                   });
                                                                   logFirebaseEvent(
@@ -2031,19 +2031,19 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           getCurrentTimestamp,
                                                                       isCompletion:
                                                                           false,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        11,
-                                                                        11,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
                                                                       prompt: _model
                                                                           .startFieldController
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
+                                                                      qid: random_data
+                                                                          .randomString(
+                                                                        7,
+                                                                        7,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      ),
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2051,7 +2051,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             e.datasetId)
                                                                         .toList(),
                                                                   });
-                                                                  _model.createMessageForm =
+                                                                  _model.createMessageForm2 =
                                                                       ChatsRecord
                                                                           .getDocumentFromData({
                                                                     ...createChatsRecordData(
@@ -2061,19 +2061,19 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           getCurrentTimestamp,
                                                                       isCompletion:
                                                                           false,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        11,
-                                                                        11,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
                                                                       prompt: _model
                                                                           .startFieldController
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
+                                                                      qid: random_data
+                                                                          .randomString(
+                                                                        7,
+                                                                        7,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      ),
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2096,9 +2096,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   _model.apiResultStartForm =
                                                                       await MixedChatCall
                                                                           .call(
-                                                                    qid: _model
-                                                                        .createMessageForm!
-                                                                        .qid,
                                                                     cid: FFAppState()
                                                                         .setCid,
                                                                     datasetIdsList:
@@ -2113,6 +2110,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .chatGPTengine,
                                                                     uid:
                                                                         currentUserUid,
+                                                                    qid: _model
+                                                                        .createMessageForm2!
+                                                                        .qid,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'startField_navigate_to');
