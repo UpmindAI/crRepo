@@ -307,7 +307,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_chatPersSwitch', _value);
   }
 
-  int _version = 47;
+  int _version = 48;
   int get version => _version;
   set version(int _value) {
     _version = _value;
