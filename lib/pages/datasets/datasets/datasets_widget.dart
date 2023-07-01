@@ -909,14 +909,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       .datasetId,
                                                                   timestamp:
                                                                       getCurrentTimestamp,
-                                                                  urlId: random_data
-                                                                      .randomString(
-                                                                    8,
-                                                                    8,
-                                                                    true,
-                                                                    true,
-                                                                    true,
-                                                                  ),
+                                                                  urlId: _model
+                                                                      .urlID,
                                                                   datasetName: widget
                                                                       .activeDataset!
                                                                       .datasetName,
@@ -931,13 +925,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               urls: _model.scrapeURLController.text,
                                                                               datasetId: widget.activeDataset!.datasetId,
                                                                               timestamp: getCurrentTimestamp,
-                                                                              urlId: random_data.randomString(
-                                                                                8,
-                                                                                8,
-                                                                                true,
-                                                                                true,
-                                                                                true,
-                                                                              ),
+                                                                              urlId: _model.urlID,
                                                                               datasetName: widget.activeDataset!.datasetName,
                                                                               chunkSize: FFAppState().setChunkSize,
                                                                             ),
