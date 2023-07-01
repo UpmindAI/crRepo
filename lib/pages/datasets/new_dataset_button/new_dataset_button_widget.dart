@@ -46,8 +46,8 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: MediaQuery.of(context).size.width * 4.0,
-      height: MediaQuery.of(context).size.height * 4.0,
+      width: MediaQuery.sizeOf(context).width * 4.0,
+      height: MediaQuery.sizeOf(context).height * 4.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -84,9 +84,9 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
                 context: context,
                 builder: (context) {
                   return Padding(
-                    padding: MediaQuery.of(context).viewInsets,
+                    padding: MediaQuery.viewInsetsOf(context),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
                       child: AddDatasetWidget(),
                     ),
                   );

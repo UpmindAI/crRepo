@@ -121,7 +121,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         context.pushNamed('promptLab');
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         height: 40.0,
                         decoration: BoxDecoration(
                           color:
@@ -160,8 +160,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                   children: [
                     Expanded(
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        height: MediaQuery.of(context).size.height * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -206,7 +206,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     final columnPromptlabRecord =
                                         columnPromptlabRecordList[columnIndex];
                                     return Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           1.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -218,8 +218,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
+                                            width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             decoration: BoxDecoration(
@@ -679,10 +678,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     builder: (context) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.viewInsetsOf(context),
                                         child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           child: RefreshRequiredWidget(),
@@ -740,7 +738,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
-            width: MediaQuery.of(context).size.width * 1.0,
+            width: MediaQuery.sizeOf(context).width * 1.0,
             decoration: BoxDecoration(),
             child: Stack(
               children: [
@@ -768,10 +766,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     Expanded(
                                       child: Container(
                                         width:
-                                            MediaQuery.of(context).size.width *
+                                            MediaQuery.sizeOf(context).width *
                                                 1.0,
                                         height:
-                                            MediaQuery.of(context).size.height *
+                                            MediaQuery.sizeOf(context).height *
                                                 1.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -810,12 +808,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         alignment:
                                             AlignmentDirectional(0.0, -1.0),
                                         child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              1.0,
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           decoration: BoxDecoration(
@@ -1285,13 +1281,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               });
                                                                               logFirebaseEvent('ButtonMix_backend_call');
 
-                                                                              final userPromptsCreateData = createUserPromptsRecordData(
+                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                              await userPromptsRecordReference.set(createUserPromptsRecordData(
                                                                                 qid: FFAppState().setQid,
                                                                                 prompt: _model.promptFieldController.text,
-                                                                              );
-                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
-                                                                              await userPromptsRecordReference.set(userPromptsCreateData);
-                                                                              _model.setPrompt = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                              ));
+                                                                              _model.setPrompt = UserPromptsRecord.getDocumentFromData(
+                                                                                  createUserPromptsRecordData(
+                                                                                    qid: FFAppState().setQid,
+                                                                                    prompt: _model.promptFieldController.text,
+                                                                                  ),
+                                                                                  userPromptsRecordReference);
                                                                               logFirebaseEvent('ButtonMix_clear_text_fields');
                                                                               setState(() {
                                                                                 _model.promptFieldController?.clear();
@@ -1373,13 +1373,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               });
                                                                               logFirebaseEvent('ButtonGPT_backend_call');
 
-                                                                              final userPromptsCreateData = createUserPromptsRecordData(
+                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                              await userPromptsRecordReference.set(createUserPromptsRecordData(
                                                                                 qid: FFAppState().setQid,
                                                                                 prompt: _model.promptFieldController.text,
-                                                                              );
-                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
-                                                                              await userPromptsRecordReference.set(userPromptsCreateData);
-                                                                              _model.setPromptGPT = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                              ));
+                                                                              _model.setPromptGPT = UserPromptsRecord.getDocumentFromData(
+                                                                                  createUserPromptsRecordData(
+                                                                                    qid: FFAppState().setQid,
+                                                                                    prompt: _model.promptFieldController.text,
+                                                                                  ),
+                                                                                  userPromptsRecordReference);
                                                                               logFirebaseEvent('ButtonGPT_clear_text_fields');
                                                                               setState(() {
                                                                                 _model.promptFieldController?.clear();
@@ -1452,13 +1456,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               });
                                                                               logFirebaseEvent('ButtonMyData_backend_call');
 
-                                                                              final userPromptsCreateData = createUserPromptsRecordData(
+                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                              await userPromptsRecordReference.set(createUserPromptsRecordData(
                                                                                 qid: FFAppState().setQid,
                                                                                 prompt: _model.promptFieldController.text,
-                                                                              );
-                                                                              var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
-                                                                              await userPromptsRecordReference.set(userPromptsCreateData);
-                                                                              _model.setPromptG = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                              ));
+                                                                              _model.setPromptG = UserPromptsRecord.getDocumentFromData(
+                                                                                  createUserPromptsRecordData(
+                                                                                    qid: FFAppState().setQid,
+                                                                                    prompt: _model.promptFieldController.text,
+                                                                                  ),
+                                                                                  userPromptsRecordReference);
                                                                               logFirebaseEvent('ButtonMyData_clear_text_fields');
                                                                               setState(() {
                                                                                 _model.promptFieldController?.clear();
@@ -1666,11 +1674,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         (context) {
                                                                       return Padding(
                                                                         padding:
-                                                                            MediaQuery.of(context).viewInsets,
+                                                                            MediaQuery.viewInsetsOf(context),
                                                                         child:
                                                                             Container(
                                                                           height:
-                                                                              MediaQuery.of(context).size.height * 1.0,
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
                                                                           child:
                                                                               PromptConfigWidget(),
                                                                         ),
@@ -1895,12 +1903,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         alignment:
                                             AlignmentDirectional(0.0, -1.0),
                                         child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              1.0,
-                                          height: MediaQuery.of(context)
-                                                  .size
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          height: MediaQuery.sizeOf(context)
                                                   .height *
                                               1.0,
                                           decoration: BoxDecoration(
@@ -2033,9 +2039,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           builder:
                                                                               (context) {
                                                                             return Padding(
-                                                                              padding: MediaQuery.of(context).viewInsets,
+                                                                              padding: MediaQuery.viewInsetsOf(context),
                                                                               child: Container(
-                                                                                height: MediaQuery.of(context).size.height * 1.0,
+                                                                                height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                 child: AddDatasetWidget(),
                                                                               ),
                                                                             );
@@ -2116,10 +2122,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   ),
                                                 ),
                                                 Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      1.0,
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
                                                   height: 780.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
@@ -2202,9 +2208,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 elevation: 2.0,
                                                                 child:
                                                                     Container(
-                                                                  width: MediaQuery.of(
+                                                                  width: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .width *
                                                                       1.0,
                                                                   height: 40.0,
@@ -2359,8 +2364,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
-                        height: MediaQuery.of(context).size.height * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(

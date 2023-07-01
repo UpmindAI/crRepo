@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -25,7 +27,7 @@ class VersionControlRecord extends FirestoreRecord {
   bool hasNeedsUpdate() => _needsUpdate != null;
 
   void _initializeFields() {
-    _version = snapshotData['version'] as int?;
+    _version = castToType<int>(snapshotData['version']);
     _needsUpdate = snapshotData['needs_update'] as bool?;
   }
 
@@ -75,4 +77,21 @@ Map<String, dynamic> createVersionControlRecordData({
   );
 
   return firestoreData;
+}
+
+class VersionControlRecordDocumentEquality
+    implements Equality<VersionControlRecord> {
+  const VersionControlRecordDocumentEquality();
+
+  @override
+  bool equals(VersionControlRecord? e1, VersionControlRecord? e2) {
+    return e1?.version == e2?.version && e1?.needsUpdate == e2?.needsUpdate;
+  }
+
+  @override
+  int hash(VersionControlRecord? e) =>
+      const ListEquality().hash([e?.version, e?.needsUpdate]);
+
+  @override
+  bool isValidKey(Object? o) => o is VersionControlRecord;
 }

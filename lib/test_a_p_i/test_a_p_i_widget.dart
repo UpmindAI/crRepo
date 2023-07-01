@@ -110,7 +110,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -150,21 +150,21 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                           logFirebaseEvent(
                                               'Button_backend_call');
 
-                                          final userPromptsCreateData =
-                                              createUserPromptsRecordData(
-                                            qid: FFAppState().setQid,
-                                            prompt: 'Test',
-                                          );
                                           var userPromptsRecordReference =
                                               UserPromptsRecord.createDoc(
                                                   currentUserReference!);
                                           await userPromptsRecordReference
-                                              .set(userPromptsCreateData);
+                                              .set(createUserPromptsRecordData(
+                                            qid: FFAppState().setQid,
+                                            prompt: 'Test',
+                                          ));
                                           _model.setPrompttextMIX =
-                                              UserPromptsRecord
-                                                  .getDocumentFromData(
-                                                      userPromptsCreateData,
-                                                      userPromptsRecordReference);
+                                              UserPromptsRecord.getDocumentFromData(
+                                                  createUserPromptsRecordData(
+                                                    qid: FFAppState().setQid,
+                                                    prompt: 'Test',
+                                                  ),
+                                                  userPromptsRecordReference);
                                           _shouldSetState = true;
                                           logFirebaseEvent(
                                               'Button_backend_call');
@@ -309,14 +309,13 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                           _model.unfocusNode),
                                                   child: Padding(
                                                     padding:
-                                                        MediaQuery.of(context)
-                                                            .viewInsets,
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
                                                     child: Container(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height *
-                                                              1.0,
+                                                      height: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .height *
+                                                          1.0,
                                                       child:
                                                           ErrorMessageWidget(),
                                                     ),
@@ -381,7 +380,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -454,7 +453,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -527,7 +526,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -600,7 +599,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -673,7 +672,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -746,7 +745,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               color: Colors.transparent,
                               elevation: 2.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,

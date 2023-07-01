@@ -182,8 +182,11 @@ class _AddListWidgetState extends State<AddListWidget> {
                               );
                               logFirebaseEvent('Button_backend_call');
 
-                              final userTempUrlsCreateData =
-                                  createUserTempUrlsRecordData(
+                              var userTempUrlsRecordReference =
+                                  UserTempUrlsRecord.createDoc(
+                                      currentUserReference!);
+                              await userTempUrlsRecordReference
+                                  .set(createUserTempUrlsRecordData(
                                 urls: _model.urlListFieldController.text,
                                 datasetId: widget.setDataset!.datasetId,
                                 timestamp: getCurrentTimestamp,
@@ -196,15 +199,25 @@ class _AddListWidgetState extends State<AddListWidget> {
                                 ),
                                 datasetName: widget.setDataset!.datasetName,
                                 chunkSize: FFAppState().setChunkSize,
-                              );
-                              var userTempUrlsRecordReference =
-                                  UserTempUrlsRecord.createDoc(
-                                      currentUserReference!);
-                              await userTempUrlsRecordReference
-                                  .set(userTempUrlsCreateData);
+                              ));
                               _model.createURLsdoc =
                                   UserTempUrlsRecord.getDocumentFromData(
-                                      userTempUrlsCreateData,
+                                      createUserTempUrlsRecordData(
+                                        urls:
+                                            _model.urlListFieldController.text,
+                                        datasetId: widget.setDataset!.datasetId,
+                                        timestamp: getCurrentTimestamp,
+                                        urlId: random_data.randomString(
+                                          8,
+                                          8,
+                                          true,
+                                          true,
+                                          true,
+                                        ),
+                                        datasetName:
+                                            widget.setDataset!.datasetName,
+                                        chunkSize: FFAppState().setChunkSize,
+                                      ),
                                       userTempUrlsRecordReference);
                               logFirebaseEvent('Button_backend_call');
                               await ScrapeServerCall.call(

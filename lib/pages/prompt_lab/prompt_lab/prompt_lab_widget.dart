@@ -110,10 +110,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -139,10 +138,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -474,18 +472,16 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                     logFirebaseEvent(
                                                                         'Button_backend_call');
 
-                                                                    final promptlabCreateData =
-                                                                        createPromptlabRecordData(
+                                                                    await PromptlabRecord.createDoc(
+                                                                            currentUserReference!)
+                                                                        .set(
+                                                                            createPromptlabRecordData(
                                                                       timestamp:
                                                                           getCurrentTimestamp,
                                                                       folderName: _model
                                                                           .nameFolderController
                                                                           .text,
-                                                                    );
-                                                                    await PromptlabRecord.createDoc(
-                                                                            currentUserReference!)
-                                                                        .set(
-                                                                            promptlabCreateData);
+                                                                    ));
                                                                     logFirebaseEvent(
                                                                         'Button_clear_text_fields');
                                                                     setState(
@@ -596,9 +592,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                             .isEmpty) {
                                                           return Center(
                                                             child: Container(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
                                                                       .height *
                                                                   1.0,
                                                               child:
@@ -628,9 +624,8 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                             0.0),
                                                                 child:
                                                                     Container(
-                                                                  width: MediaQuery.of(
+                                                                  width: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .width *
                                                                       1.0,
                                                                   decoration:
@@ -656,7 +651,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                         child:
                                                                             Container(
                                                                           width:
-                                                                              MediaQuery.of(context).size.width * 1.0,
+                                                                              MediaQuery.sizeOf(context).width * 1.0,
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
@@ -765,9 +760,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                       return GestureDetector(
                                                                                                         onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(context).viewInsets,
+                                                                                                          padding: MediaQuery.viewInsetsOf(context),
                                                                                                           child: Container(
-                                                                                                            height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                            height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                             child: FolderOptionsWidget(
                                                                                                               folderDoc: columnPromptlabRecord,
                                                                                                             ),
@@ -814,9 +809,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                       return GestureDetector(
                                                                                                         onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(context).viewInsets,
+                                                                                                          padding: MediaQuery.viewInsetsOf(context),
                                                                                                           child: Container(
-                                                                                                            height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                            height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                             child: AddPromptWidget(
                                                                                                               promptRef: columnPromptlabRecord.reference,
                                                                                                               isSub: false,
@@ -879,9 +874,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                       return GestureDetector(
                                                                                                         onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                         child: Padding(
-                                                                                                          padding: MediaQuery.of(context).viewInsets,
+                                                                                                          padding: MediaQuery.viewInsetsOf(context),
                                                                                                           child: Container(
-                                                                                                            height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                            height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                             child: AddSubFolderWidget(
                                                                                                               folderRef: columnPromptlabRecord.reference,
                                                                                                             ),
@@ -1067,9 +1062,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                                       return GestureDetector(
                                                                                                                         onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                         child: Padding(
-                                                                                                                          padding: MediaQuery.of(context).viewInsets,
+                                                                                                                          padding: MediaQuery.viewInsetsOf(context),
                                                                                                                           child: Container(
-                                                                                                                            height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                                            height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                                             child: FolderOptionsSubWidget(
                                                                                                                               folderRef: columnPromptlabRecord.children[childrenIndex].docRef,
                                                                                                                               index: childrenIndex,
@@ -1104,9 +1099,9 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                                                                                       return GestureDetector(
                                                                                                                         onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                                                         child: Padding(
-                                                                                                                          padding: MediaQuery.of(context).viewInsets,
+                                                                                                                          padding: MediaQuery.viewInsetsOf(context),
                                                                                                                           child: Container(
-                                                                                                                            height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                                            height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                                             child: AddPromptWidget(
                                                                                                                               subRef: childrenItem.docRef,
                                                                                                                               isSub: true,
@@ -1239,8 +1234,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height: 100.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -1405,7 +1399,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
 
-                                                  final plPromptsCreateData1 = {
+                                                  var plPromptsRecordReference1 =
+                                                      PlPromptsRecord.createDoc(
+                                                          currentUserReference!);
+                                                  await plPromptsRecordReference1
+                                                      .set({
                                                     ...createPlPromptsRecordData(
                                                       system: _model
                                                           .promptLabSystemModel
@@ -1441,18 +1439,46 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                     'active_datasets':
                                                         FFAppState()
                                                             .selectedDataset,
-                                                  };
-                                                  var plPromptsRecordReference1 =
-                                                      PlPromptsRecord.createDoc(
-                                                          currentUserReference!);
-                                                  await plPromptsRecordReference1
-                                                      .set(
-                                                          plPromptsCreateData1);
+                                                  });
                                                   _model.setPromptDataset =
                                                       PlPromptsRecord
-                                                          .getDocumentFromData(
-                                                              plPromptsCreateData1,
-                                                              plPromptsRecordReference1);
+                                                          .getDocumentFromData({
+                                                    ...createPlPromptsRecordData(
+                                                      system: _model
+                                                          .promptLabSystemModel
+                                                          .textController
+                                                          .text,
+                                                      content: _model
+                                                          .promptlablContentModel
+                                                          .textController
+                                                          .text,
+                                                      prompt: _model
+                                                          .promptlabPromptModel
+                                                          .textController
+                                                          .text,
+                                                      timestamp:
+                                                          getCurrentTimestamp,
+                                                      plid: random_data
+                                                          .randomString(
+                                                        10,
+                                                        10,
+                                                        true,
+                                                        true,
+                                                        true,
+                                                      ),
+                                                      topK: int.tryParse(_model
+                                                          .textController3
+                                                          .text),
+                                                      temp: valueOrDefault<
+                                                          double>(
+                                                        _model.sliderValue,
+                                                        0.0,
+                                                      ),
+                                                    ),
+                                                    'active_datasets':
+                                                        FFAppState()
+                                                            .selectedDataset,
+                                                  }, plPromptsRecordReference1);
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
                                                   _model.apiResulty84 =
@@ -1475,7 +1501,11 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
 
-                                                  final plPromptsCreateData2 = {
+                                                  var plPromptsRecordReference2 =
+                                                      PlPromptsRecord.createDoc(
+                                                          currentUserReference!);
+                                                  await plPromptsRecordReference2
+                                                      .set({
                                                     ...createPlPromptsRecordData(
                                                       system: _model
                                                           .promptLabSystemModel
@@ -1510,18 +1540,45 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                     ),
                                                     'active_datasets':
                                                         FFAppState().emptyList,
-                                                  };
-                                                  var plPromptsRecordReference2 =
-                                                      PlPromptsRecord.createDoc(
-                                                          currentUserReference!);
-                                                  await plPromptsRecordReference2
-                                                      .set(
-                                                          plPromptsCreateData2);
+                                                  });
                                                   _model.setPromptNoDataset =
                                                       PlPromptsRecord
-                                                          .getDocumentFromData(
-                                                              plPromptsCreateData2,
-                                                              plPromptsRecordReference2);
+                                                          .getDocumentFromData({
+                                                    ...createPlPromptsRecordData(
+                                                      system: _model
+                                                          .promptLabSystemModel
+                                                          .textController
+                                                          .text,
+                                                      content: _model
+                                                          .promptlablContentModel
+                                                          .textController
+                                                          .text,
+                                                      prompt: _model
+                                                          .promptlabPromptModel
+                                                          .textController
+                                                          .text,
+                                                      timestamp:
+                                                          getCurrentTimestamp,
+                                                      plid: random_data
+                                                          .randomString(
+                                                        10,
+                                                        10,
+                                                        true,
+                                                        true,
+                                                        true,
+                                                      ),
+                                                      topK: int.tryParse(_model
+                                                          .textController3
+                                                          .text),
+                                                      temp: valueOrDefault<
+                                                          double>(
+                                                        _model.sliderValue,
+                                                        0.0,
+                                                      ),
+                                                    ),
+                                                    'active_datasets':
+                                                        FFAppState().emptyList,
+                                                  }, plPromptsRecordReference2);
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
                                                   _model.apiResulty85 =
@@ -1598,11 +1655,10 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                 children: [
                                                   if (!_model.configView)
                                                     Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              1.0,
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
                                                                 .of(context)
@@ -1658,11 +1714,10 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                     ),
                                                   if (_model.configView)
                                                     Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              1.0,
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width *
+                                                          1.0,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
                                                                 .of(context)

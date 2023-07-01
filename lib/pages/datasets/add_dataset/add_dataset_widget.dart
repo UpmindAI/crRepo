@@ -86,7 +86,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 1.0,
+                              width: MediaQuery.sizeOf(context).width * 1.0,
                               child: Form(
                                 key: _model.formKey,
                                 autovalidateMode: AutovalidateMode.disabled,
@@ -240,8 +240,10 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                             logFirebaseEvent(
                                                 'Button_backend_call');
 
-                                            final userDatasetsCreateData =
-                                                createUserDatasetsRecordData(
+                                            await UserDatasetsRecord.createDoc(
+                                                    currentUserReference!)
+                                                .set(
+                                                    createUserDatasetsRecordData(
                                               datasetId:
                                                   random_data.randomString(
                                                 8,
@@ -255,10 +257,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                               description:
                                                   _model.textController2.text,
                                               createdOn: getCurrentTimestamp,
-                                            );
-                                            await UserDatasetsRecord.createDoc(
-                                                    currentUserReference!)
-                                                .set(userDatasetsCreateData);
+                                            ));
                                             logFirebaseEvent(
                                                 'Button_wait__delay');
                                             await Future.delayed(const Duration(

@@ -91,7 +91,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
       body: SafeArea(
         top: true,
         child: Container(
-          width: MediaQuery.of(context).size.width * 1.0,
+          width: MediaQuery.sizeOf(context).width * 1.0,
           decoration: BoxDecoration(),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -105,8 +105,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     children: [
                       Expanded(
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
-                          height: MediaQuery.of(context).size.height * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -134,8 +134,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           color: Colors.transparent,
                           elevation: 1.0,
                           child: Container(
-                            width: MediaQuery.of(context).size.width * 1.0,
-                            height: MediaQuery.of(context).size.height * 1.0,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 1.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -761,8 +761,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             logFirebaseEvent(
                                                 'Button_backend_call');
 
-                                            final usersUpdateData =
-                                                createUsersRecordData(
+                                            await currentUserReference!
+                                                .update(createUsersRecordData(
                                               firstName: _model
                                                   .firstNameEditController.text,
                                               lastName: _model
@@ -777,9 +777,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                   .roleEditController.text,
                                               walletAddress: _model
                                                   .walletEditController.text,
-                                            );
-                                            await currentUserReference!
-                                                .update(usersUpdateData);
+                                            ));
                                             logFirebaseEvent(
                                                 'Button_show_snack_bar');
                                             ScaffoldMessenger.of(context)

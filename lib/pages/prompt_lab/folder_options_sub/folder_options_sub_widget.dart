@@ -133,7 +133,7 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -146,7 +146,7 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 12.0, 0.0),
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: TextFormField(
                                   controller: _model.textController ??=
                                       TextEditingController(
@@ -203,7 +203,7 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -240,16 +240,15 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                             'FOLDER_OPTIONS_SUB_COMP_SAVE_BTN_ON_TAP');
                                         logFirebaseEvent('Button_backend_call');
 
-                                        final promptlabSub0UpdateData =
+                                        await widget.folderRef!.update(
                                             createPromptlabSub0RecordData(
                                           folderName:
                                               _model.textController.text,
-                                        );
-                                        await widget.folderRef!
-                                            .update(promptlabSub0UpdateData);
+                                        ));
                                         logFirebaseEvent('Button_backend_call');
 
-                                        final promptlabUpdateData1 = {
+                                        await columnPromptlabRecord.reference
+                                            .update({
                                           'children': FieldValue.arrayUnion([
                                             getPlChildFirestoreData(
                                               createPlChildStruct(
@@ -261,12 +260,11 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                               true,
                                             )
                                           ]),
-                                        };
-                                        await columnPromptlabRecord.reference
-                                            .update(promptlabUpdateData1);
+                                        });
                                         logFirebaseEvent('Button_backend_call');
 
-                                        final promptlabUpdateData2 = {
+                                        await columnPromptlabRecord.reference
+                                            .update({
                                           'children': FieldValue.arrayRemove([
                                             getPlChildFirestoreData(
                                               updatePlChildStruct(
@@ -277,9 +275,7 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                               true,
                                             )
                                           ]),
-                                        };
-                                        await columnPromptlabRecord.reference
-                                            .update(promptlabUpdateData2);
+                                        });
                                         logFirebaseEvent('Button_bottom_sheet');
                                         Navigator.pop(context);
                                       },
@@ -330,7 +326,8 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                         await widget.folderRef!.delete();
                                         logFirebaseEvent('Button_backend_call');
 
-                                        final promptlabUpdateData = {
+                                        await columnPromptlabRecord.reference
+                                            .update({
                                           'children': FieldValue.arrayRemove([
                                             getPlChildFirestoreData(
                                               updatePlChildStruct(
@@ -341,9 +338,7 @@ class _FolderOptionsSubWidgetState extends State<FolderOptionsSubWidget> {
                                               true,
                                             )
                                           ]),
-                                        };
-                                        await columnPromptlabRecord.reference
-                                            .update(promptlabUpdateData);
+                                        });
                                         logFirebaseEvent('Button_navigate_to');
 
                                         context.pushNamed('promptLab');

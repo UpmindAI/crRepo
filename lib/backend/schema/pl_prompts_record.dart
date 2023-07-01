@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -69,7 +71,7 @@ class PlPromptsRecord extends FirestoreRecord {
     _activeDatasets = getDataList(snapshotData['active_datasets']);
     _completion = snapshotData['completion'] as String?;
     _plid = snapshotData['plid'] as String?;
-    _topK = snapshotData['top_k'] as int?;
+    _topK = castToType<int>(snapshotData['top_k']);
     _temp = castToType<double>(snapshotData['temp']);
   }
 
@@ -136,4 +138,38 @@ Map<String, dynamic> createPlPromptsRecordData({
   );
 
   return firestoreData;
+}
+
+class PlPromptsRecordDocumentEquality implements Equality<PlPromptsRecord> {
+  const PlPromptsRecordDocumentEquality();
+
+  @override
+  bool equals(PlPromptsRecord? e1, PlPromptsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.system == e2?.system &&
+        e1?.content == e2?.content &&
+        e1?.prompt == e2?.prompt &&
+        e1?.timestamp == e2?.timestamp &&
+        listEquality.equals(e1?.activeDatasets, e2?.activeDatasets) &&
+        e1?.completion == e2?.completion &&
+        e1?.plid == e2?.plid &&
+        e1?.topK == e2?.topK &&
+        e1?.temp == e2?.temp;
+  }
+
+  @override
+  int hash(PlPromptsRecord? e) => const ListEquality().hash([
+        e?.system,
+        e?.content,
+        e?.prompt,
+        e?.timestamp,
+        e?.activeDatasets,
+        e?.completion,
+        e?.plid,
+        e?.topK,
+        e?.temp
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is PlPromptsRecord;
 }

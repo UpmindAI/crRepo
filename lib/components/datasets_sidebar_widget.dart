@@ -51,7 +51,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
       children: [
         Container(
           width: 300.0,
-          height: MediaQuery.of(context).size.height * 1.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
@@ -98,7 +98,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 780.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
@@ -155,10 +155,9 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                         color: Colors.transparent,
                                         elevation: 2.0,
                                         child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              1.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
                                           height: 40.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
@@ -307,8 +306,7 @@ class _DatasetsSidebarWidgetState extends State<DatasetsSidebarWidget> {
                                                                           .Document,
                                                                     ),
                                                                   }.withoutNulls,
-                                                                  extra: <
-                                                                      String,
+                                                                  extra: <String,
                                                                       dynamic>{
                                                                     'activeDataset':
                                                                         listViewUserDatasetsRecord,

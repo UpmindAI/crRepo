@@ -121,7 +121,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       child: TextFormField(
                         controller: _model.promptNameController,
                         autofocus: true,
@@ -168,7 +168,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       child: TextFormField(
                         controller: _model.promptFieldController,
                         autofocus: true,
@@ -222,7 +222,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                         if (!widget.isSub!) {
                           logFirebaseEvent('Button_backend_call');
 
-                          final promptlabUpdateData = {
+                          await widget.promptRef!.update({
                             'prompts': FieldValue.arrayUnion([
                               getPromptsFirestoreData(
                                 createPromptsStruct(
@@ -234,8 +234,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                                 true,
                               )
                             ]),
-                          };
-                          await widget.promptRef!.update(promptlabUpdateData);
+                          });
                           logFirebaseEvent('Button_clear_text_fields');
                           setState(() {
                             _model.promptNameController?.clear();
@@ -247,7 +246,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                         }
                         logFirebaseEvent('Button_backend_call');
 
-                        final promptlabSub0UpdateData = {
+                        await widget.subRef!.update({
                           'prompts': FieldValue.arrayUnion([
                             getPromptsFirestoreData(
                               createPromptsStruct(
@@ -259,8 +258,7 @@ class _AddPromptWidgetState extends State<AddPromptWidget> {
                               true,
                             )
                           ]),
-                        };
-                        await widget.subRef!.update(promptlabSub0UpdateData);
+                        });
                         logFirebaseEvent('Button_clear_text_fields');
                         setState(() {
                           _model.promptNameController?.clear();

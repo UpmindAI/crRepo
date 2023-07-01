@@ -60,7 +60,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
             child: Container(
-              width: MediaQuery.of(context).size.width * 1.0,
+              width: MediaQuery.sizeOf(context).width * 1.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -85,7 +85,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -95,7 +95,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 1.0,
+                          width: MediaQuery.sizeOf(context).width * 1.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -123,7 +123,7 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                                           12.0, 0.0, 0.0, 4.0),
                                       child: Container(
                                         width:
-                                            MediaQuery.of(context).size.width *
+                                            MediaQuery.sizeOf(context).width *
                                                 1.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
@@ -186,12 +186,11 @@ class _PromptsSubWidgetState extends State<PromptsSubWidget> {
                                                           builder: (context) {
                                                             return Padding(
                                                               padding: MediaQuery
-                                                                      .of(context)
-                                                                  .viewInsets,
+                                                                  .viewInsetsOf(
+                                                                      context),
                                                               child: Container(
-                                                                height: MediaQuery.of(
+                                                                height: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .size
                                                                         .height *
                                                                     1.0,
                                                                 child:

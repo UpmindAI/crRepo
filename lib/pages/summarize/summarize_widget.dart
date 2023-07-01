@@ -90,10 +90,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                             children: [
                               Expanded(
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -123,9 +122,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                   elevation: 1.0,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -434,9 +433,8 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Container(
-                                                                width: MediaQuery.of(
+                                                                width: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .size
                                                                         .width *
                                                                     1.0,
                                                                 decoration:
@@ -525,7 +523,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                         color: Colors.transparent,
                                                                                         elevation: 1.0,
                                                                                         child: Container(
-                                                                                          width: MediaQuery.of(context).size.width * 1.0,
+                                                                                          width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                           decoration: BoxDecoration(
                                                                                             color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                           ),
@@ -566,9 +564,8 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Container(
-                                                                width: MediaQuery.of(
+                                                                width: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .size
                                                                         .width *
                                                                     1.0,
                                                                 decoration:
@@ -651,7 +648,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                 color: Colors.transparent,
                                                                                 elevation: 1.0,
                                                                                 child: Container(
-                                                                                  width: MediaQuery.of(context).size.width * 1.0,
+                                                                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                   decoration: BoxDecoration(
                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                   ),
@@ -688,9 +685,8 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Container(
-                                                                width: MediaQuery.of(
+                                                                width: MediaQuery.sizeOf(
                                                                             context)
-                                                                        .size
                                                                         .width *
                                                                     1.0,
                                                                 decoration:
@@ -778,7 +774,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                             color: Colors.transparent,
                                                                                             elevation: 1.0,
                                                                                             child: Container(
-                                                                                              width: MediaQuery.of(context).size.width * 1.0,
+                                                                                              width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                               decoration: BoxDecoration(
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                               ),
@@ -811,10 +807,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                                             logFirebaseEvent('SUMMARIZE_PAGE_Icon_h8drn16r_ON_TAP');
                                                                                                             logFirebaseEvent('Icon_backend_call');
 
-                                                                                                            final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                                            await columnSummPromptHistoryRecord.reference.update(createSummPromptHistoryRecordData(
                                                                                                               isFavorite: true,
-                                                                                                            );
-                                                                                                            await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                                            ));
                                                                                                           },
                                                                                                           child: FaIcon(
                                                                                                             FontAwesomeIcons.star,
@@ -835,10 +830,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                                               logFirebaseEvent('SUMMARIZE_PAGE_Icon_npjr3jd2_ON_TAP');
                                                                                                               logFirebaseEvent('Icon_backend_call');
 
-                                                                                                              final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                                              await columnSummPromptHistoryRecord.reference.update(createSummPromptHistoryRecordData(
                                                                                                                 isFavorite: false,
-                                                                                                              );
-                                                                                                              await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                                              ));
                                                                                                             },
                                                                                                             child: FaIcon(
                                                                                                               FontAwesomeIcons.solidStar,
@@ -926,11 +920,11 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                   5.0,
                                                                   5.0),
                                                       child: Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            1.0,
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme
@@ -1021,9 +1015,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                               return GestureDetector(
                                                                                 onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
                                                                                 child: Padding(
-                                                                                  padding: MediaQuery.of(context).viewInsets,
+                                                                                  padding: MediaQuery.viewInsetsOf(context),
                                                                                   child: Container(
-                                                                                    height: MediaQuery.of(context).size.height * 1.0,
+                                                                                    height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                     child: SummaryPromptFieldWidget(
                                                                                       summaryPrompt: FFAppState().setSummaryTemplate,
                                                                                     ),
@@ -1202,29 +1196,28 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                           logFirebaseEvent(
                                                                               'ButtonSummarize_backend_call');
 
-                                                                          final usersUpdateData =
-                                                                              createUsersRecordData(
+                                                                          await currentUserReference!
+                                                                              .update(createUsersRecordData(
                                                                             summaryPrompt:
                                                                                 FFAppState().setSummaryTemplate,
-                                                                          );
-                                                                          await currentUserReference!
-                                                                              .update(usersUpdateData);
+                                                                          ));
                                                                           logFirebaseEvent(
                                                                               'ButtonSummarize_backend_call');
 
-                                                                          final userPromptsCreateData =
-                                                                              createUserPromptsRecordData(
+                                                                          var userPromptsRecordReference =
+                                                                              UserPromptsRecord.createDoc(currentUserReference!);
+                                                                          await userPromptsRecordReference
+                                                                              .set(createUserPromptsRecordData(
                                                                             qid:
                                                                                 FFAppState().setQid,
                                                                             prompt:
                                                                                 FFAppState().setSummaryTemplate,
-                                                                          );
-                                                                          var userPromptsRecordReference =
-                                                                              UserPromptsRecord.createDoc(currentUserReference!);
-                                                                          await userPromptsRecordReference
-                                                                              .set(userPromptsCreateData);
+                                                                          ));
                                                                           _model.setPromptSummarize = UserPromptsRecord.getDocumentFromData(
-                                                                              userPromptsCreateData,
+                                                                              createUserPromptsRecordData(
+                                                                                qid: FFAppState().setQid,
+                                                                                prompt: FFAppState().setSummaryTemplate,
+                                                                              ),
                                                                               userPromptsRecordReference);
                                                                           logFirebaseEvent(
                                                                               'ButtonSummarize_backend_call');
@@ -1305,8 +1298,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                               Stack(
                                                                 children: [
                                                                   Container(
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
+                                                                    width: MediaQuery.sizeOf(context)
                                                                             .width *
                                                                         1.0,
                                                                     constraints:
@@ -1378,7 +1370,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                             children: [
                                                                               if (columnUserCompletionsRecord!.isLoading)
                                                                                 Container(
-                                                                                  width: MediaQuery.of(context).size.width * 1.0,
+                                                                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                   decoration: BoxDecoration(
                                                                                     color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                   ),
@@ -1405,7 +1397,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
                                                                                             child: LinearPercentIndicator(
                                                                                               percent: functions.getPercentage(columnUserCompletionsRecord!.progressPercentage)!,
-                                                                                              width: MediaQuery.of(context).size.width * 0.25,
+                                                                                              width: MediaQuery.sizeOf(context).width * 0.25,
                                                                                               lineHeight: 20.0,
                                                                                               animation: true,
                                                                                               progressColor: FlutterFlowTheme.of(context).secondary,
@@ -1432,7 +1424,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                                                                                   child: Container(
-                                                                                    width: MediaQuery.of(context).size.width * 1.0,
+                                                                                    width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                     decoration: BoxDecoration(
                                                                                       color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                     ),
@@ -1786,9 +1778,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                   elevation: 1.0,
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -1920,7 +1912,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              MediaQuery.of(context).viewInsets,
+                                                                              MediaQuery.viewInsetsOf(context),
                                                                           child:
                                                                               Container(
                                                                             height:
@@ -2020,8 +2012,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                             ),
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
+                                            width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             height: 780.0,
@@ -2096,9 +2087,9 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                               .transparent,
                                                           elevation: 2.0,
                                                           child: Container(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .width *
                                                                 1.0,
                                                             height: 40.0,

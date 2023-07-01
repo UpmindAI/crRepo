@@ -86,7 +86,7 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                       ),
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 100.0,
                       constraints: BoxConstraints(
                         maxWidth: 600.0,

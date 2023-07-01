@@ -113,7 +113,7 @@ class _AddSubFolderWidgetState extends State<AddSubFolderWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 1.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
                       child: TextFormField(
                         controller: _model.subFolderController,
                         autofocus: true,
@@ -170,24 +170,26 @@ class _AddSubFolderWidgetState extends State<AddSubFolderWidget> {
                               'ADD_SUB_FOLDER_COMP_SAVE_BTN_ON_TAP');
                           logFirebaseEvent('Button_backend_call');
 
-                          final promptlabSub0CreateData =
-                              createPromptlabSub0RecordData(
-                            folderName: _model.subFolderController.text,
-                            parent: widget.folderRef,
-                            timestamp: getCurrentTimestamp,
-                          );
                           var promptlabSub0RecordReference =
                               PromptlabSub0Record.createDoc(
                                   currentUserReference!);
                           await promptlabSub0RecordReference
-                              .set(promptlabSub0CreateData);
+                              .set(createPromptlabSub0RecordData(
+                            folderName: _model.subFolderController.text,
+                            parent: widget.folderRef,
+                            timestamp: getCurrentTimestamp,
+                          ));
                           _model.createSub =
                               PromptlabSub0Record.getDocumentFromData(
-                                  promptlabSub0CreateData,
+                                  createPromptlabSub0RecordData(
+                                    folderName: _model.subFolderController.text,
+                                    parent: widget.folderRef,
+                                    timestamp: getCurrentTimestamp,
+                                  ),
                                   promptlabSub0RecordReference);
                           logFirebaseEvent('Button_backend_call');
 
-                          final promptlabUpdateData = {
+                          await widget.folderRef!.update({
                             'children': FieldValue.arrayUnion([
                               getPlChildFirestoreData(
                                 createPlChildStruct(
@@ -198,8 +200,7 @@ class _AddSubFolderWidgetState extends State<AddSubFolderWidget> {
                                 true,
                               )
                             ]),
-                          };
-                          await widget.folderRef!.update(promptlabUpdateData);
+                          });
                           logFirebaseEvent('Button_clear_text_fields');
                           setState(() {
                             _model.subFolderController?.clear();

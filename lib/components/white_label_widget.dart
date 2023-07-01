@@ -173,6 +173,7 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       () => _model.isDataUploading1 = true);
                                   var selectedUploadedFiles =
                                       <FFUploadedFile>[];
+
                                   var downloadUrls = <String>[];
                                   try {
                                     selectedUploadedFiles = selectedMedia
@@ -219,11 +220,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                     const Duration(milliseconds: 500));
                                 logFirebaseEvent('Container_backend_call');
 
-                                final usersUpdateData = createUsersRecordData(
-                                  wlLight: _model.uploadedFileUrl1,
-                                );
                                 await currentUserReference!
-                                    .update(usersUpdateData);
+                                    .update(createUsersRecordData(
+                                  wlLight: _model.uploadedFileUrl1,
+                                ));
                                 logFirebaseEvent('Container_show_snack_bar');
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -253,11 +253,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                   context: context,
                                   builder: (context) {
                                     return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
+                                      padding: MediaQuery.viewInsetsOf(context),
                                       child: Container(
                                         height:
-                                            MediaQuery.of(context).size.height *
+                                            MediaQuery.sizeOf(context).height *
                                                 1.0,
                                         child: WhiteLabelWidget(),
                                       ),
@@ -312,6 +311,7 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                           () => _model.isDataUploading2 = true);
                                       var selectedUploadedFiles =
                                           <FFUploadedFile>[];
+
                                       var downloadUrls = <String>[];
                                       try {
                                         selectedUploadedFiles = selectedMedia
@@ -359,12 +359,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                         const Duration(milliseconds: 500));
                                     logFirebaseEvent('Container_backend_call');
 
-                                    final usersUpdateData =
-                                        createUsersRecordData(
-                                      wlLight: _model.uploadedFileUrl2,
-                                    );
                                     await currentUserReference!
-                                        .update(usersUpdateData);
+                                        .update(createUsersRecordData(
+                                      wlLight: _model.uploadedFileUrl2,
+                                    ));
                                     logFirebaseEvent(
                                         'Container_show_snack_bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -396,10 +394,9 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       builder: (context) {
                                         return Padding(
                                           padding:
-                                              MediaQuery.of(context).viewInsets,
+                                              MediaQuery.viewInsetsOf(context),
                                           child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
+                                            height: MediaQuery.sizeOf(context)
                                                     .height *
                                                 1.0,
                                             child: WhiteLabelWidget(),
@@ -444,11 +441,9 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       'WHITE_LABEL_COMP_Icon_q9769w6y_ON_TAP');
                                   logFirebaseEvent('Icon_backend_call');
 
-                                  final usersUpdateData = {
+                                  await currentUserReference!.update({
                                     'wl_light': FieldValue.delete(),
-                                  };
-                                  await currentUserReference!
-                                      .update(usersUpdateData);
+                                  });
                                 },
                                 child: Icon(
                                   Icons.close,
@@ -517,6 +512,7 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       () => _model.isDataUploading3 = true);
                                   var selectedUploadedFiles =
                                       <FFUploadedFile>[];
+
                                   var downloadUrls = <String>[];
                                   try {
                                     selectedUploadedFiles = selectedMedia
@@ -563,11 +559,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                     const Duration(milliseconds: 500));
                                 logFirebaseEvent('Container_backend_call');
 
-                                final usersUpdateData = createUsersRecordData(
-                                  wlDark: _model.uploadedFileUrl3,
-                                );
                                 await currentUserReference!
-                                    .update(usersUpdateData);
+                                    .update(createUsersRecordData(
+                                  wlDark: _model.uploadedFileUrl3,
+                                ));
                                 logFirebaseEvent('Container_show_snack_bar');
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
@@ -597,11 +592,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                   context: context,
                                   builder: (context) {
                                     return Padding(
-                                      padding:
-                                          MediaQuery.of(context).viewInsets,
+                                      padding: MediaQuery.viewInsetsOf(context),
                                       child: Container(
                                         height:
-                                            MediaQuery.of(context).size.height *
+                                            MediaQuery.sizeOf(context).height *
                                                 1.0,
                                         child: WhiteLabelWidget(),
                                       ),
@@ -654,6 +648,7 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                           () => _model.isDataUploading4 = true);
                                       var selectedUploadedFiles =
                                           <FFUploadedFile>[];
+
                                       var downloadUrls = <String>[];
                                       try {
                                         selectedUploadedFiles = selectedMedia
@@ -701,12 +696,10 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                         const Duration(milliseconds: 500));
                                     logFirebaseEvent('Container_backend_call');
 
-                                    final usersUpdateData =
-                                        createUsersRecordData(
-                                      wlDark: _model.uploadedFileUrl4,
-                                    );
                                     await currentUserReference!
-                                        .update(usersUpdateData);
+                                        .update(createUsersRecordData(
+                                      wlDark: _model.uploadedFileUrl4,
+                                    ));
                                     logFirebaseEvent(
                                         'Container_show_snack_bar');
                                     ScaffoldMessenger.of(context).showSnackBar(
@@ -738,10 +731,9 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       builder: (context) {
                                         return Padding(
                                           padding:
-                                              MediaQuery.of(context).viewInsets,
+                                              MediaQuery.viewInsetsOf(context),
                                           child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
+                                            height: MediaQuery.sizeOf(context)
                                                     .height *
                                                 1.0,
                                             child: WhiteLabelWidget(),
@@ -787,14 +779,12 @@ class _WhiteLabelWidgetState extends State<WhiteLabelWidget> {
                                       'WHITE_LABEL_COMP_Icon_3eyx4iom_ON_TAP');
                                   logFirebaseEvent('Icon_backend_call');
 
-                                  final usersUpdateData = {
+                                  await currentUserReference!.update({
                                     ...createUsersRecordData(
                                       email: '',
                                     ),
                                     'wl_dark': FieldValue.delete(),
-                                  };
-                                  await currentUserReference!
-                                      .update(usersUpdateData);
+                                  });
                                 },
                                 child: Icon(
                                   Icons.close,

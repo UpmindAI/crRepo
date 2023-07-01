@@ -108,9 +108,9 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
               onTap: () =>
                   FocusScope.of(context).requestFocus(_model.unfocusNode),
               child: Padding(
-                padding: MediaQuery.of(context).viewInsets,
+                padding: MediaQuery.viewInsetsOf(context),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 1.0,
+                  height: MediaQuery.sizeOf(context).height * 1.0,
                   child: ErrorMessageWidget(),
                 ),
               ),
@@ -148,7 +148,7 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
         body: SafeArea(
           top: true,
           child: Container(
-            width: MediaQuery.of(context).size.width * 1.0,
+            width: MediaQuery.sizeOf(context).width * 1.0,
             decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -171,9 +171,9 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
                                 Expanded(
                                   child: Container(
                                     width:
-                                        MediaQuery.of(context).size.width * 1.0,
-                                    height: MediaQuery.of(context).size.height *
-                                        1.0,
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height:
+                                        MediaQuery.sizeOf(context).height * 1.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
@@ -201,10 +201,10 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
                                   child: Align(
                                     alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           0.98,
                                       height:
-                                          MediaQuery.of(context).size.height *
+                                          MediaQuery.sizeOf(context).height *
                                               1.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -226,14 +226,14 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
                                                   .fromSTEB(
                                                       20.0, 20.0, 20.0, 0.0),
                                               child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    1.0,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    1.0,
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        1.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
@@ -344,10 +344,10 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
                                   child: Align(
                                     alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           0.98,
                                       height:
-                                          MediaQuery.of(context).size.height *
+                                          MediaQuery.sizeOf(context).height *
                                               1.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -407,8 +407,7 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
                                               ],
                                             ),
                                             Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
+                                              width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
                                               height: 350.0,

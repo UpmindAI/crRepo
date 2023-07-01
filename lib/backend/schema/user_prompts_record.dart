@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -82,4 +84,20 @@ Map<String, dynamic> createUserPromptsRecordData({
   );
 
   return firestoreData;
+}
+
+class UserPromptsRecordDocumentEquality implements Equality<UserPromptsRecord> {
+  const UserPromptsRecordDocumentEquality();
+
+  @override
+  bool equals(UserPromptsRecord? e1, UserPromptsRecord? e2) {
+    return e1?.qid == e2?.qid && e1?.prompt == e2?.prompt;
+  }
+
+  @override
+  int hash(UserPromptsRecord? e) =>
+      const ListEquality().hash([e?.qid, e?.prompt]);
+
+  @override
+  bool isValidKey(Object? o) => o is UserPromptsRecord;
 }

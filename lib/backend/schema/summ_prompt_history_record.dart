@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -91,4 +93,23 @@ Map<String, dynamic> createSummPromptHistoryRecordData({
   );
 
   return firestoreData;
+}
+
+class SummPromptHistoryRecordDocumentEquality
+    implements Equality<SummPromptHistoryRecord> {
+  const SummPromptHistoryRecordDocumentEquality();
+
+  @override
+  bool equals(SummPromptHistoryRecord? e1, SummPromptHistoryRecord? e2) {
+    return e1?.prompt == e2?.prompt &&
+        e1?.timestamp == e2?.timestamp &&
+        e1?.isFavorite == e2?.isFavorite;
+  }
+
+  @override
+  int hash(SummPromptHistoryRecord? e) =>
+      const ListEquality().hash([e?.prompt, e?.timestamp, e?.isFavorite]);
+
+  @override
+  bool isValidKey(Object? o) => o is SummPromptHistoryRecord;
 }

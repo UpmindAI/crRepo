@@ -151,11 +151,10 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                           logFirebaseEvent('EDIT_TITLE_COMP_SAVE_BTN_ON_TAP');
                           logFirebaseEvent('Button_backend_call');
 
-                          final userDocsUpdateData = createUserDocsRecordData(
-                            docTitle: _model.textController.text,
-                          );
                           await widget.activeDoc!.reference
-                              .update(userDocsUpdateData);
+                              .update(createUserDocsRecordData(
+                            docTitle: _model.textController.text,
+                          ));
                           logFirebaseEvent('Button_wait__delay');
                           await Future.delayed(
                               const Duration(milliseconds: 500));

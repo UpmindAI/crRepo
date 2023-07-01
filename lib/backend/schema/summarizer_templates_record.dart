@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -64,4 +66,22 @@ Map<String, dynamic> createSummarizerTemplatesRecordData() {
   );
 
   return firestoreData;
+}
+
+class SummarizerTemplatesRecordDocumentEquality
+    implements Equality<SummarizerTemplatesRecord> {
+  const SummarizerTemplatesRecordDocumentEquality();
+
+  @override
+  bool equals(SummarizerTemplatesRecord? e1, SummarizerTemplatesRecord? e2) {
+    const listEquality = ListEquality();
+    return listEquality.equals(e1?.template, e2?.template);
+  }
+
+  @override
+  int hash(SummarizerTemplatesRecord? e) =>
+      const ListEquality().hash([e?.template]);
+
+  @override
+  bool isValidKey(Object? o) => o is SummarizerTemplatesRecord;
 }

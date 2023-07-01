@@ -70,7 +70,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
           child: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: MediaQuery.of(context).size.width * 1.0,
+              width: MediaQuery.sizeOf(context).width * 1.0,
               decoration: BoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -104,7 +104,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         5.0, 0.0, 5.0, 0.0),
                                     child: Container(
-                                      width: MediaQuery.of(context).size.width *
+                                      width: MediaQuery.sizeOf(context).width *
                                           0.98,
                                       height: 768.0,
                                       decoration: BoxDecoration(
@@ -159,11 +159,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                   color: Colors.transparent,
                                                   elevation: 1.0,
                                                   child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            1.0,
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
+                                                            .width *
+                                                        1.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
@@ -469,10 +468,9 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 10.0, 0.0),
                                         child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.98,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.98,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,

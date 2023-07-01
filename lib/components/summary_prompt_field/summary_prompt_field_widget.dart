@@ -68,7 +68,7 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                 color: Colors.transparent,
                 elevation: 2.0,
                 child: Container(
-                  width: MediaQuery.of(context).size.width * 8.0,
+                  width: MediaQuery.sizeOf(context).width * 8.0,
                   constraints: BoxConstraints(
                     maxWidth: 800.0,
                   ),
@@ -151,21 +151,20 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                                 'SUMMARY_PROMPT_FIELD_SET_PROMPT_BTN_ON_T');
                             logFirebaseEvent('Button_backend_call');
 
-                            final usersUpdateData = createUsersRecordData(
+                            await currentUserReference!
+                                .update(createUsersRecordData(
                               summaryPrompt: _model.textController.text,
-                            );
-                            await currentUserReference!.update(usersUpdateData);
+                            ));
                             logFirebaseEvent('Button_backend_call');
 
-                            final summPromptHistoryCreateData = {
+                            await SummPromptHistoryRecord.createDoc(
+                                    currentUserReference!)
+                                .set({
                               ...createSummPromptHistoryRecordData(
                                 prompt: _model.textController.text,
                               ),
                               'timestamp': FieldValue.serverTimestamp(),
-                            };
-                            await SummPromptHistoryRecord.createDoc(
-                                    currentUserReference!)
-                                .set(summPromptHistoryCreateData);
+                            });
                             logFirebaseEvent('Button_update_app_state');
                             setState(() {
                               FFAppState().setSummaryTemplate =

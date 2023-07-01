@@ -140,7 +140,7 @@ class _BotListWidgetState extends State<BotListWidget> {
                                           12.0, 8.0, 12.0, 0.0),
                                       child: Container(
                                         width:
-                                            MediaQuery.of(context).size.width *
+                                            MediaQuery.sizeOf(context).width *
                                                 1.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)

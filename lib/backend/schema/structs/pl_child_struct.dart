@@ -104,10 +104,13 @@ PlChildStruct createPlChildStruct({
 PlChildStruct? updatePlChildStruct(
   PlChildStruct? plChild, {
   bool clearUnsetFields = true,
+  bool create = false,
 }) =>
     plChild
-      ?..firestoreUtilData =
-          FirestoreUtilData(clearUnsetFields: clearUnsetFields);
+      ?..firestoreUtilData = FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+      );
 
 void addPlChildStructData(
   Map<String, dynamic> firestoreData,

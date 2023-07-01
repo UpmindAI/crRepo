@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
+
 import '/backend/schema/util/firestore_util.dart';
 import '/backend/schema/util/schema_util.dart';
 
@@ -98,7 +100,7 @@ class UserCompletionsRecord extends FirestoreRecord {
     _datasetNames = getDataList(snapshotData['dataset_names']);
     _isLoading = snapshotData['is_loading'] as bool?;
     _progressStatus = snapshotData['progress_status'] as String?;
-    _progressPercentage = snapshotData['progress_percentage'] as int?;
+    _progressPercentage = castToType<int>(snapshotData['progress_percentage']);
     _isError = snapshotData['is_error'] as bool?;
     _sources = getStructList(
       snapshotData['sources'],
@@ -171,4 +173,49 @@ Map<String, dynamic> createUserCompletionsRecordData({
   );
 
   return firestoreData;
+}
+
+class UserCompletionsRecordDocumentEquality
+    implements Equality<UserCompletionsRecord> {
+  const UserCompletionsRecordDocumentEquality();
+
+  @override
+  bool equals(UserCompletionsRecord? e1, UserCompletionsRecord? e2) {
+    const listEquality = ListEquality();
+    return e1?.qid == e2?.qid &&
+        e1?.prompt == e2?.prompt &&
+        e1?.completion == e2?.completion &&
+        e1?.url == e2?.url &&
+        e1?.timestamp == e2?.timestamp &&
+        listEquality.equals(e1?.chunks, e2?.chunks) &&
+        listEquality.equals(e1?.datasetIds, e2?.datasetIds) &&
+        listEquality.equals(e1?.docTitles, e2?.docTitles) &&
+        listEquality.equals(e1?.datasetNames, e2?.datasetNames) &&
+        e1?.isLoading == e2?.isLoading &&
+        e1?.progressStatus == e2?.progressStatus &&
+        e1?.progressPercentage == e2?.progressPercentage &&
+        e1?.isError == e2?.isError &&
+        listEquality.equals(e1?.sources, e2?.sources);
+  }
+
+  @override
+  int hash(UserCompletionsRecord? e) => const ListEquality().hash([
+        e?.qid,
+        e?.prompt,
+        e?.completion,
+        e?.url,
+        e?.timestamp,
+        e?.chunks,
+        e?.datasetIds,
+        e?.docTitles,
+        e?.datasetNames,
+        e?.isLoading,
+        e?.progressStatus,
+        e?.progressPercentage,
+        e?.isError,
+        e?.sources
+      ]);
+
+  @override
+  bool isValidKey(Object? o) => o is UserCompletionsRecord;
 }

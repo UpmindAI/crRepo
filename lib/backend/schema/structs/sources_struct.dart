@@ -195,10 +195,13 @@ SourcesStruct createSourcesStruct({
 SourcesStruct? updateSourcesStruct(
   SourcesStruct? sources, {
   bool clearUnsetFields = true,
+  bool create = false,
 }) =>
     sources
-      ?..firestoreUtilData =
-          FirestoreUtilData(clearUnsetFields: clearUnsetFields);
+      ?..firestoreUtilData = FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+      );
 
 void addSourcesStructData(
   Map<String, dynamic> firestoreData,

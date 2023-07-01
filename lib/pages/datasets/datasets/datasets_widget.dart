@@ -98,9 +98,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                           children: [
                             Expanded(
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 1.0,
-                                height:
-                                    MediaQuery.of(context).size.height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -129,10 +128,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                 color: Colors.transparent,
                                 elevation: 1.0,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -264,15 +262,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               builder:
                                                                   (context) {
                                                                 return Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
                                                                       Container(
-                                                                    height: MediaQuery.of(context)
-                                                                            .size
-                                                                            .height *
-                                                                        1.0,
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
                                                                     child:
                                                                         EditDatasetTitleWidget(
                                                                       activeDatasetT:
@@ -429,15 +426,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 builder:
                                                                     (context) {
                                                                   return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
+                                                                    padding: MediaQuery
+                                                                        .viewInsetsOf(
+                                                                            context),
                                                                     child:
                                                                         Container(
-                                                                      height: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          1.0,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
                                                                       child:
                                                                           ConfirmDeleteWidget(
                                                                         datasetRef:
@@ -752,15 +748,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 builder:
                                                                     (context) {
                                                                   return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
+                                                                    padding: MediaQuery
+                                                                        .viewInsetsOf(
+                                                                            context),
                                                                     child:
                                                                         Container(
-                                                                      height: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          1.0,
+                                                                      height:
+                                                                          MediaQuery.sizeOf(context).height *
+                                                                              1.0,
                                                                       child:
                                                                           UploadConfigWidget(),
                                                                     ),
@@ -886,8 +881,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 logFirebaseEvent(
                                                                     'scrapeURL_backend_call');
 
-                                                                final userTempUrlsCreateData =
-                                                                    createUserTempUrlsRecordData(
+                                                                var userTempUrlsRecordReference =
+                                                                    UserTempUrlsRecord
+                                                                        .createDoc(
+                                                                            currentUserReference!);
+                                                                await userTempUrlsRecordReference
+                                                                    .set(
+                                                                        createUserTempUrlsRecordData(
                                                                   urls: _model
                                                                       .scrapeURLController
                                                                       .text,
@@ -910,18 +910,25 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   chunkSize:
                                                                       FFAppState()
                                                                           .setChunkSize,
-                                                                );
-                                                                var userTempUrlsRecordReference =
-                                                                    UserTempUrlsRecord
-                                                                        .createDoc(
-                                                                            currentUserReference!);
-                                                                await userTempUrlsRecordReference
-                                                                    .set(
-                                                                        userTempUrlsCreateData);
+                                                                ));
                                                                 _model.createURLdocu =
-                                                                    UserTempUrlsRecord.getDocumentFromData(
-                                                                        userTempUrlsCreateData,
-                                                                        userTempUrlsRecordReference);
+                                                                    UserTempUrlsRecord
+                                                                        .getDocumentFromData(
+                                                                            createUserTempUrlsRecordData(
+                                                                              urls: _model.scrapeURLController.text,
+                                                                              datasetId: widget.activeDataset!.datasetId,
+                                                                              timestamp: getCurrentTimestamp,
+                                                                              urlId: random_data.randomString(
+                                                                                8,
+                                                                                8,
+                                                                                true,
+                                                                                true,
+                                                                                true,
+                                                                              ),
+                                                                              datasetName: widget.activeDataset!.datasetName,
+                                                                              chunkSize: FFAppState().setChunkSize,
+                                                                            ),
+                                                                            userTempUrlsRecordReference);
                                                                 logFirebaseEvent(
                                                                     'scrapeURL_clear_text_fields');
                                                                 setState(() {
@@ -1094,9 +1101,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               builder:
                                                                   (context) {
                                                                 return Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
                                                                   child:
                                                                       Container(
                                                                     height:
@@ -1311,14 +1318,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       0.0,
                                                                       5.0),
                                                           child: Container(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .width *
                                                                 1.0,
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
                                                                     .height *
                                                                 1.0,
                                                             decoration:
@@ -1397,7 +1404,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               color: Colors.transparent,
                                                                               elevation: 1.0,
                                                                               child: Container(
-                                                                                width: MediaQuery.of(context).size.width * 1.0,
+                                                                                width: MediaQuery.sizeOf(context).width * 1.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                   boxShadow: [
@@ -1493,9 +1500,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 context: context,
                                                                                                 builder: (context) {
                                                                                                   return Padding(
-                                                                                                    padding: MediaQuery.of(context).viewInsets,
+                                                                                                    padding: MediaQuery.viewInsetsOf(context),
                                                                                                     child: Container(
-                                                                                                      height: MediaQuery.of(context).size.height * 1.0,
+                                                                                                      height: MediaQuery.sizeOf(context).height * 1.0,
                                                                                                       child: EditTitleWidget(
                                                                                                         activeDoc: listViewUserDocsRecord,
                                                                                                       ),
@@ -1556,22 +1563,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                     logFirebaseEvent('DATASETS_Checkbox_0au6mmmd_ON_TOGGLE_ON');
                                                                                                     logFirebaseEvent('Checkbox_backend_call');
 
-                                                                                                    final userDatasetsUpdateData = {
+                                                                                                    await columnUserDatasetsRecord.reference.update({
                                                                                                       'active_docs': FieldValue.arrayUnion([
                                                                                                         listViewUserDocsRecord.docId
                                                                                                       ]),
-                                                                                                    };
-                                                                                                    await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                                    });
                                                                                                   } else {
                                                                                                     logFirebaseEvent('DATASETS_Checkbox_0au6mmmd_ON_TOGGLE_OFF');
                                                                                                     logFirebaseEvent('Checkbox_backend_call');
 
-                                                                                                    final userDatasetsUpdateData = {
+                                                                                                    await columnUserDatasetsRecord.reference.update({
                                                                                                       'active_docs': FieldValue.arrayRemove([
                                                                                                         listViewUserDocsRecord.docId
                                                                                                       ]),
-                                                                                                    };
-                                                                                                    await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                                    });
                                                                                                   }
                                                                                                 },
                                                                                                 activeColor: FlutterFlowTheme.of(context).primary,
@@ -1645,12 +1650,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 await listViewUserDocsRecord.reference.delete();
                                                                                                 logFirebaseEvent('Icon_backend_call');
 
-                                                                                                final userDatasetsUpdateData = {
+                                                                                                await columnUserDatasetsRecord.reference.update({
                                                                                                   'active_docs': FieldValue.arrayRemove([
                                                                                                     listViewUserDocsRecord.docId
                                                                                                   ]),
-                                                                                                };
-                                                                                                await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                                });
                                                                                               },
                                                                                               child: FaIcon(
                                                                                                 FontAwesomeIcons.trashAlt,
@@ -1765,10 +1769,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                 color: Colors.transparent,
                                 elevation: 1.0,
                                 child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 1.0,
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
-                                      MediaQuery.of(context).size.height * 1.0,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
@@ -1854,14 +1857,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         context: context,
                                                         builder: (context) {
                                                           return Padding(
-                                                            padding:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .viewInsets,
+                                                            padding: MediaQuery
+                                                                .viewInsetsOf(
+                                                                    context),
                                                             child: Container(
-                                                              height: MediaQuery.of(
-                                                                          context)
-                                                                      .size
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
                                                                       .height *
                                                                   1.0,
                                                               child:
@@ -1892,8 +1894,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
+                                            width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 1.0,
                                             height: 700.0,
@@ -2010,8 +2011,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           .Document,
                                                                     ),
                                                                   }.withoutNulls,
-                                                                  extra: <
-                                                                      String,
+                                                                  extra: <String,
                                                                       dynamic>{
                                                                     'activeDataset':
                                                                         listViewUserDatasetsRecord,
@@ -2024,9 +2024,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 elevation: 2.0,
                                                                 child:
                                                                     Container(
-                                                                  width: MediaQuery.of(
+                                                                  width: MediaQuery.sizeOf(
                                                                               context)
-                                                                          .size
                                                                           .width *
                                                                       1.0,
                                                                   decoration:
