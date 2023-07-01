@@ -1961,6 +1961,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     true,
                                                                     true,
                                                                   );
+                                                                  FFAppState()
+                                                                          .setQid =
+                                                                      random_data
+                                                                          .randomString(
+                                                                    7,
+                                                                    7,
+                                                                    true,
+                                                                    true,
+                                                                    true,
+                                                                  );
                                                                   // createMeta
                                                                   logFirebaseEvent(
                                                                       'startField_createMeta');
@@ -2036,14 +2046,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        7,
-                                                                        7,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
+                                                                      qid: FFAppState()
+                                                                          .setQid,
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2066,14 +2070,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        7,
-                                                                        7,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
+                                                                      qid: FFAppState()
+                                                                          .setQid,
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2110,9 +2108,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .chatGPTengine,
                                                                     uid:
                                                                         currentUserUid,
-                                                                    qid: _model
-                                                                        .createMessageForm2!
-                                                                        .qid,
+                                                                    qid: FFAppState()
+                                                                        .setQid,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'startField_navigate_to');
@@ -2272,6 +2269,20 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     (_) async {
                                                                   logFirebaseEvent(
                                                                       'CHAT_PAGE_sendField_ON_TEXTFIELD_SUBMIT');
+                                                                  logFirebaseEvent(
+                                                                      'sendField_update_app_state');
+                                                                  setState(() {
+                                                                    FFAppState()
+                                                                            .setQid =
+                                                                        random_data
+                                                                            .randomString(
+                                                                      7,
+                                                                      7,
+                                                                      true,
+                                                                      true,
+                                                                      true,
+                                                                    );
+                                                                  });
                                                                   // sendMessage
                                                                   logFirebaseEvent(
                                                                       'sendField_sendMessage');
@@ -2289,19 +2300,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           getCurrentTimestamp,
                                                                       isCompletion:
                                                                           false,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        11,
-                                                                        11,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
                                                                       prompt: _model
                                                                           .sendFieldController
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
+                                                                      qid: FFAppState()
+                                                                          .setQid,
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2319,19 +2324,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           getCurrentTimestamp,
                                                                       isCompletion:
                                                                           false,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        11,
-                                                                        11,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
                                                                       prompt: _model
                                                                           .sendFieldController
                                                                           .text,
                                                                       uid:
                                                                           currentUserUid,
+                                                                      qid: FFAppState()
+                                                                          .setQid,
                                                                     ),
                                                                     'dataset_ids': _model
                                                                         .checkboxCheckedItems
@@ -2383,9 +2382,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   _model.apiResultzymFF =
                                                                       await MixedChatCall
                                                                           .call(
-                                                                    qid: _model
-                                                                        .chatMessageNewFromField!
-                                                                        .qid,
                                                                     cid: FFAppState()
                                                                         .setCid,
                                                                     datasetIdsList:
@@ -2400,6 +2396,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .chatGPTengine,
                                                                     uid:
                                                                         currentUserUid,
+                                                                    qid: FFAppState()
+                                                                        .setQid,
                                                                   );
                                                                   logFirebaseEvent(
                                                                       'sendField_wait__delay');
