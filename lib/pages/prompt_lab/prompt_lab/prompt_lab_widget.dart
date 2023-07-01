@@ -1395,6 +1395,18 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                               onPressed: () async {
                                                 logFirebaseEvent(
                                                     'PROMPT_LAB_PAGE_OMP!_BTN_ON_TAP');
+                                                logFirebaseEvent(
+                                                    'Button_update_widget_state');
+                                                setState(() {
+                                                  _model.plID =
+                                                      random_data.randomString(
+                                                    6,
+                                                    6,
+                                                    true,
+                                                    true,
+                                                    true,
+                                                  );
+                                                });
                                                 if (_model.switchValue!) {
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
@@ -1419,14 +1431,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                           .text,
                                                       timestamp:
                                                           getCurrentTimestamp,
-                                                      plid: random_data
-                                                          .randomString(
-                                                        10,
-                                                        10,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      ),
+                                                      plid: _model.plID,
                                                       topK: int.tryParse(_model
                                                           .textController3
                                                           .text),
@@ -1458,14 +1463,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                           .text,
                                                       timestamp:
                                                           getCurrentTimestamp,
-                                                      plid: random_data
-                                                          .randomString(
-                                                        10,
-                                                        10,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      ),
+                                                      plid: _model.plID,
                                                       topK: int.tryParse(_model
                                                           .textController3
                                                           .text),
@@ -1483,8 +1481,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                       'Button_backend_call');
                                                   _model.apiResulty84 =
                                                       await PromptLabCall.call(
-                                                    plid: _model
-                                                        .setPromptDataset!.plid,
+                                                    plid: _model.plID,
                                                     idToken: currentJwtToken,
                                                     datasetIdsList: FFAppState()
                                                         .selectedDataset,
@@ -1521,14 +1518,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                           .text,
                                                       timestamp:
                                                           getCurrentTimestamp,
-                                                      plid: random_data
-                                                          .randomString(
-                                                        10,
-                                                        10,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      ),
+                                                      plid: _model.plID,
                                                       topK: int.tryParse(_model
                                                           .textController3
                                                           .text),
@@ -1559,14 +1549,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                           .text,
                                                       timestamp:
                                                           getCurrentTimestamp,
-                                                      plid: random_data
-                                                          .randomString(
-                                                        10,
-                                                        10,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      ),
+                                                      plid: _model.plID,
                                                       topK: int.tryParse(_model
                                                           .textController3
                                                           .text),
@@ -1583,9 +1566,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                                                       'Button_backend_call');
                                                   _model.apiResulty85 =
                                                       await PromptLabCall.call(
-                                                    plid: _model
-                                                        .setPromptNoDataset!
-                                                        .plid,
+                                                    plid: _model.plID,
                                                     idToken: currentJwtToken,
                                                     datasetIdsList:
                                                         FFAppState().emptyList,

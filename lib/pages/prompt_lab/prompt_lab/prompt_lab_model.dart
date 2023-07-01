@@ -44,6 +44,8 @@ class PromptLabModel extends FlutterFlowModel {
 
   bool configView = false;
 
+  String? plID;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
