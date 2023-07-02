@@ -72,7 +72,7 @@ class _SharePopupWidgetState extends State<SharePopupWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: 500.0,
+                width: 700.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),

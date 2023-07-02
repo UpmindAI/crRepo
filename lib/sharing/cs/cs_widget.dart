@@ -1029,6 +1029,20 @@ class _CsWidgetState extends State<CsWidget> {
                                                                       (_) async {
                                                                     logFirebaseEvent(
                                                                         'CS_PAGE_startField_ON_TEXTFIELD_SUBMIT');
+                                                                    logFirebaseEvent(
+                                                                        'startField_update_widget_state');
+                                                                    setState(
+                                                                        () {
+                                                                      _model.setCid =
+                                                                          random_data
+                                                                              .randomString(
+                                                                        7,
+                                                                        7,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      );
+                                                                    });
                                                                     // createMeta
                                                                     logFirebaseEvent(
                                                                         'startField_createMeta');
@@ -1039,14 +1053,8 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     await sharedChatMetaRecordReference
                                                                         .set(
                                                                             createSharedChatMetaRecordData(
-                                                                      cid: random_data
-                                                                          .randomString(
-                                                                        10,
-                                                                        10,
-                                                                        true,
-                                                                        true,
-                                                                        true,
-                                                                      ),
+                                                                      cid: _model
+                                                                          .setCid,
                                                                       bid: widget
                                                                           .bid,
                                                                       createdOn:
@@ -1055,13 +1063,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                     _model.createSharedChatMetaPaal =
                                                                         SharedChatMetaRecord.getDocumentFromData(
                                                                             createSharedChatMetaRecordData(
-                                                                              cid: random_data.randomString(
-                                                                                10,
-                                                                                10,
-                                                                                true,
-                                                                                true,
-                                                                                true,
-                                                                              ),
+                                                                              cid: _model.setCid,
                                                                               bid: widget.bid,
                                                                               createdOn: getCurrentTimestamp,
                                                                             ),
@@ -1087,8 +1089,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                           .startFieldController
                                                                           .text,
                                                                       cid: _model
-                                                                          .createSharedChatMetaPaal!
-                                                                          .cid,
+                                                                          .setCid,
                                                                       timestamp:
                                                                           getCurrentTimestamp,
                                                                       isCompletion:
@@ -1110,7 +1111,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                         SharedChatsRecord.getDocumentFromData(
                                                                             createSharedChatsRecordData(
                                                                               prompt: _model.startFieldController.text,
-                                                                              cid: _model.createSharedChatMetaPaal!.cid,
+                                                                              cid: _model.setCid,
                                                                               timestamp: getCurrentTimestamp,
                                                                               isCompletion: false,
                                                                               bid: widget.bid,
@@ -1142,8 +1143,7 @@ class _CsWidgetState extends State<CsWidget> {
                                                                       FFAppState()
                                                                               .setShareCID =
                                                                           _model
-                                                                              .createSharedChatMetaPaal!
-                                                                              .cid;
+                                                                              .setCid!;
                                                                     });
                                                                     logFirebaseEvent(
                                                                         'startField_update_widget_state');
