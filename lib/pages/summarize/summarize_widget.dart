@@ -76,7 +76,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 5.0, 20.0),
+                              4.0, 0.0, 4.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -112,7 +112,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                         flex: 5,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
+                              0.0, 0.0, 0.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -1768,7 +1768,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                         flex: 1,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 5.0, 20.0),
+                              4.0, 0.0, 4.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [

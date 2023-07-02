@@ -85,7 +85,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   color: Colors.transparent,
                   elevation: 2.0,
                   child: Container(
-                    width: 700.0,
+                    width: 800.0,
                     constraints: BoxConstraints(
                       maxWidth: 800.0,
                     ),
@@ -1590,8 +1590,8 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
-                                        maxLines: 6,
-                                        minLines: 3,
+                                        maxLines: 8,
+                                        minLines: 5,
                                         validator: _model
                                             .chatPersonalityControllerValidator
                                             .asValidator(context),

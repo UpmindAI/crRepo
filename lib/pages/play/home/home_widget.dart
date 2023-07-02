@@ -610,7 +610,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         tablet: false,
       )
           ? PreferredSize(
-              preferredSize: Size.fromHeight(20.0),
+              preferredSize: Size.fromHeight(12.0),
               child: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
@@ -759,7 +759,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               flex: 1,
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 5.0, 20.0),
+                                    4.0, 0.0, 4.0, 12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -799,7 +799,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               flex: 5,
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 20.0),
+                                    0.0, 0.0, 0.0, 12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -1894,7 +1894,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               flex: 1,
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 5.0, 20.0),
+                                    4.0, 0.0, 4.0, 12.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [

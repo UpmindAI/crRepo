@@ -96,7 +96,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -104,7 +104,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                         flex: 1,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 5.0, 20.0),
+                              4.0, 0.0, 4.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -132,7 +132,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                         flex: 2,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 5.0, 20.0),
+                              0.0, 0.0, 4.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -1228,7 +1228,7 @@ class _PromptLabWidgetState extends State<PromptLabWidget> {
                         flex: 4,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 5.0, 20.0),
+                              0.0, 0.0, 4.0, 12.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
